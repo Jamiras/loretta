@@ -7,6 +7,9 @@
 #  ./dump.py --rom loretta.sg --font original_font.txt
 #  ./dump.py --rom loretta.sg --font original_font.png --png
 
+# dump original text:
+#  ./dump.py --rom loretta.sg --text original_text.txt --charmap original_font.txt
+
 from utils.rom import ROM
 from utils.tiles import TileTable, Format
 from utils.charmap import CharMap
@@ -46,4 +49,4 @@ if options.text_path:
         exit()
 
     charmap = CharMap(options.charmap_path)
-    charmap.dump(rom, 0x3B8703, 0x09A7, options.text_path)
+    charmap.dump(rom, 0x1C000, 0x17B, options.text_path)

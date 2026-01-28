@@ -32,7 +32,7 @@ class CharMap:
                     key_start = line.find('$')
                     if key_start >= 0:
                         if line[key_start + 3].isalnum():
-                            key = int(line[key_start+1:key_start+5], 16)
+                            key = int(line[key_start+1:key_start+5], 16) | 0x10000
                         else:
                             key = int(line[key_start+1:key_start+3], 16)
 
@@ -70,15 +70,27 @@ class CharMap:
         with open(filename, 'w', encoding='utf-8') as file:
             file.write('${0:04X}|'.format(i))
             ends_with_space = False
+            b1 = rom.get_byte(address)
             while count > 0:
-                b = rom.get_byte(address)
-                address = address + 1
+                b2 = rom.get_byte(address + 1)
+                b = (b1 << 8) | b2 | 0x10000
+                address += 1
                 
                 if b in self.map:
                     file.write(self.map[b])
                     if len(self.map[b]) > 0:
                         ends_with_space = (self.map[b][-1] == ' ')
+
+                    # consume both characters
+                    address += 1
+                    b2 = rom.get_byte(address)
+                elif b1 in self.map:
+                    b = b1
+                    file.write(self.map[b])
+                    if len(self.map[b]) > 0:
+                        ends_with_space = (self.map[b1][-1] == ' ')
                 else:
+                    b = b1
                     file.write('[{0:02X}]'.format(b))
                     ends_with_space = False
                     
@@ -92,3 +104,5 @@ class CharMap:
                     if count > 0:
                         i = i + 1
                         file.write('${0:04X}|'.format(i))
+
+                b1 = b2
