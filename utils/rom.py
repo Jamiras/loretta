@@ -7,7 +7,7 @@ class ROM:
         self.size = Path(filename).stat().st_size
                
         file = open(filename, "rb")
-        self.data = file.read(self.size)
+        self.data = bytearray(file.read(self.size))
         file.close()
         
     def get_byte(self, address):
@@ -19,10 +19,12 @@ class ROM:
     def get_bytes(self, address, size):
         return self.data[address:address + size]
         
+    def set_bytes(self, address, data):
+        self.data[address:address + len(data)] = data
+
     def commit(self, filename = None):
         if not filename:
             filename = self.filename
-            
-        file = open(filename, "wb")
-        file.write(self.data, self.size)
-        file.close()
+
+        with open(filename, "wb") as file:
+            file.write(self.data)

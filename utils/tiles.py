@@ -47,6 +47,25 @@ class TileTable:
         return tile_bytes
 
     @staticmethod
+    def __encode_planar_8x8_1bpp(encoded_bytes):
+        tile = bytearray()
+        offset = 0
+        for y in range(0, 8):
+            b = 0x80 if encoded_bytes[offset + 0] != 0 else 0
+            b |= 0x40 if encoded_bytes[offset + 1] != 0 else 0
+            b |= 0x20 if encoded_bytes[offset + 2] != 0 else 0
+            b |= 0x10 if encoded_bytes[offset + 3] != 0 else 0
+            b |= 0x08 if encoded_bytes[offset + 4] != 0 else 0
+            b |= 0x04 if encoded_bytes[offset + 5] != 0 else 0
+            b |= 0x02 if encoded_bytes[offset + 6] != 0 else 0
+            b |= 0x01 if encoded_bytes[offset + 7] != 0 else 0
+            tile.append(b)
+            offset += 8
+                
+        tile_bytes = bytes(tile)
+        return tile_bytes
+
+    @staticmethod
     def __decode_planar_8x8_2bpp(encoded_bytes):
         tile = bytearray()
         for y in range(0, 8):
@@ -98,6 +117,62 @@ class TileTable:
         return decoded_bytes
 
     @staticmethod
+    def __encode_rle(decoded_bytes):
+        encoded_bytes = bytearray()
+
+        start = 0
+        count = 0
+        rle_count = 1
+        c = -1
+        i = 0
+        while (i < len(decoded_bytes)):
+            r = decoded_bytes[i]
+
+            if r == c:
+                rle_count += 1
+            else:
+                if rle_count > 3 or (rle_count == 3 and count > 4):
+                    count -= rle_count
+
+                    if count > 0:
+                        encoded_bytes.append(count | 0x80)
+                        while count > 0:
+                            encoded_bytes.append(decoded_bytes[start])
+                            start += 1
+                            count -= 1
+
+                    encoded_bytes.append(rle_count)
+                    encoded_bytes.append(c)
+
+                    start = i
+                    count = 0
+
+                c = r
+                rle_count = 1
+
+            count += 1
+            i += 1
+
+        if rle_count == 3 and count <= 4:
+            rle_count = 1
+
+        if rle_count > 2:
+            count -= rle_count
+
+        if count > 0:
+            encoded_bytes.append(count | 0x80)
+            while count > 0:
+                encoded_bytes.append(decoded_bytes[start])
+                start += 1
+                count -= 1
+
+        if rle_count > 2:
+            encoded_bytes.append(rle_count)
+            encoded_bytes.append(c)
+
+        return encoded_bytes
+
+    @staticmethod
     def tile_data(rom, address, format):
         size = TileTable.tile_size(format)
         tiledata = rom.get_bytes(address, size * 256)
@@ -106,6 +181,17 @@ class TileTable:
             tiledata = TileTable.__decode_rle(tiledata)
 
         return tiledata
+
+    @staticmethod
+    def write_tiles(bytes, rom, address, format, space):
+        if format == Format.RLE_8x8_1BPP:
+            bytes = TileTable.__encode_rle(bytes)
+
+        if len(bytes) <= space:
+            print('Writing {0}/{1} bytes to ${2:02X}'.format(len(bytes), space, address))
+            rom.set_bytes(address, bytes)
+        else:
+            print('Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(bytes), address, space))
 
     @staticmethod
     def decode(bytes, format):
@@ -117,15 +203,18 @@ class TileTable:
         }
         func = decoders.get(format, "Invalid format")
         return func(bytes)
-        
-        
+
     @staticmethod
-    def __dump_ascii_art(file, tile, width, height, bpp):
+    def __get_ascii_art(bpp):
         arts = {
             1: ['.', '#'],
             2: ['.', '-', '+', '#']
         }
-        art = arts[bpp]
+        return arts[bpp]
+
+    @staticmethod
+    def __dump_ascii_art(file, tile, width, height, bpp):
+        art = TileTable.__get_ascii_art(bpp)
         
         i = 0
         for y in range(0, height):
@@ -133,7 +222,30 @@ class TileTable:
                 file.write(art[tile[i]])
                 i = i + 1
             file.write('\n')
-    
+        
+    @staticmethod
+    def encode(tile_lines, format):
+        art = TileTable.__get_ascii_art(Format.get_bpp(format))
+        bytes = bytearray()
+
+        i = 0
+        for y in range(0, 8):
+            line = tile_lines[y]
+            for x in range(0, 8):
+                try:
+                    b = art.index(line[x])
+                except ValueError:
+                    print("unknown character \"" + line[x] + "\" in glyph: " + line)
+                    b = 0
+
+                bytes.append(b)
+
+        encoders = {
+            Format.PLANAR_8x8_1BPP: TileTable.__encode_planar_8x8_1bpp,
+            Format.RLE_8x8_1BPP: TileTable.__encode_planar_8x8_1bpp,
+        }
+        func = encoders.get(format, "Invalid format")
+        return func(bytes)
 
     @staticmethod
     def dump_to_text(rom, address, format, filename):
@@ -180,3 +292,31 @@ class TileTable:
         w = png.Writer(16*8, 16*8, greyscale=True, bitdepth=Format.get_bpp(format))
         w.write(file, image)
         file.close()
+
+
+    def import_from_text(rom, address, format, filename, space=None):
+        tile_lines = []
+        bytes = bytearray()
+
+        if space == None:
+            space = Format.get_bpp(format) * 256 * 8
+
+        with open(filename, 'r', encoding='utf-8') as file:
+            line = file.readline()
+
+            while line:
+                line = line.strip()
+                if line != '' and not line.startswith("//"):
+                    tile_lines.append(line)
+                    if len(tile_lines) == 8:
+                        tile = TileTable.encode(tile_lines, format)
+                        bytes.extend(tile)
+                        tile_lines = []
+
+                line = file.readline()
+
+        TileTable.write_tiles(bytes, rom, address, format, space)
+
+
+
+
