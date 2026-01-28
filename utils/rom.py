@@ -28,3 +28,17 @@ class ROM:
 
         with open(filename, "wb") as file:
             file.write(self.data)
+
+    def get_pointers(self, address, count):
+        pointers = {}
+        while (count > 0):
+            ptr = self.get_byte(address + 1) << 8 | self.get_byte(address)
+            if ptr not in pointers:
+                pointers[ptr] = [address]
+            else:
+                pointers[ptr].append(address)
+
+            address += 2
+            count -= 1
+
+        return pointers

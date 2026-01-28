@@ -70,5 +70,4 @@ if options.word_path:
         exit()
 
     charmap = CharMap(options.charmap_path)
-    # pointer at 204B=2119
-    charmap.dump(rom, 0x2119, 0x5A, options.word_path)
+    charmap.dump(rom, 0x2119, 0x5B, options.word_path, pointers=rom.get_pointers(0x204B, 0x67))

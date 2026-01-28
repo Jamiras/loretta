@@ -38,7 +38,6 @@ rom = ROM(options.rom_path)
 
 if options.font_path:
     TileTable.import_from_text(rom, 0x008000, Format.RLE_8x8_1BPP, options.font_path, space=0x717)
-    rom.commit()
 
 # if options.text_path:
 #     if not options.charmap_path:
@@ -48,19 +47,20 @@ if options.font_path:
 #     charmap = CharMap(options.charmap_path)
 #     charmap.dump(rom, 0x1C000, 0x17B, options.text_path)
 
-# if options.menu_path:
-#     if not options.charmap_path:
-#         printf("--charmap is required for --menu")
-#         exit()
+if options.menu_path:
+    if not options.charmap_path:
+        printf("--charmap is required for --menu")
+        exit()
 
-#     charmap = CharMap(options.charmap_path)
-#     charmap.dump(rom, 0x200F, 0x0E, options.menu_path)
+    charmap = CharMap(options.charmap_path)
+    charmap.import_from_text(rom, 0x200F, 0x3C, options.menu_path)
 
-# if options.word_path:
-#     if not options.charmap_path:
-#         printf("--charmap is required for --menu")
-#         exit()
+if options.word_path:
+    if not options.charmap_path:
+        printf("--charmap is required for --menu")
+        exit()
 
-#     charmap = CharMap(options.charmap_path)
-#     # pointer at 204B=2119
-#     charmap.dump(rom, 0x2119, 0x5A, options.word_path)
+    charmap = CharMap(options.charmap_path)
+    charmap.import_from_text(rom, 0x2119, 0x265, options.word_path)
+
+rom.commit()
