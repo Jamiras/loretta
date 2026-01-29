@@ -29,6 +29,15 @@ class ROM:
         with open(filename, "wb") as file:
             file.write(self.data)
 
+    def find_value(self, value, start_address, end_address):
+        b1 = value & 0xFF
+        b2 = (value >> 8) & 0xFF
+        for address in range(start_address, end_address):
+            if self.data[address] == b1 and self.data[address+1] == b2:
+                return address
+
+        return 0
+
     def get_pointers(self, address, count):
         pointers = {}
         while (count > 0):

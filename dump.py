@@ -4,13 +4,13 @@
 #  sudo apt install python3-png
 
 # dump original font:
-#  ./dump.py --rom loretta.sg --font original_font.txt
-#  ./dump.py --rom loretta.sg --font original_font.png --png
+#  ./dump.py --rom loretta.sg --font original/font.txt
+#  ./dump.py --rom loretta.sg --font original/font.png --png
 
 # dump original text:
-#  ./dump.py --rom loretta.sg --text original_text.txt --charmap original_font.txt
-#  ./dump.py --rom loretta.sg --menu original_menu.txt --charmap original_font.txt
-#  ./dump.py --rom loretta.sg --words original_words.txt --charmap original_font.txt
+#  ./dump.py --rom loretta.sg --text original/text.txt --charmap original/font.txt
+#  ./dump.py --rom loretta.sg --menu original/menu.txt --charmap original/font.txt
+#  ./dump.py --rom loretta.sg --words original/words.txt --charmap original/font.txt
 
 
 from utils.rom import ROM
@@ -54,7 +54,24 @@ if options.text_path:
         exit()
 
     charmap = CharMap(options.charmap_path)
-    charmap.dump(rom, 0x1C000, 0x17B, options.text_path)
+    [strings, num_bytes] = charmap.get_strings(rom, 0x1C000, 0x17B)
+    pointers = {}
+
+    ptr_offset = 0x14000
+    start_scan = 0x35C0
+    end_scan = 0x79FF
+    for address in strings.keys():
+        if (len(pointers) < 4):
+            ptr = rom.find_value(address - ptr_offset, 0x2500, 0x25FF)
+        else:
+            ptr = rom.find_value(address - ptr_offset, start_scan, end_scan)
+            if ptr != 0 and ptr < start_scan + 0x20:
+                start_scan = ptr + 8
+
+        if ptr != 0:
+            pointers[address] = [ptr]
+
+    charmap.dump(rom, 0x1C000, num_bytes, options.text_path, strings, pointers, -ptr_offset)
 
 if options.menu_path:
     if not options.charmap_path:

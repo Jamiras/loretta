@@ -1,8 +1,10 @@
-|$1C000 address
-|#329D bytes
-|-14000 pointer offset
+!address $1C000
+!space 329D
+!pointeroffset -14000
 
-@2506
+===== Intro =====
+-- These lines cannot be more than 16 characters
+@2506  ---------------- 
 $1C000|それは，あめのふる あさ，
 
 @251B
@@ -11,13 +13,23 @@ $1C00E|われわれが，おちゃの じかんを |
 @2530
 $1C021|たのしんでいる ときだった···
 
+-- Now, we can start wrapping lines using [NL] and [WAIT].
+-- Each line must still be less than 16 characters, but the
+-- importer will insert [NL]s for us, either immediately
+-- before a [WAIT] or as a replacement for an existing space.
+-- If a [WAIT] follows four lines, the first will scroll off
+-- before the [WAIT] kicks in. If the fourth line is short
+-- enough, place a ^ _after_ the [WAIT] to not put the
+-- wait cursor on a separate line.
+!wrap 10 $FE
+
 @2539
 $1C034|[WAIT]とおりに ばしゃの とまるおとが きこえ， まもなく ドアの よびりんが [WAIT]ほうもんしゃの いることを つげた···
 
 @35C8
 $1C078|ホ－ムズさん どうぞ あなたの ちからを かして ください。 [WAIT]じつは せんじつ わたしのあにの がろうで えが ぬすまれました。 それで ぜひ あなたに とりもどして もらいたいのです。
 
-@35EE
+@35EE - ask painting
 $1C0E5|ぬすまれたのは ニ－ル·エバンスの さくひんで 「あかい ぼうしの しょうじょ」 という タイトルの ものです。
 
 @360B

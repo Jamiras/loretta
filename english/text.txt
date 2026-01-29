@@ -1,0 +1,1108 @@
+!address $1C000
+!space 329D
+!pointeroffset -14000
+
+===== Intro =====
+-- These lines cannot be more than 16 characters
+@2506  ----------------
+$1C000|While we were
+
+@251B
+$1C00E|enjoying tea on
+
+@2530
+$1C021|a rainy day,
+
+-- now, we can start wrapping lines using [NL] and [WAIT]
+-- each line must still be less than 16 characters, but the
+-- importer will insert [NL]s for us, either immediately
+-- before a [WAIT] or as a replacement for an existing space.
+-- If a [WAIT] follows four lines, the first will scroll off
+-- before the [WAIT] kicks in. If the fourth line is short
+-- enough, place a ^ _after_ the [WAIT] to not put the
+-- wait cursor on a separate line.
+!wrap 10 $FE
+
+@2539
+$1C034|[WAIT]a horse-drawn carriage stopped at our street.[WAIT]There was a buzzing at the door.[WAIT]It seems we have a visitor...
+
+!wrap 10 $FE
+
+@35C8
+$1C078|Mr. Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[WAIT]^I would like your help to get it back.
+
+@35EE - ask painting
+$1C0E5|The stolen artwork is a piece by Neil Evans.[WAIT]^It's titled "The Girl in the Red Hat".
+
+@360B - ask gallery
+$1C123|It's called "Clay's Gallery".
+
+@3628 - ask Evans
+$1C13D|After his success with "The Girl in the Red Hat",[WAIT]^Evans is now building a reputation doing portraits.
+
+@3645
+$1C189|That's all I know. The rest is up to you.
+
+@3811 - try to leave without asking all three questions
+$1C1B2|Holmes! Did you forget to ask something?
+
+@3671
+$1C1CE|That's a violin. You're very skilled... really.
+
+@36C2
+$1C200|Did I put the money away?
+
+@36D4
+$1C214|Did I put the flute away?
+
+@36E6 - look fireplace logs
+$1C227|There's a pipe. That's a strange place for it.
+
+@367D - look gun
+$1C244|Your gun is a Webley.
+
+@3665 - look cane
+$1C25C|That's a walking stick.
+
+@45DC
+$1C268|That is a lamp.
+
+@370A
+$1C274|There's nothing inside.
+
+@3688
+$1C284|A major exhibition of Neil Evans' works will be held at Clay's Gallery.[WAIT]\rIn addition to "The Girl in the Red Hat",[WAIT]portraits of Count Ragland and Madam Katrina will be on display.
+
+@36AC
+$1C2F4|Motomi tutors a 10-year-old girl.[WAIT]She is employed by Richard Revell, who lives in Reigate.
+
+@36B7
+$1C329|The Red-Headed League has disbanded.
+
+@36F1
+$1C33F|Oh, there's an interesting article here.
+
+@37C1
+$1C357|Your usual, Darjeeling tea?
+
+@37DC
+$1C375|Yes, the newspaper has arrived.
+
+@37F9
+$1C38E|Hey, where are you going?
+
+@3800
+$1C3A0|Let's leave the cleaning to Hudson.
+
+$1C3BA|What are you going to do with that?
+
+@372F - take violin
+$1C3D4|I've take the violin.
+
+@3740 - take walking stick
+$1C3E7|I've taken my walking stick.
+
+@3751
+$1C3F8|I've taken the newspaper.
+
+@376C
+$1C40A|I've taken some money.
+
+@3786
+$1C41A|I've taken the flute.
+
+@37A0
+$1C429|I've taken the pipe.
+
+@4658
+$1C43B|I've taken the bone.
+
+@4669
+$1C44A|I've taken the lamp.
+
+@37A7
+$1C45B|That cannot be taken.
+
+$1C469|!1C469|This is used to attract attention, right?
+
+$1C482|!1C482|Just kidding. Wasn't that funny?
+
+$1C49B|!1C49B|The person over there is Mr. Clay.
+
+$1C4B1|!1C4B1|I'm looking forward to the exhibition.
+
+@4CA3
+$1C4CF|Are you Mr. Holmes? We've been expecting you.
+
+@4CC1
+$1C4E6|The painting was stolen when it was being moved from the warehouse.[WAIT]\rThe exhibition will be ruined without that painting.[WAIT]Please recover it as soon as possible.
+
+@4CD1
+$1C54C|Would you like to buy something?
+
+@4CDD
+$1C560|Apparently he always paints the portraits at the location[WAIT]of the person who commissioned the painting.
+
+@4D83
+$1C58F|Can I help you?
+
+@4CEB
+$1C59D|Someone hit me from behind and stole the painting.[WAIT]Now that I think about it, they looked kind of like Evans...
+
+@4CF6
+$1C5E0|Would you like to buy something?
+
+@4D02
+$1C5F3|We've never talked before...
+
+@4D18
+$1C605|Thank you so much for safely recovering the painting.
+
+@4D23
+$1C630|With everyone's support, the exhibition was a great success.
+
+@4D2F
+$1C64E|They certainly caused a lot of trouble.
+
+$1C66B|!1C66B|[WAIT]Huh? A threat? To damage a painting...
+
+@4D3D
+$1C690|A wealthy man bought that painting.[WAIT]His name started with an L.
+
+@4D54
+$1C6BF|What a terrible person. How could he hit me?
+
+@388E
+$1C6DA|Hello. Excuse me.
+
+@38A3
+$1C6EB|It seems no one is home.
+
+@3859
+$1C6F7|Is anyone there...?[WAIT]Holmes! I can faintly hear a woman's voice...
+
+@3865
+$1C72E|The door is locked!
+
+@51CD
+$1C741|You're going to unlock the door, aren't you?
+
+@3827
+$1C74E|Would you like to go for tea, young lady?
+
+@382D
+$1C766|How rude!
+
+@3921
+$1C774|I'm Ragland. What can I do for you?
+
+@3948
+$1C78A|He visited a few times, but we didn't talk much.
+
+@3930
+$1C7AB|Did you see my drawing? It's good, isn't it?
+
+@393C
+$1C7CE|Isn't "The Girl in the Red Hat" a beautiful painting?
+
+@3954
+$1C7F1|Wasn't she dating Stobart? He's quite popular.
+
+@396F
+$1C834|He's a noble descendant of the Stobart family.[WAIT]After his father's business failed, they have to give up their ancestral mansion.
+
+@3996
+$1C8A3|I heard Brenda married a rich man.[WAIT]I haven't seen Stobart since then. I wonder if he still lives in North London?
+
+@39BE
+$1C8FA|Loretta! Thank goodness! Everything's going to be alright now.
+
+@39C4
+$1C917|I was drugged. When I woke up, I was locking in this house...
+
+@39CC
+$1C94A|All that's left is to catch the culprit! Loretta, come with us.
+
+@39F0
+$1C97A|I don't understand.
+
+@39DF
+$1C98B|I want to go home soon.
+
+@4DE4
+$1C99D|No clues have been found.
+
+@3A0E
+$1C9B6|Katrina, how are you?
+
+@3A35
+$1C9CA|Do you want to see Neil? Maybe his younger brother Philip knows where he is.
+
+@3A1D
+$1C9FC|I had an excellent model. Hehe...
+
+@3A29
+$1CA1D|I'll gain even more fans with an exhibition.
+
+@3A59
+$1CA48|It's Philip.
+
+@3A87
+$1CA53|My brother told me not to tell anyone.
+
+@3A8E
+$1CA98|Please keep what I said a secret.
+
+@3A68
+$1CAB2|Maybe I should try drawing too.
+
+@3A74
+$1CAC9|It's a profitable business.
+
+@4F1A
+$1CAE3|That's enough. My brother's house is in Norwood.
+
+@3AA8
+$1CB16|This is Norwood. Isn't it quiet?
+
+@3ACD
+$1CB33|That's Neil's house.
+
+@3AB6
+$1CB47|Someone I didn't recognize was here asking questions the other day.
+
+$1CB7A|Hello,
+
+$1CB81|Are you going back to London?
+
+@3B06
+$1CB97|There's no one here.
+
+@3BDD
+$1CBA7|I can't afford it.
+
+@4F5D
+$1CBB9|The space above the ceiling? Let's try tapping on it.
+
+@3BE8
+$1CBE1|Holmes! You found the package!
+
+@3D09
+$1CBF9|You shouldn't take other people's things without permission.
+
+@3CCE
+$1CC15|It's a picture of a girl with a red hat!
+
+@3E0D
+$1CC31|Let's find a room before Neil gets back.
+
+@3CFA
+$1CC50|Who are you? Why are you in my house?
+
+@3D00
+$1CC6F|Clay asked me to retrieve the painting.
+
+@3B2D
+$1CC8C|We received a letter threatening to damage the painting.
+
+@3B3D
+$1CCB2|I couldn't bear the thought of Leticia's painting being damaged!
+
+@3B54
+$1CCEE|Perhaps it's related to what happened 3 years ago...
+
+@3B71
+$1CD14|We've been living together for 3 years. But she suffers from amnesia...
+
+@3B8A
+$1CD49|I found her by the Mole river. She was injured at the time.
+
+@3BA3
+$1CD8C|Tell me everything. The work itself is my reward.
+
+@3BAB
+$1CDCA|What does this letter mean? I'm worried.
+
+@3B60
+$1CDFD|wheRE[NL]loVE[NL]faLLs[WAIT]Beware the true origin of "The Girl in the Red Hat".
+
+@3E73
+$1CE45|I'll return the painting. Let's meet a the train station.
+
+@3E7B
+$1CE71|The painting will be sold after the exhibition.[WAIT]Have you solved the mystery of the letter yet?
+
+@3AF9
+$1CEA5|Mr.Evans, can you introduce me to Leticia?
+
+@3BB7
+$1CEC2|I've told you everything I know.
+
+@3BFA
+$1CEDE|It's the same color as Richard's hair.
+
+@3C13
+$1CEFF|Please don't look at the scars.
+
+@3C24
+$1CF2A|My father was very eager to meet you.
+
+@3C2C
+$1CF54|Is there any proof that she's really his mistress?
+
+@3C4D
+$1CF83|A handkerchief with the letter "L" embroidered on it.
+
+@3C53
+$1CFB0|She had it when we first met. Leticia starts with "L".
+
+@3E3B
+$1CFF6|Shoes! The same kind Richard had!
+
+@3C8D
+$1D013|Let's investigate a little more thoroughly.
+
+@3C61
+$1D02E|Nothing more can be found.
+
+@3DCA
+$1D03E|Those are the shoes she was wearing when I found her by the riverbank.
+
+@3D26
+$1D066|Let's take it with us.
+
+@3EA3
+$1D07A|Letitia, do you want to go see your father?
+
+@3EA9
+$1D091|I'm scared.
+
+@3D73
+$1D0A1|Let's take Letitia with us. Neil, you're coming too, right?
+
+@3EC8
+$1D0D0|Holmes! Where are you going?
+
+$1D0E4|!1D0E4|How far are you going?
+
+@3ED3
+$1D0F3|This is Windsor castle - a source of pride for England.
+
+@3EE4
+$1D11F|You must be the famous Mr.Holmes![WAIT]The air of London is purified by your very presence.
+
+@3EF0
+$1D168|The castle overlooking the Thames is undoubtedly the best of them all.
+
+@3F5E
+$1D192|This town has old castles and churches.
+
+@3F18
+$1D1B2|ここが ライゲ－トだ。 ふるい まちなみが うつくしい ところだね。
+
+@3F24
+$1D1DA|すこし つかれたね。 あそこのやどで ひとやすみ しよう。
+
+@3F34
+$1D1FA|「ざいりょうは まだ でつくして いないのだ。 それを すっかり てに いれたら [WAIT]こんなんは のりこえられるに ちがいない···」 ホ－ムズは そう いっていた。 [WAIT]いまの パスワ－ドは 「          」
+
+@3F52
+$1D270|さあ，また そうさを つづけようか!
+
+@50AE
+$1D284|みせれば，いいんだね? もしもし すみません， このきじを みてください。
+
+@50BB
+$1D2AE|ああ，あれが レべルさんの やかたですよ。
+
+@50C9
+$1D2C7|しりませんねえ。
+
+@3F85
+$1D2D0|どなたですか?
+
+@3F8B
+$1D2DA|あやしまれずに なかに はいるには··· そうだ! [WAIT]えっと··· さきほど よばれた いしゃだが···
+
+@3F93
+$1D316|おまちしていました。 どうぞ だんなさまの おへやへ。
+
+@3FB8
+$1D335|なにか ごようで··· あっ! ロレッタさま， ぶじ だったんですね!
+
+@3FAC
+$1D35F|ホ－ムズさんも たいへんですねえ。
+
+@3FE1
+$1D373|わたしは レべルていの もんばん です。
+
+@4017
+$1D38B|にわに でたよ。 ごらんよ うつくしい けしきだ。
+
+@402F
+$1D3A8|ほほに よせる かぜは，すこし つめたいが すがすがしい。 われわれは，さんぽを しながら [WAIT]じけんに ついて かたりあって いた。 「この じけんで きみの まなぶべき てんは， [WAIT]つねに へんかを みうしなっては ならぬと いうことです。」 ホ－ムズは そういっていた。 さあ，がんばって つづけよう!
+
+@50F0
+$1D454|よし， これをやるぞ。 そ－れ とってこい!
+
+@5105
+$1D46C|おや? みこうで しきりに ほえているぞ。 なにか みつけたのかな?
+
+@4056
+$1D491|いぬの あしあとが つづいているぞ! あとを つけて みるかい?
+
+@408C
+$1D4B5|ここは レッドヒルという まちです。
+
+@398B
+$1D4CA|モ－ルがわの ほとりに バロンと いう やどやが あるだけの ちいさな まちです。
+
+@40B4
+$1D4FA|いらっしゃいませ。
+
+@40C2
+$1D504|いぜん，ここに とまった おきゃくさんに もらったのです。 つれの じょせいの けがの てあての おれいにと。
+
+@40D3
+$1D540|ええ，くびのあたりに ひどい けがをして，たいへんでした。
+
+@40FF
+$1D562|このあたりの ふうけいだ。 ホ－ムズ! ニ－ル·エバンスの サインが してあるよ!
+
+@40E7
+$1D590|もしかして，レティシアが リチャ－ドの みすめ?!
+
+@4118
+$1D5AC|おかえりですか? この ブランデ－は とうてんの サ－ビスです。 またの おこしを。
+
+@417C
+$1D5DC|いつものかたとは ちがいますね。
+
+@4182
+$1D5EE|「あかい ぼうしのしょうじょ」 をおって ここまで きました。
+
+@41EE
+$1D611|あの えの しょうじょは， 3ねんまえ いなくなった みすめに そっくりでしてね··· [WAIT]わしは，あのえを がろうで みて まよわず かいとりました。
+
+@420D
+$1D663|ロレッタは かわに さんぽに いったきり かえってこない··· そして それが おちていた。
+
+@4213
+$1D694|それって どれです?
+
+@421B
+$1D6A1|そこに，しまって あるだろう?
+
+@42A3
+$1D6B2|いきなり じろじろ みるなんて しっれいな ひとだ!
+
+@4297
+$1D6D0|かるく ウエ－ブした かみのけが ひとふさ。 それから··· ちのついた かたほうの くつ。 [WAIT]きりさきジャックの しわざ だろうと いわれていたが [WAIT]でも まだ いきているなら ひとめ あいたい···
+
+@442B
+$1D740|とんだ ぐちを きかせてしまった せっかく だから ゆっくりして いきたまえ。
+
+@4206
+$1D76B|わしは なかば あきらめていたが···
+
+@416D
+$1D781|レべルさん，このひとが あなたの みすめさんでは?
+
+@4173
+$1D79E|おお···ロレッタ! ほんとうに ロレッタなのかい?
+
+@437B
+$1D7B9|Lの イニシャル··· ロレッタの つかっていたものだ。
+
+@4393
+$1D7D7|ロレッタのくつだ。
+
+@43AA
+$1D7E2|ロレッタ! よく もどってきて くれた! わしは こんなに うれしいことは ない!
+
+@43B2
+$1D80D|ですが，かのじょは きおくを うしなって いるのです。
+
+@43BA
+$1D82D|だが きっと すぐに とりもどす だろう。 これでロレッタが オスカ－と けっこんさえ してくれたら，あんしんなのだが。
+
+$1D873|このみすめが ロレッタだという しょうこは ないのかい?
+
+@415A
+$1D892|リチャ－ドさん!リチャ－ドさん! おや，きぜつ しているようだ， どうしよう?
+
+@518C
+$1D8BF|きが つきましたか! よかった! いったい どうしたのです?
+
+@5192
+$1D8E1|じつは こんな てがみが···
+
+@427A
+$1D8F4|「ロレッタは あずかった。 あのしょるいに サインを しろ!  さもないと ロレッタの いのちは ないぞ!」
+
+@41AD
+$1D92D|ロレッタの ははおやの トレイシ－が しんだときと おなじくらい かなしい···
+
+@41B8
+$1D959|パトリシアか，ほしがるままに あげていたんだ···
+
+@41C3
+$1D977|やかたを Sはくしゃくに ゆずると いう ないようの ものです。
+
+@41D8
+$1D99A|わしは かいしゃも ざいさんも すべて ロレッタと オスカ－に ゆずろうと おもって いたのに···
+
+@413D
+$1D9D0|いったい，どうしたのです?
+
+@4143
+$1D9E0|あいつが わしを ころそうとして ナイフで きりかかってきたんだ。 ジュリアは わしを かばって··
+
+@4197
+$1DA18|うでを きったが かすりきずだ。 それより，やつが にげた!
+
+@4301
+$1DA3D|わたしが，どくを いれたんです。 ストバ－トの たくらみとはいえ あやまって，みすめを··· [WAIT]もう ひとが しぬのは いや! あのひとを とめてください!
+
+@430F
+$1DA93|ホ－ムズ，ストバ－トとは いったい だれのことだろう? 1かいだけ えらんで おくれ。
+
+@42F5
+$1DAC5|もう，なにもかも おわりだわ!···
+
+@434A
+$1DAD9|わたしの みすめが ふたりも ひがいに あっているのだぞ!
+
+@434C
+$1DAFB|かれの なまえは レべル。 リチャ－ドの おとうとだよ!
+
+@4350
+$1DB1B|オスカ－は すでに しんでいる。
+
+@434E
+$1DB2E|さっき，わたしたちと いっしょに いた。
+
+@4354
+$1DB43|ホ－ムズ! ぼくをうたがうなんて ひどいよ。
+
+@4352
+$1DB5E|そうです。かれは，れいの ところから，にげるつもりだわ!
+
+@44AA
+$1DB7E|ふるめかしい やかた だね。 レべルは かなりの かねもち らしいな。
+
+@45F3
+$1DBA4|しかし，どうも なりきん しゅみの へや だなあ
+
+@48C6
+$1DBBF|なになに···リチャ－ド·レべル インドぼうえきで いちだいにして ざいさんを きずく。 [WAIT]1875ねん， ストバ－トはくしゃくより やかたを ゆずりうける··· レべルの じまん ばなしか。
+
+@461C
+$1DC2E|あっ てがみが! 「これいじょう かぎまわるな! さもないと いのちをおとすぞ。」 [WAIT]だれだ，こんなこと，するやつは! よし，ぼくが みてくる!
+
+@4011
+$1DC81|ホ－ムズ。 すまない。 みうしなってしまった ようだ。
+
+@4580
+$1DC9F|ホ－ムズ! こっちへ きてくれ!
+
+@4499
+$1DCB1|しょくじが よういされている。 もぐもぐ···みみ，まったりして それでいて しつこくない··· [WAIT]しかし，なにごとも おきないと いいね。れいの てがみの ことも あるし··· ああ， おいしかった。
+
+@45D1
+$1DD1F|いま たべた りょうりの のこり。 ホネだよ。
+
+@4763
+$1DD39|ホ－ムズさん，たいへんです! パトリシアおじょうさまが! へやに，いってみて ください!
+
+@40F0
+$1DD6C|なにか ごようですか。
+
+@44DF
+$1DD7A|パトリシアは ロレッタの はらちがいの いもうと です。
+
+@44F1
+$1DD9A|パトリシアは，みしばになるから ココアは のんでは いけないと いわれていたのに···
+
+@44F8
+$1DDC9|わたしは ちゅうじつな しつじ。 マスグレ－ブのブラントンの ような ことは しません。
+
+@46BD
+$1DDFB|なんですか それは。 ぼくに みせて どうしようと いうのですか?
+
+@4172
+$1DE21|えっ! ゆうかい? でていくのを みなかったから まだ やしきの なかに いるのでは?
+
+@450E
+$1DE50|えっ，さっじん? うらみを かうような ひとには みえないのに···
+
+@4527
+$1DE74|パトリシアは，だんなさまが ねるまえに のみ ココアを よく，もらっていました。 [WAIT]ゆうべも たしか だんなさまの へやから でてきました。
+
+@4553
+$1DEC2|ジュリアさまが だんなさまの ために まいばんもっていきます。
+
+@455A
+$1DEE6|とくい りょうりは ひきがえるの みしやきです。
+
+@4565
+$1DF01|えっ，ゆうかい? まあ，こわい。
+
+@4570
+$1DF12|えっ，さつじん? まあ，こわい。
+
+@4476
+$1DF24|オスカ－は，はんにんを といつめ ぎゃくに ころされたのかも しれないね。 [WAIT]おや，だれかが きたようだ。
+
+@447C
+$1DF5F|あの，このメモ おくさまの へやを そうじしていて みつけたんですけど···
+
+@4484
+$1DF89|どれどれ··· 「 あの ちょうこくを ···しないかぎり [WAIT]ちかしつの いりぐちが みつかることは ないはずよ。」 だって!
+
+@45B9
+$1DFD1|おや，あの メイド， ピンを おとしていったぞ。
+
+@4644
+$1DFED|よし ピンを とっておこう。
+
+@444B
+$1DFFD|ロレッタ，なにか おもいだせないかい?
+
+@4451
+$1E012|わたし，なにも わからない···
+
+@4459
+$1E023|ぼくが えを かいたばかりに， いきていることが しられてしまい かのじょを きけんなめに あわせて しまった···
+
+@4461
+$1E063|はんにんは このやかたに いるんだろう? ぼやぼやしてると にげられてしまうよ!
+
+@44C1
+$1E090|わたし，なにも わからない···
+
+@46ED
+$1E0A1|おや，いないのかな?
+
+$1E0AC|こんなときに バイオリンなんて， いったい なにを ひくんだね?
+
+@5080
+$1E0CF|わたし，この きょく しってますわ! ピアノを ひいても いいかしら?
+
+@5086
+$1E0F4|ああ! おもいだしたわ。 あのとき さんぽに でかけて ふくめんの おとこに さされたの··· [WAIT]おとうさんは，しゃっきんで こまっているひとから， だますようにして やかたを てに いれたって いってたわ··
+
+@508E
+$1E164|きゃ－!! [WAIT]ジュリアの ひめいだ!! どこの へやから だろう。
+
+@4789
+$1E18B|こんにちは，オスカ－です。
+
+@47A0
+$1E19A|だれかが，リチャ－ドを ころそうと していたんじゃ ないかと おもうんです··· [WAIT]ロレッタの きおくが もどらない うちに リチャ－ドが しねば ざいさんは あの ふたりの ものですし。
+
+@47B9
+$1E206|もし ロレッタが もどって こなければ，やかたは ジュリアの ものに··· [WAIT]ざいさんは，ジュリアと エドワ－ドとで，わけることに なっています。
+
+@47FF
+$1E25A|オスカ－です。 ぼくは リチャ－ドさんの かいしゃで はたらいています。
+
+@47E0
+$1E283|3ねんまえの ロレッタの じけん リチャ－ドの ココアを のんで しんだ パトリシア。 [WAIT]そして ロレッタの ゆうかい， 3つの じけんの きょうつうてんは? [WAIT]その てがかりは どこに? ここで ひとやすみしましょう。 [WAIT]いまのパスワ－ドは 「          」
+
+@4820
+$1E318|オスカ－の にっきだ!
+
+@4830
+$1E325|なになに，「 ぼくは リチャ－ド の きたいに こたえるために ロレッタを たすけたい。 [WAIT]あの おんなが ココアに どくを いれるのを みたと いって あいつを といつめれば [WAIT]きっと かのじょの ゆくえが わかるに ちがいない···」
+
+@4858
+$1E3A7|エドワ－ドです。 リチャ－ドの おとうと です。
+
+@486E
+$1E3C5|ロレッタは いい みすめです。 さいしを なくした わたしにも やさしく してくれて···
+
+@487A
+$1E3F4|そうそう，ピアノが すきで よく 「こいぬの ワルツ」を ひいて いましたっけ。
+
+@488B
+$1E420|そんなことより，ポ－カ－ しませんか?
+
+@4897
+$1E435|かれは ゆうしゅうな せいねんで リチャ－ドが たよりに するのは もっともだと おもいます。
+
+@489E
+$1E469|あには なかなかの やりて ですよ。
+
+@48AD
+$1E47D|きみが これで オスカ－を さしたんだろう!
+
+@48B3
+$1E497|なにを いってるんですか これは わたしのでは ない! なんて しつれいな!
+
+@48E3
+$1E4C0|ホ－ムズさん! ロレッタのことは なにか わかりましたか?
+
+@48FA
+$1E4DF|さあ? ここへは きたばかり ですから···
+
+@4906
+$1E4F8|ぼくは しんぱいで しんぱいで。
+
+@4912
+$1E50E|リチャ－ドは，なるべく はやく ロレッタと オスカ－を けっこん させたがって いるようでした。
+
+@491E
+$1E543|ぼくたちは これから どうなるのでしょう?
+
+@493F
+$1E55C|う－み みせても しかたないか···
+
+@4946
+$1E56F|きみも Eの イニシャルだね! きみが，ロレッタとの ことで， オスカ－を うらんで ころした!
+
+@494C
+$1E5A4|たしかに これは ぼくの です。 オスカ－が なにか みを まもる ものが ほしいと いうので かしたんです。
+
+@496E
+$1E5E2|わたし，パトリシア。 10さいよ。
+
+@4984
+$1E5F5|おじさまたちって たんていなの? おにんぎょう あそび すき?
+
+@4992
+$1E618|おじさま! そんなことすると ママに おこられて しまうわよ。
+
+@4975
+$1E639|Whoa! What happened here?
+
+@49A1
+$1E64B|It's useless. He's not breathing. Who could have done such a thing?
+
+@49BE
+$1E679|An overturned coffee cup. I can faintly smell cocoa.
+
+@49DC
+$1E6A4|Let's leave it alone.
+
+@4A01
+$1E6B0|This is Julia, Richard's wife.
+
+@4A18
+$1E6C6|Patricia drank that, didn't she?
+
+@4A28
+$1E6E0|If I knew things would turn out like this, I'd have made cocoa for her too.
+
+@4A33
+$1E70B|I only have eyes for Patricia.
+
+@4A45
+$1E722|I married Richard 11 years ago.
+
+@4A3E
+$1E73D|It seems they didn't think highly of me, but enough to murder...
+
+@4A57
+$1E76C|We look similar, but that isn't me.
+
+@4A6D
+$1E785|Oscar! Who could have done this to him?
+
+@4A84
+$1E79B|He died from massive bleeding.[WAIT]If we'd arrived sooner, we might have been able to help.
+
+@4A95
+$1E7CB|It's engraved with the letter "E". The culprit must be Edward![WAIT]\rHe killed Oscar to keep all the wealth to himself!
+
+@4AB8
+$1E81A|I'll keep it as proof.
+
+@4AF9
+$1E830|This is a theatre. It's main attractions are singing and comedy.
+
+@4B04
+$1E850|Julia? Who's that?
+
+@4B0F
+$1E862|She said she was quitting to get married. I wonder if that skinny guy is her fiancé.
+
+@4B29
+$1E890|That's a picture of Brenda. She was a singer at this theatre a long time ago.
+
+@4B48
+$1E8C6|I should ask while I'm here.
+
+@4B4E
+$1E8EA|How was my song?
+
+@4B56
+$1E8FB|That was a truly wonderful song.
+
+@4B5E
+$1E910|Okay, I'll tell you. You should ask Ragland about Brenda.
+
+@4B6C
+$1E940|That's all for today.
+
+@4B91
+$1E94F|It's completely dark. I can't see anything.
+
+@5156
+$1E968|I can see now.
+
+@4BB6
+$1E975|Was the cocoa poisoned? A little every day and you'll gradually die.
+
+@4BCF
+$1E9C4|It's a picture of Julia when she was younger.[WAIT]She was quite a beauty, wasn't she?
+
+@4BDB
+$1E9EE|It appears to have been taken from the front of Regent Theatre.
+
+@4AC4
+$1EA0F|Holmes! What is this?
+
+@4C18
+$1EA1F|I got it.
+
+@4C5E
+$1EA29|Let's go out for a bit.
+
+@4C74
+$1EA3A|The entrance has been blocked!
+
+@513A
+$1EA55|Oh, there's someone there. Wait! Stobart!
+
+@4BA0
+$1EA79|He's carrying a pistol.
+
+@4FA8
+$1EA8C|Yes! He dropped the pistol!
+
+@4FB3
+$1EAA0|Is that the end?
+
+@4FBB
+$1EAAC|Now, let's hear what you have to say.
+
+@4FC3
+$1EABB|I wanted to reclaim this mansion...[WAIT]That's why I used Julia and had her marry Richard.
+
+@4FCB
+$1EB0F|So, you tried to kill Richard by poisoning him!
+
+@4FD3
+$1EB34|If Richard died, the mansion would belong to Julia.[WAIT]But Loretta was in the way.[WAIT]So, three years ago, he decided to kill Loretta.[WAIT]If Loretta hadn't returned, everything would have gone according to plan.[WAIT]However, since she did return, he kidnapped her and forced her to sign the documents...
+
+@4FDB
+$1EBEE|And then they killed Oscar because he found out!
+
+@4FE3
+$1EC1A|Yes. Julia is completely innocent. I orchestrated everything.[WAIT]\rPlease tell my husband that. And also tell him I regret what I did...
+
+$1EC7B|!1EC7B|I don't see anything strange here.
+
+@3703
+$1EC98|What are you looking at?
+
+@6D2F
+$1ECB3|Why are you looking around so much?
+
+$1ECC9|M222
+
+@386C
+$1ECD3|Holmes, you better not do that.
+
+@4DEC
+$1ECE9|You shouldn't take out your frustrations on things like that.
+
+@6EF5
+$1ED08|I've had enough of violent acts.
+
+@4DEE
+$1ED1F|Who are you going to call in a place like this?
+
+@37F2
+$1ED36|I don't think anyone is here.
+
+$1ED3D|Is anyone there? No one's answering...
+
+@4DE2
+$1ED5F|We're the only ones here, right?
+
+@4DE8
+$1ED76|Is something wrong with that?
+
+@4DF8
+$1ED89|I don't have the product yet.
+
+$1EDA0|There's no point in showing that.
+
+@4DF0
+$1EDB3|You can't enter from here.
+
+@4DEA
+$1EDC1|I understand you less and less...
+
+@4DF2
+$1EDE6|That won't accomplish anything.
+
+@50D2
+$1EDFB|How do you use that?
+
+@4FFB
+$1EE0F|That sounds dangerous!
+
+@4EB7
+$1EE1F|That's strange. It's not listed.
+
+@4E8F
+$1EE2E|Whose address are you trying to find?
+
+@4EC3
+$1EE46|Um... It's in B-5.
+
+@4ECF
+$1EE57|Um... It's in B-7.
+
+@4EDB
+$1EE68|Um... It's in D-2.
+
+@4EE7
+$1EE79|Um... It's in E-6.
+
+@4EF3
+$1EE8A|Um... It's in C-3.
+
+@4EAB
+$1EE9B|Um... It's in B-1.
+
+@4F2F
+$1EEAC|Thank you very much. Do you like what you see?
+
+@4F37
+$1EED8|Holmes, we must use our money wisely.
+
+$1EEF4|I'm completely broke.
+
+@4F43
+$1EF01|Pipes can teach us interesting things.
+
+@4F7F
+$1EF28|It's dangerous to swing that around.
+
+@500C
+$1EF3C|I was surprised.
+
+@5019
+$1EF48|What are you going to play?
+
+@4C84
+$1EF54|I feel a little calmer now.
+
+@3E78
+$1EF69|How would I use that?
+
+@515E
+$1EF7E|It's not dark enough to need a lamp.
+
+$1EF93|M258
+
+@51A6
+$1EF9D|Is it safe to drink that?[WAIT]Oh, it's delicious!
+
+$1EFB5|!1EFB5|Afterwards, Julia entered a convent, and Loretta and Richard are reportedly happy together.[WAIT]\rNeil approved of Loretta's relationship with Richard,[WAIT]and their letter couldn't help but make us happy as well...
+
+@5364
+$1F035|There isn't anything that can't be solved by human intelligence.
+
+@5373
+$1F067|There's nothing easier to overlook than an obvious fact.
+
+@5382
+$1F087|A crimson thread of murder is intertwined in the tapestry of life.
+
+@5391
+$1F0B9|Even if demons don't exist,[WAIT]plenty of people act like the devil's henchmen.
+
+@5399
+$1F0E7|May tonight's decision prove to be the right one for Loretta and Neil's future.
+
+$1F12B|M266
+
+$1F135|M267
+
+$1F13F|M268
+
+$1F149|M269
+
+$1F153|M270
+
+$1F15D|M271
+
+$1F167|M272
+
+$1F171|M273
+
+$1F17B|M274
+
+$1F185|M275
+
+$1F18F|M276
+
+$1F199|M277
+
+$1F1A3|M278
+
+$1F1AD|M279
+
+@6D48
+$1F1B7|M280
+
+$1F1C1|M281
+
+$1F1CB|M282
+
+$1F1D5|M283
+
+$1F1DF|M284
+
+$1F1E9|M285
+
+$1F1F3|M286
+
+$1F1FD|M287
+
+$1F207|M288
+
+$1F211|M289
+
+@6046
+$1F21B|You're not allowed in the flower garden!
+
+@616C
+$1F22E|Oh?
+
+@608A
+$1F236|That house looks suspicious! Let's go inside.
+
+@618C
+$1F257|Oh dear, oh dear.
+
+@6079
+$1F25E|I'm back to where I was!
+
+$1F26A|M295
+
+$1F274|M296
+
+$1F27E|Box
+
+$1F284|TODO
+
+$1F28F|Nothing
+
+$1F294|Error
+

@@ -1,5 +1,5 @@
-|$2119 address
-|#0265 bytes
+!address $2119
+!space 265
 
 @204B
 $2119|えのこと

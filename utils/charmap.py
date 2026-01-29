@@ -29,7 +29,10 @@ class CharMap:
 
             while line:
                 line_index += 1
-                value_start = line.find('@"')
+                value_start = line.find('@"') # dump/import text
+                if value_start == -1:
+                    value_start = line.find('!"') # dump only text
+
                 if value_start >= 0:
                     key_start = line.find('$')
                     if key_start >= 0:
@@ -49,14 +52,17 @@ class CharMap:
 
                         if value_end >= line_len:
                             print("Unterminated string on line " + str(line_index))
-
-                        value = line[value_start:value_end].replace('\\n', '\n')
+                        
+                        value = line[value_start:value_end]
+                        if value.find('\\') != -1:
+                            value = value.replace('\\n', '\n').replace('\\', '')
                         self.map[key] = value
 
-                        if len(value) == 1:
-                            self.charmap[value] = key
-                        else:
-                            self.wordmap[value] = key
+                        if line[value_start - 2] == '@':
+                            if len(value) == 1:
+                                self.charmap[value] = key
+                            else:
+                                self.wordmap[value] = key
                         
                         if '@terminal' in line:
                             self.terminal.append(key)
@@ -72,59 +78,67 @@ class CharMap:
     def is_terminal(self, key):
         return key in self.terminal
 
-
-    def dump(self, rom, address, count, filename, pointers = {}):
+    def get_strings(self, rom, address, count):
+        original_address = address
+        strings = {}
         start = address
+        s = ''
+
+        b1 = rom.get_byte(address)
+        while count > 0:
+            b2 = rom.get_byte(address + 1)
+            b = (b1 << 8) | b2 | 0x10000
+            address += 1
+            
+            if b in self.map:
+                s += self.map[b]
+
+                # consume both characters
+                address += 1
+                b2 = rom.get_byte(address)
+            elif b1 in self.map:
+                b = b1
+                s += self.map[b]
+            else:
+                b = b1
+                s += '[{0:02X}]'.format(b)
+                
+            if b in self.terminal:
+                strings[start] = s
+                start = address
+                s = ''
+
+                count = count - 1
+
+            b1 = b2
+
+        print('Read {0} bytes starting at ${1:04X}'.format(address - original_address, original_address))
+        return [strings, address - original_address]
+
+    def dump(self, rom, address, count, filename, strings = None, pointers = {}, ptr_offset = 0):
+        if not strings:
+            [strings, count] = self.get_strings(rom, address, count)
+
         i = 0
         with open(filename, 'w', encoding='utf-8') as file:
-            if address in pointers:
-                for pointer in pointers[address]:
-                    file.write('@{0:04X}\n'.format(pointer))
-            file.write('${0:04X}|'.format(i))
+            file.write('|${0:04X} address\n'.format(address))
+            file.write('|#{0:04X} bytes\n'.format(count))
+            if ptr_offset > 0:
+                file.write('|+{0:04X} pointer offset\n'.format(ptr_offset))
+            elif ptr_offset < 0:
+                file.write('|{0:04X} pointer offset\n'.format(ptr_offset))
+            file.write('\n')
 
-            ends_with_space = False
-            b1 = rom.get_byte(address)
-            while count > 0:
-                b2 = rom.get_byte(address + 1)
-                b = (b1 << 8) | b2 | 0x10000
-                address += 1
-                
-                if b in self.map:
-                    file.write(self.map[b])
-                    if len(self.map[b]) > 0:
-                        ends_with_space = (self.map[b][-1] == ' ')
-
-                    # consume both characters
-                    address += 1
-                    b2 = rom.get_byte(address)
-                elif b1 in self.map:
-                    b = b1
-                    file.write(self.map[b])
-                    if len(self.map[b]) > 0:
-                        ends_with_space = (self.map[b1][-1] == ' ')
+            for start, text in strings.items():
+                if start in pointers:
+                    for pointer in pointers[start]:
+                        file.write('@{0:04X}\n'.format(pointer))
+                if len(text) > 0 and text[-1].isspace():
+                    file.write('${0:04X}|{1}|\n\n'.format(start, text))
                 else:
-                    b = b1
-                    file.write('[{0:02X}]'.format(b))
-                    ends_with_space = False
-                    
-                if b in self.terminal:
-                    if ends_with_space:
-                        file.write('|')
-                        ends_with_space = False
-                        
-                    file.write('\n')
-                    count = count - 1
-                    if count > 0:
-                        i = i + 1
-                        if address in pointers:
-                            for pointer in pointers[address]:
-                                file.write('@{0:04X}\n'.format(pointer))
+                    file.write('${0:04X}|{1}\n\n'.format(start, text))
 
-                        file.write('${0:04X}|'.format(i))
-
-                b1 = b2
-
-        print('Dumped {0} bytes starting at ${1:04X}'.format(address - start, start))
+        print('Dumped {0} strings'.format(len(strings)))
 
     def encode(self, text):
         encoded = bytearray()
@@ -136,12 +150,12 @@ class CharMap:
             for key, value in self.wordmap.items():
                 if len(key) > l and text.startswith(key, i):
                     c = value
-                    l = key.len
+                    l = len(key)
 
             if l == 0:
                 c = text[i]
                 if c not in self.charmap:
-                    print("no encoding for \"" + c + "\"")
+                    #print("no encoding for \"" + c + "\"")
                     break
                 else:
                     c = self.charmap[c]
@@ -166,7 +180,37 @@ class CharMap:
 
         return encoded
 
-    def import_from_text(self, rom, address, space, filename):
+    @staticmethod
+    def __apply_wrap(text, wrap):
+        wrapped_text = ''
+        while len(text) > wrap:
+            index = text.rfind(' ', 0, wrap + 1)
+            if index == -1:
+                index = text.find(' ', wrap)
+                if index == -1:
+                    break
+            wrapped_text += text[0:index]
+            wrapped_text += '\n'
+            text = text[index + 1:]
+
+        wrapped_text += text
+        return wrapped_text
+
+    @staticmethod
+    def __read_hex(line, index):
+        start = index
+        while index < len(line) and line[index].isalnum():
+            index += 1
+        if start == index:
+            return 0
+        return int(line[start:index], 16)
+
+    def import_from_text(self, rom, filename):
+        address = 0
+        space = 0
+        ptr_offset = 0
+        wrap = 0x100000
+        wrap_char = 0
         pointer_text = {}
         strings = {}
 
@@ -182,27 +226,61 @@ class CharMap:
                 line = line.strip()
                 if line.startswith('$'):
                     text = line[line.index('|') + 1:]
+                    if '|' in text:
+                        text = text[:text.index('|')]
+
+                    if len(text) > wrap:
+                        parts = text.split('[WAIT]')
+                        text = ''
+                        first = True
+                        for part in parts:
+                            if first:
+                                first = False
+                            else:
+                                if part.startswith('^'):
+                                    part = part[1:]
+                                    text += '[WAIT]\n'
+                                else:
+                                    if text != '':
+                                        text += '\n'
+                                    text += '[WAIT]'
+                            text += CharMap.__apply_wrap(part, wrap)
+
                     if text in strings:
                         pointer_text[text] += next_pointers
                         shared_strings += 1
                         encoded = strings[text]
                         shared_string_bytes += len(encoded)
-                        total_bytes += len(encoded)
                     else:
                         encoded = self.encode(text)
                         strings[text] = encoded
-                        total_bytes += len(encoded)
                         pointer_text[text] = next_pointers
 
+                    total_bytes += len(encoded)
                     next_pointers = []
                     num_strings += 1
 
-                elif line.startswith('@'):
-                    i = 1
-                    while i < len(line) and line[i].isalnum():
-                        i += 1
-                    ptr = int(line[1:i], 16)
+                elif line.startswith('@') and len(line) >= 5:
+                    ptr = CharMap.__read_hex(line, 1)
                     next_pointers.append(ptr)
+
+                elif line.startswith('!address $'):
+                    address = CharMap.__read_hex(line, 10)
+
+                elif line.startswith('!space '):
+                    space = CharMap.__read_hex(line, 7)
+
+                elif line.startswith('!pointeroffset '):
+                    if line[15] == '+':
+                        ptr_offset = CharMap.__read_hex(line, 16)
+                    else:
+                        ptr_offset = -CharMap.__read_hex(line, 16)
+
+                elif line.startswith('!wrap '):
+                    wrap = CharMap.__read_hex(line, 6)
+                    index = line.find('$')
+                    if index != -1:
+                        self.charmap['\n'] = CharMap.__read_hex(line, index + 1)
 
                 line = file.readline()
 
@@ -224,7 +302,7 @@ class CharMap:
                 text_address = address + len(bytes)
                 text_addresses[s] = text_address
                 for ptr in pointer_text[s]:
-                    pointers[ptr] = text_address
+                    pointers[ptr] = text_address + ptr_offset
 
                 bytes.extend(s_bytes)
 
@@ -245,7 +323,7 @@ class CharMap:
                 
                 text_address = text_addresses[s3] + len(s3) - len(s)
                 for ptr in pointer_text[s]:
-                    pointers[ptr] = text_address
+                    pointers[ptr] = text_address + ptr_offset
 
             if len(pointers) > 0:
                 print('Writing {0} pointers'.format(len(pointers)))

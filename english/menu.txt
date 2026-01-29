@@ -1,5 +1,5 @@
-|$200F address
-|#003C bytes
+!address $200F
+!space 3C
 
 @1D3D
 $200F|Ask
