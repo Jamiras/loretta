@@ -1,5 +1,5 @@
 !address $1C000
-!space 329D
+!space 4000 -- 329D
 !pointeroffset -14000
 
 ===== Intro =====
@@ -30,7 +30,7 @@ $1C021|a rainy day,
 $1C034|[WAIT]a horse-drawn carriage stopped at our street.[WAIT]There was a buzzing at the door.[WAIT]It seems we have a visitor...
 
 @35C8
-$1C078|Mr. Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.
+$1C078|Mr.Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.
 
 @35EE - ask painting
 $1C0E5|The stolen artwork is a piece by Neil Evans.[^WAIT]It's titled "The Girl in the Red Hat".
@@ -66,7 +66,7 @@ $1C244|Your gun is a Webley.
 $1C25C|That's a walking stick.
 
 @45DC
-$1C268|That is a lamp.
+$1C268|That's a lamp.
 
 @370A
 $1C274|There's nothing inside.
@@ -128,12 +128,12 @@ $1C469|!1C469|This is used to attract attention, right?
 
 $1C482|!1C482|Just kidding. Wasn't that funny?
 
-$1C49B|!1C49B|The person over there is Mr. Clay.
+$1C49B|!1C49B|The person over there is Mr.Clay.
 
 $1C4B1|!1C4B1|I'm looking forward to the exhibition.
 
 @4CA3
-$1C4CF|Are you Mr. Holmes? We've been expecting you.
+$1C4CF|Are you Mr.Holmes? We've been expecting you.
 
 @4CC1
 $1C4E6|The painting was stolen when it was being moved from the warehouse.[WAIT]\rThe exhibition will be ruined without that painting.[WAIT]Please recover it as soon as possible.
@@ -325,7 +325,7 @@ $1CD8C|Tell me everything. The work itself is my reward.
 $1CDCA|What does this letter mean? I'm worried.
 
 @3B60
-$1CDFD|wheRE[NL]loVE[NL]faLLs[WAIT]Beware the true origin of "The Girl in the Red Hat".
+$1CDFD|It reads:[NL]wheRE[NL]loVE[NL]faLLs[^WAIT]Beware the true origin of "The Girl in the Red Hat".
 
 @3E73
 $1CE45|I'll return the painting. Let's meet a the train station.
@@ -399,380 +399,380 @@ $1D168|The castle overlooking the Thames is undoubtedly the best of them all.
 $1D192|This town has old castles and churches.
 
 @3F18
-$1D1B2|ここが ライゲ－トだ。 ふるい まちなみが うつくしい ところだね。
+$1D1B2|This is Reigate. It has many beautiful old streets.
 
 @3F24
-$1D1DA|すこし つかれたね。 あそこのやどで ひとやすみ しよう。
+$1D1DA|I'm a bit tired. Let's rest at that inn.
 
-@3F34
-$1D1FA|「ざいりょうは まだ でつくして いないのだ。 それを すっかり てに いれたら [WAIT]こんなんは のりこえられるに ちがいない···」 ホ－ムズは そう いっていた。 [WAIT]いまの パスワ－ドは 「          」
+@3F34 - The password will be put in between the open/close quotes, which must be $02 and $03 - I suggest putting brackets [] in those characters
+$1D1FA|Holmes said "Once we get our hands on everything,[WAIT]we'll surely be able to overcome this..."[WAIT]The password is [          ].
 
 @3F52
-$1D270|さあ，また そうさを つづけようか!
+$1D270|Let's continue the investigation!
 
 @50AE
-$1D284|みせれば，いいんだね? もしもし すみません， このきじを みてください。
+$1D284|I just need to show it? Excuse me, please look at this article.
 
 @50BB
-$1D2AE|ああ，あれが レべルさんの やかたですよ。
+$1D2AE|That's Mr.Revell's mansion.
 
 @50C9
-$1D2C7|しりませんねえ。
+$1D2C7|I don't know.
 
 @3F85
-$1D2D0|どなたですか?
+$1D2D0|Who are you?
 
 @3F8B
-$1D2DA|あやしまれずに なかに はいるには··· そうだ! [WAIT]えっと··· さきほど よばれた いしゃだが···
+$1D2DA|I need to get inside without arousing suspcision...[WAIT]Did you call for a doctor?
 
 @3F93
-$1D316|おまちしていました。 どうぞ だんなさまの おへやへ。
+$1D316|We've been waiting for you. Please follow me to my husband's room.
 
 @3FB8
-$1D335|なにか ごようで··· あっ! ロレッタさま， ぶじ だったんですね!
+$1D335|Did you need something? Oh! Lady Loretta, you're safe!
 
 @3FAC
-$1D35F|ホ－ムズさんも たいへんですねえ。
+$1D35F|Mr.Holmes must be troubled too.
 
 @3FE1
-$1D373|わたしは レべルていの もんばん です。
+$1D373|I'm a gatekeeper of sorts.
 
 @4017
-$1D38B|にわに でたよ。 ごらんよ うつくしい けしきだ。
+$1D38B|What a beautiful view!
 
 @402F
-$1D3A8|ほほに よせる かぜは，すこし つめたいが すがすがしい。 われわれは，さんぽを しながら [WAIT]じけんに ついて かたりあって いた。 「この じけんで きみの まなぶべき てんは， [WAIT]つねに へんかを みうしなっては ならぬと いうことです。」 ホ－ムズは そういっていた。 さあ，がんばって つづけよう!
+$1D3A8|We discussed it on a walk.[WAIT]"The lesson you must learn," Holmes said[WAIT]"is that you must never lose sight of change."
 
 @50F0
-$1D454|よし， これをやるぞ。 そ－れ とってこい!
+$1D454|Let's do this!
 
 @5105
-$1D46C|おや? みこうで しきりに ほえているぞ。 なにか みつけたのかな?
+$1D46C|Miko is barking. Did he find something?
 
 @4056
-$1D491|いぬの あしあとが つづいているぞ! あとを つけて みるかい?
+$1D491|Shall we follow the footprints?
 
 @408C
-$1D4B5|ここは レッドヒルという まちです。
+$1D4B5|This is the town of Redhill.
 
 @398B
-$1D4CA|モ－ルがわの ほとりに バロンと いう やどやが あるだけの ちいさな まちです。
+$1D4CA|It's a small town. A single inn sits by the bank of the Mole river.
 
 @40B4
-$1D4FA|いらっしゃいませ。
+$1D4FA|Welcome.
 
 @40C2
-$1D504|いぜん，ここに とまった おきゃくさんに もらったのです。 つれの じょせいの けがの てあての おれいにと。
+$1D504|I received this from a guest who stayed here before.[WAIT]It's a thank-you for treating his companion's injury.
 
 @40D3
-$1D540|ええ，くびのあたりに ひどい けがをして，たいへんでした。
+$1D540|I remember her. It was a serious neck injury.
 
 @40FF
-$1D562|このあたりの ふうけいだ。 ホ－ムズ! ニ－ル·エバンスの サインが してあるよ!
+$1D562|Holmes! That has Neil Evans' signature on it!
 
 @40E7
-$1D590|もしかして，レティシアが リチャ－ドの みすめ?!
+$1D590|Could Leticia be Richard's mistress?
 
 @4118
-$1D5AC|おかえりですか? この ブランデ－は とうてんの サ－ビスです。 またの おこしを。
+$1D5AC|A free brandy for a returning customer. Come again soon!
 
 @417C
-$1D5DC|いつものかたとは ちがいますね。
+$1D5DC|That's not the usual "job".|original text is just "that's not the usual person"
 
 @4182
-$1D5EE|「あかい ぼうしのしょうじょ」 をおって ここまで きました。
+$1D5EE|"The Girl in the Red Hat" led me here.
 
 @41EE
-$1D611|あの えの しょうじょは， 3ねんまえ いなくなった みすめに そっくりでしてね··· [WAIT]わしは，あのえを がろうで みて まよわず かいとりました。
+$1D611|The girl in that painting looks just like my daughter who disappeared 3 years ago![WAIT]When I saw it, I bought it without hesitation.
 
 @420D
-$1D663|ロレッタは かわに さんぽに いったきり かえってこない··· そして それが おちていた。
+$1D663|Loretta went for a walk by the river and hasn't returned.[WAIT]This is all we found.
 
 @4213
-$1D694|それって どれです?
+$1D694|What is that?
 
 @421B
-$1D6A1|そこに，しまって あるだろう?
+$1D6A1|Is that where it's stored?
 
 @42A3
-$1D6B2|いきなり じろじろ みるなんて しっれいな ひとだ!
+$1D6B2|It's rude to stare.
 
 @4297
-$1D6D0|かるく ウエ－ブした かみのけが ひとふさ。 それから··· ちのついた かたほうの くつ。 [WAIT]きりさきジャックの しわざ だろうと いわれていたが [WAIT]でも まだ いきているなら ひとめ あいたい···
+$1D6D0|A single lock of slightly wavy hair.[WAIT]And one show stained with blood.[WAIT]They said Jack the Ripper got her,[WAIT]but I hope to see her again.
 
 @442B
-$1D740|とんだ ぐちを きかせてしまった せっかく だから ゆっくりして いきたまえ。
+$1D740|Enough of my problems. Please sit down and relax.
 
 @4206
-$1D76B|わしは なかば あきらめていたが···
+$1D76B|I had almost given up hope...
 
 @416D
-$1D781|レべルさん，このひとが あなたの みすめさんでは?
+$1D781|Mr.Revell, is this your girlfriend?
 
 @4173
-$1D79E|おお···ロレッタ! ほんとうに ロレッタなのかい?
+$1D79E|Oh, Loretta! Is it really you?
 
 @437B
-$1D7B9|Lの イニシャル··· ロレッタの つかっていたものだ。
+$1D7B9|The "L"... belonged to Loretta.
 
 @4393
-$1D7D7|ロレッタのくつだ。
+$1D7D7|Those are Loretta's shoes.
 
 @43AA
-$1D7E2|ロレッタ! よく もどってきて くれた! わしは こんなに うれしいことは ない!
+$1D7E2|Loretta! I'm so glad you're back! I've never been so happy!
 
 @43B2
-$1D80D|ですが，かのじょは きおくを うしなって いるのです。
+$1D80D|But she's lost her memory.
 
 @43BA
-$1D82D|だが きっと すぐに とりもどす だろう。 これでロレッタが オスカ－と けっこんさえ してくれたら，あんしんなのだが。
+$1D82D|I'm sure she'll recover soon.[WAIT]Once she marries Oscar, I can relax.
 
-$1D873|このみすめが ロレッタだという しょうこは ないのかい?
+$1D873|Is there any proof that this is Loretta?
 
 @415A
-$1D892|リチャ－ドさん!リチャ－ドさん! おや，きぜつ しているようだ， どうしよう?
+$1D892|Richard seems to have fainted. What should I do?
 
 @518C
-$1D8BF|きが つきましたか! よかった! いったい どうしたのです?
+$1D8BF|Tell me what you saw.
 
 @5192
-$1D8E1|じつは こんな てがみが···
+$1D8E1|He received this letter...
 
 @427A
-$1D8F4|「ロレッタは あずかった。 あのしょるいに サインを しろ!  さもないと ロレッタの いのちは ないぞ!」
+$1D8F4|"We have Loretta. Sign, or her life is forfeit!"
 
 @41AD
-$1D92D|ロレッタの ははおやの トレイシ－が しんだときと おなじくらい かなしい···
+$1D92D|I'm as sad as when Loretta's mother died...
 
 @41B8
-$1D959|パトリシアか，ほしがるままに あげていたんだ···
+$1D959|I gave Patricia whatever she wanted...
 
 @41C3
-$1D977|やかたを Sはくしゃくに ゆずると いう ないようの ものです。
+$1D977|The deed for the mansion will be given to Count S.
 
 @41D8
-$1D99A|わしは かいしゃも ざいさんも すべて ロレッタと オスカ－に ゆずろうと おもって いたのに···
+$1D99A|I intended to leave everything to Loretta and Oscar, but...
 
 @413D
-$1D9D0|いったい，どうしたのです?
+$1D9D0|What happened?
 
 @4143
-$1D9E0|あいつが わしを ころそうとして ナイフで きりかかってきたんだ。 ジュリアは わしを かばって··
+$1D9E0|He tried to stab me. Julia protected me...
 
 @4197
-$1DA18|うでを きったが かすりきずだ。 それより，やつが にげた!
+$1DA18|He cut my arm, but it's just a scratch. More importantly, he got away!
 
 @4301
-$1DA3D|わたしが，どくを いれたんです。 ストバ－トの たくらみとはいえ あやまって，みすめを··· [WAIT]もう ひとが しぬのは いや! あのひとを とめてください!
+$1DA3D|I added the poison. It was Stobart's idea, but I mistakenly poisoned...[WAIT]I don't want anyone else to die! Please stop him!
 
 @430F
-$1DA93|ホ－ムズ，ストバ－トとは いったい だれのことだろう? 1かいだけ えらんで おくれ。
+$1DA93|Holmes or Stobart? You can only choose one.
 
 @42F5
-$1DAC5|もう，なにもかも おわりだわ!···
+$1DAC5|It's all over now!
 
 @434A
-$1DAD9|わたしの みすめが ふたりも ひがいに あっているのだぞ!
+$1DAD9|Two of my granddaughters have been victimized!
 
 @434C
-$1DAFB|かれの なまえは レべル。 リチャ－ドの おとうとだよ!
+$1DAFB|Revell is Richard's younger brother!
 
 @4350
-$1DB1B|オスカ－は すでに しんでいる。
+$1DB1B|Oscar is already dead.
 
 @434E
-$1DB2E|さっき，わたしたちと いっしょに いた。
+$1DB2E|He was just here.
 
 @4354
-$1DB43|ホ－ムズ! ぼくをうたがうなんて ひどいよ。
+$1DB43|Why would you suspect me?
 
 @4352
-$1DB5E|そうです。かれは，れいの ところから，にげるつもりだわ!
+$1DB5E|He's going to run!
 
 @44AA
-$1DB7E|ふるめかしい やかた だね。 レべルは かなりの かねもち らしいな。
+$1DB7E|This is an old mansion. The owner must be wealthy.
 
 @45F3
-$1DBA4|しかし，どうも なりきん しゅみの へや だなあ
+$1DBA4|The room belongs to someone with expensive tastes.
 
 @48C6
-$1DBBF|なになに···リチャ－ド·レべル インドぼうえきで いちだいにして ざいさんを きずく。 [WAIT]1875ねん， ストバ－トはくしゃくより やかたを ゆずりうける··· レべルの じまん ばなしか。
+$1DBBF|Richard Revell amassed a fortune trading with India.[WAIT]In 1875, he inherited the mansion from Count Stobart.
 
 @461C
-$1DC2E|あっ てがみが! 「これいじょう かぎまわるな! さもないと いのちをおとすぞ。」 [WAIT]だれだ，こんなこと，するやつは! よし，ぼくが みてくる!
+$1DC2E|The letter reads "Stop snoopng around or you'll lose your life!"[WAIT]Who could it be from? We should investigate!
 
 @4011
-$1DC81|ホ－ムズ。 すまない。 みうしなってしまった ようだ。
+$1DC81|I'm sorry. We've lost him.
 
 @4580
-$1DC9F|ホ－ムズ! こっちへ きてくれ!
+$1DC9F|Holmes! Over here!
 
 @4499
-$1DCB1|しょくじが よういされている。 もぐもぐ···みみ，まったりして それでいて しつこくない··· [WAIT]しかし，なにごとも おきないと いいね。れいの てがみの ことも あるし··· ああ， おいしかった。
+$1DCB1|The meal was delicious.[WAIT]Should I really have eaten it given the warning in the letter?
 
 @45D1
-$1DD1F|いま たべた りょうりの のこり。 ホネだよ。
+$1DD1F|There's only bones left.
 
 @4763
-$1DD39|ホ－ムズさん，たいへんです! パトリシアおじょうさまが! へやに，いってみて ください!
+$1DD39|Mr.Holmes! Something terrible has happened. Please come to Patricia's room.
 
 @40F0
-$1DD6C|なにか ごようですか。
+$1DD6C|Do you need something?
 
 @44DF
-$1DD7A|パトリシアは ロレッタの はらちがいの いもうと です。
+$1DD7A|Patricia is Loretta's half-sister.
 
 @44F1
-$1DD9A|パトリシアは，みしばになるから ココアは のんでは いけないと いわれていたのに···
+$1DD9A|Patricia said she doesn't drink cocoa because it would make her fat...
 
 @44F8
-$1DDC9|わたしは ちゅうじつな しつじ。 マスグレ－ブのブラントンの ような ことは しません。
+$1DDC9|I'm a loyal butler. I'd never do anthing like what Branton did.
 
 @46BD
-$1DDFB|なんですか それは。 ぼくに みせて どうしようと いうのですか?
+$1DDFB|Why show that to me?
 
 @4172
-$1DE21|えっ! ゆうかい? でていくのを みなかったから まだ やしきの なかに いるのでは?
+$1DE21|Kidnapped? I didn't see anyone leave, so they must still be inside the mansion.
 
 @450E
-$1DE50|えっ，さっじん? うらみを かうような ひとには みえないのに···
+$1DE50|Murder? I don't think he had any enemies...
 
 @4527
-$1DE74|パトリシアは，だんなさまが ねるまえに のみ ココアを よく，もらっていました。 [WAIT]ゆうべも たしか だんなさまの へやから でてきました。
+$1DE74|Patricia often has hot cocoa with her husband before bed.[WAIT]I'm pretty sure she came out of his room last night.
 
 @4553
-$1DEC2|ジュリアさまが だんなさまの ために まいばんもっていきます。
+$1DEC2|Julia takes it to him every night.
 
 @455A
-$1DEE6|とくい りょうりは ひきがえるの みしやきです。
+$1DEE6|I specialize in grilled toad meat.
 
 @4565
-$1DF01|えっ，ゆうかい? まあ，こわい。
+$1DF01|A kidnapping? That's scary...
 
 @4570
-$1DF12|えっ，さつじん? まあ，こわい。
+$1DF12|Murder? That's scary...
 
 @4476
-$1DF24|オスカ－は，はんにんを といつめ ぎゃくに ころされたのかも しれないね。 [WAIT]おや，だれかが きたようだ。
+$1DF24|Oscar may have been killed after confronting the culprit.[WAIT]Oh, there's someone here.
 
 @447C
-$1DF5F|あの，このメモ おくさまの へやを そうじしていて みつけたんですけど···
+$1DF5F|Excuse me, I found this cleaning your wife's room...
 
 @4484
-$1DF89|どれどれ··· 「 あの ちょうこくを ···しないかぎり [WAIT]ちかしつの いりぐちが みつかることは ないはずよ。」 だって!
+$1DF89|It says "You'll never get in the basement[WAIT]unless you do something about that sculpture."
 
 @45B9
-$1DFD1|おや，あの メイド， ピンを おとしていったぞ。
+$1DFD1|The maid dropped her hairpin.
 
 @4644
-$1DFED|よし ピンを とっておこう。
+$1DFED|I've taken the hairpin.
 
 @444B
-$1DFFD|ロレッタ，なにか おもいだせないかい?
+$1DFFD|Loretta, can you remember anything?
 
 @4451
-$1E012|わたし，なにも わからない···
+$1E012|I don't remember.
 
 @4459
-$1E023|ぼくが えを かいたばかりに， いきていることが しられてしまい かのじょを きけんなめに あわせて しまった···
+$1E023|Because of my art, someone knows she's alive.[WAIT]And now she's in danger...
 
 @4461
-$1E063|はんにんは このやかたに いるんだろう? ぼやぼやしてると にげられてしまうよ!
+$1E063|We must find the culprit before they get away!
 
 @44C1
-$1E090|わたし，なにも わからない···
+$1E090|I don't remember.
 
 @46ED
-$1E0A1|おや，いないのかな?
+$1E0A1|Is he not here?
 
-$1E0AC|こんなときに バイオリンなんて， いったい なにを ひくんだね?
+$1E0AC|What would you play at a time like this?
 
 @5080
-$1E0CF|わたし，この きょく しってますわ! ピアノを ひいても いいかしら?
+$1E0CF|I know that song! May I play it on the piano?
 
 @5086
-$1E0F4|ああ! おもいだしたわ。 あのとき さんぽに でかけて ふくめんの おとこに さされたの··· [WAIT]おとうさんは，しゃっきんで こまっているひとから， だますようにして やかたを てに いれたって いってたわ··
+$1E0F4|I remember! I was stabbed on a walk...[WAIT]My father said he acquired the mansion from someone struggling with debt...
 
 @508E
-$1E164|きゃ－!! [WAIT]ジュリアの ひめいだ!! どこの へやから だろう。
+$1E164|Ah![WAIT]That's Julia's scream! Where did it come from?
 
 @4789
-$1E18B|こんにちは，オスカ－です。
+$1E18B|That's Oscar.
 
 @47A0
-$1E19A|だれかが，リチャ－ドを ころそうと していたんじゃ ないかと おもうんです··· [WAIT]ロレッタの きおくが もどらない うちに リチャ－ドが しねば ざいさんは あの ふたりの ものですし。
+$1E19A|I think someone was trying to kill Richard.[WAIT]If he dies before Loretta regains her memory, the fortune will go to those two.
 
 @47B9
-$1E206|もし ロレッタが もどって こなければ，やかたは ジュリアの ものに··· [WAIT]ざいさんは，ジュリアと エドワ－ドとで，わけることに なっています。
+$1E206|If Loretta doesn't return, the mansion will belong to Julia...[WAIT]And the estate will be divided between her and Edward.
 
 @47FF
-$1E25A|オスカ－です。 ぼくは リチャ－ドさんの かいしゃで はたらいています。
+$1E25A|I'm Oscar. I work for Richard.
 
-@47E0
-$1E283|3ねんまえの ロレッタの じけん リチャ－ドの ココアを のんで しんだ パトリシア。 [WAIT]そして ロレッタの ゆうかい， 3つの じけんの きょうつうてんは? [WAIT]その てがかりは どこに? ここで ひとやすみしましょう。 [WAIT]いまのパスワ－ドは 「          」
+@47E0 - another password placeholder
+$1E283|Patricia died after drinking Richard's cocoa 3 years ago.[WAIT]And now Loretta's been kidnapped.[WAIT]How are these related? Where are the clues?[WAIT]The password is [          ].
 
 @4820
-$1E318|オスカ－の にっきだ!
+$1E318|It's Oscar's diary!
 
 @4830
-$1E325|なになに，「 ぼくは リチャ－ド の きたいに こたえるために ロレッタを たすけたい。 [WAIT]あの おんなが ココアに どくを いれるのを みたと いって あいつを といつめれば [WAIT]きっと かのじょの ゆくえが わかるに ちがいない···」
+$1E325|If I confront Loretta and tell her that I saw her putting poison in the cocoa...[WAIT]I'm sure I can find her...
 
 @4858
-$1E3A7|エドワ－ドです。 リチャ－ドの おとうと です。
+$1E3A7|I'm Edward, Richard's younger brother.
 
 @486E
-$1E3C5|ロレッタは いい みすめです。 さいしを なくした わたしにも やさしく してくれて···
+$1E3C5|Loretta was so kind to me, even after I lost my wife...
 
 @487A
-$1E3F4|そうそう，ピアノが すきで よく 「こいぬの ワルツ」を ひいて いましたっけ。
+$1E3F4|I love playing the piano. I often play "The Puppy Waltz".
 
 @488B
-$1E420|そんなことより，ポ－カ－ しませんか?
+$1E420|How about we play some poker instead?
 
 @4897
-$1E435|かれは ゆうしゅうな せいねんで リチャ－ドが たよりに するのは もっともだと おもいます。
+$1E435|He's an excellent young man, and Richard relies on him.
 
 @489E
-$1E469|あには なかなかの やりて ですよ。
+$1E469|My older brother is quite capable.
 
 @48AD
-$1E47D|きみが これで オスカ－を さしたんだろう!
+$1E47D|You stabbed Oscar with this!
 
 @48B3
-$1E497|なにを いってるんですか これは わたしのでは ない! なんて しつれいな!
+$1E497|That isn't mine!
 
 @48E3
-$1E4C0|ホ－ムズさん! ロレッタのことは なにか わかりましたか?
+$1E4C0|Have you found out anything about Loretta?
 
 @48FA
-$1E4DF|さあ? ここへは きたばかり ですから···
+$1E4DF|I just got here...
 
 @4906
-$1E4F8|ぼくは しんぱいで しんぱいで。
+$1E4F8|I was worried.
 
 @4912
-$1E50E|リチャ－ドは，なるべく はやく ロレッタと オスカ－を けっこん させたがって いるようでした。
+$1E50E|Richard wanted to get Loretta and Oscar married as soon as possible.
 
 @491E
-$1E543|ぼくたちは これから どうなるのでしょう?
+$1E543|Now what happens to us?
 
 @493F
-$1E55C|う－み みせても しかたないか···
+$1E55C|What would be the point?|... of showing that to them?
 
 @4946
-$1E56F|きみも Eの イニシャルだね! きみが，ロレッタとの ことで， オスカ－を うらんで ころした!
+$1E56F|E is also your initial.[WAIT]You killed Oscar to get back at Loretta!
 
 @494C
-$1E5A4|たしかに これは ぼくの です。 オスカ－が なにか みを まもる ものが ほしいと いうので かしたんです。
+$1E5A4|That is mine, but I lent it to Oscar.[WAIT]He wanted something to protect himself with.
 
 @496E
-$1E5E2|わたし，パトリシア。 10さいよ。
+$1E5E2|My name is Patricia. I'm 10 years old.
 
 @4984
-$1E5F5|おじさまたちって たんていなの? おにんぎょう あそび すき?
+$1E5F5|Do you like playing with dolls?
 
 @4992
-$1E618|おじさま! そんなことすると ママに おこられて しまうわよ。
+$1E618|If you do that, mommy will get angry!
 
 @4975
 $1E639|Whoa! What happened here?
