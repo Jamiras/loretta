@@ -37,7 +37,10 @@ class CharMap:
                     key_start = line.find('$')
                     if key_start >= 0:
                         if line[key_start + 3].isalnum():
-                            key = int(line[key_start+1:key_start+5], 16) | 0x10000
+                            if line[key_start + 5].isalnum():
+                                key = int(line[key_start+1:key_start+7], 16) | 0x2000000
+                            else:
+                                key = int(line[key_start+1:key_start+5], 16) | 0x1000000
                         else:
                             key = int(line[key_start+1:key_start+3], 16)
 
@@ -53,9 +56,7 @@ class CharMap:
                         if value_end >= line_len:
                             print("Unterminated string on line " + str(line_index))
                         
-                        value = line[value_start:value_end]
-                        if value.find('\\') != -1:
-                            value = value.replace('\\n', '\n').replace('\\', '')
+                        value = CharMap.__unescape(line[value_start:value_end])
                         self.map[key] = value
 
                         if line[value_start - 2] == '@':
@@ -68,6 +69,13 @@ class CharMap:
                             self.terminal.append(key)
                 
                 line = file.readline()
+
+    @staticmethod
+    def __unescape(value):
+        if value.find('\\') == -1:
+            return value
+    
+        return value.replace('\\n', '\n').replace('\\', '')
 
     def get_text(self, key):
         if key in self.map:
@@ -84,33 +92,35 @@ class CharMap:
         start = address
         s = ''
 
-        b1 = rom.get_byte(address)
         while count > 0:
+            b1 = rom.get_byte(address)
             b2 = rom.get_byte(address + 1)
-            b = (b1 << 8) | b2 | 0x10000
+            b3 = rom.get_byte(address + 2)
+            bw = (b1 << 8) | b2 | 0x1000000
+            bt = (b1 << 16) | (b2 << 8) | b3 | 0x2000000
             address += 1
             
-            if b in self.map:
-                s += self.map[b]
-
-                # consume both characters
-                address += 1
-                b2 = rom.get_byte(address)
+            if bt in self.map:
+                b = bt
+                address += 2 # consume three bytes
+            elif bw in self.map:
+                b = bw
+                address += 1 # consume two bytes
             elif b1 in self.map:
                 b = b1
-                s += self.map[b]
             else:
-                b = b1
+                b = None
                 s += '[{0:02X}]'.format(b)
                 
-            if b in self.terminal:
-                strings[start] = s
-                start = address
-                s = ''
+            if b is not None:
+                s += self.map[b]
 
-                count = count - 1
+                if b in self.terminal:
+                    strings[start] = s
+                    start = address
+                    s = ''
 
-            b1 = b2
+                    count = count - 1
 
         print('Read {0} bytes starting at ${1:04X}'.format(address - original_address, original_address))
         return [strings, address - original_address]
@@ -121,12 +131,12 @@ class CharMap:
 
         i = 0
         with open(filename, 'w', encoding='utf-8') as file:
-            file.write('|${0:04X} address\n'.format(address))
-            file.write('|#{0:04X} bytes\n'.format(count))
+            file.write('!address ${0:04X}\n'.format(address))
+            file.write('!space {0:04X}\n'.format(count))
             if ptr_offset > 0:
-                file.write('|+{0:04X} pointer offset\n'.format(ptr_offset))
+                file.write('!pointeroffset +{0:04X}\n'.format(ptr_offset))
             elif ptr_offset < 0:
-                file.write('|{0:04X} pointer offset\n'.format(ptr_offset))
+                file.write('!pointeroffset {0:04X}\n'.format(ptr_offset))
             file.write('\n')
 
             for start, text in strings.items():
@@ -181,19 +191,50 @@ class CharMap:
         return encoded
 
     @staticmethod
-    def __apply_wrap(text, wrap):
+    def __apply_wrap(text, wrap, wrap_break):
         wrapped_text = ''
-        while len(text) > wrap:
+        next_break = None
+        break_match = None
+        while text != '':
+            if next_break is None:
+                next_break = -1
+                for b in wrap_break.keys():
+                    index = text.find(b)
+                    if index > next_break:
+                        next_break = index
+                        break_match = b
+                
+                if next_break == 0: # don't replace break at start of string
+                    wrapped_text += break_match
+                    text = text[len(break_match):]
+                    next_break = None
+                    continue
+                
+            if next_break > 0 and next_break <= wrap:
+                wrapped_text += text[0:next_break]
+                wrapped_text += wrap_break[break_match]
+                text = text[next_break + len(break_match):]
+                next_break = None
+                continue
+
+            if len(text) <= wrap:
+                wrapped_text += text
+                break
+
             index = text.rfind(' ', 0, wrap + 1)
             if index == -1:
                 index = text.find(' ', wrap)
                 if index == -1:
+                    wrapped_text += text
                     break
+
             wrapped_text += text[0:index]
             wrapped_text += '\n'
             text = text[index + 1:]
 
-        wrapped_text += text
+            if next_break > 0:
+                next_break -= (index + 1)
+
         return wrapped_text
 
     @staticmethod
@@ -211,6 +252,7 @@ class CharMap:
         ptr_offset = 0
         wrap = 0x100000
         wrap_char = 0
+        wrap_break = {}
         pointer_text = {}
         strings = {}
 
@@ -229,22 +271,7 @@ class CharMap:
                     if '|' in text:
                         text = text[:text.index('|')]
 
-                    if len(text) > wrap:
-                        parts = text.split('[WAIT]')
-                        text = ''
-                        first = True
-                        for part in parts:
-                            if first:
-                                first = False
-                            else:
-                                if part.startswith('^'):
-                                    part = part[1:]
-                                    text += '[WAIT]\n'
-                                else:
-                                    if text != '':
-                                        text += '\n'
-                                    text += '[WAIT]'
-                            text += CharMap.__apply_wrap(part, wrap)
+                    text = CharMap.__apply_wrap(text, wrap, wrap_break)
 
                     if text in strings:
                         pointer_text[text] += next_pointers
@@ -281,6 +308,14 @@ class CharMap:
                     index = line.find('$')
                     if index != -1:
                         self.charmap['\n'] = CharMap.__read_hex(line, index + 1)
+
+                    wrap_break = {}
+
+                elif line.startswith('!wrapbreak '):
+                    index = line.find(' ', 11)
+                    needle = CharMap.__unescape(line[11:index])
+                    replacement = CharMap.__unescape(line[index+1:])
+                    wrap_break[needle] = replacement
 
                 line = file.readline()
 

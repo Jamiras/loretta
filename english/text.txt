@@ -3,7 +3,7 @@
 !pointeroffset -14000
 
 ===== Intro =====
--- These lines cannot be more than 16 characters
+-- These lines cannot be more than 16 characters and should not be wrapped
 @2506  ----------------
 $1C000|While we were
 
@@ -22,23 +22,24 @@ $1C021|a rainy day,
 -- enough, place a ^ _after_ the [WAIT] to not put the
 -- wait cursor on a separate line.
 !wrap 10 $FE
+!wrapbreak [WAIT] \n[WAIT]     -- support [WAIT] without explicit [NL] prefix
+!wrapbreak [NL][WAIT] \n[WAIT] -- dumper creates explicit [NL][WAIT] pairs. don't double up
+!wrapbreak [^WAIT] [WAIT]\n    -- create a [WAIT] with a trailing [NL] so we can display four lines of text
 
 @2539
 $1C034|[WAIT]a horse-drawn carriage stopped at our street.[WAIT]There was a buzzing at the door.[WAIT]It seems we have a visitor...
 
-!wrap 10 $FE
-
 @35C8
-$1C078|Mr. Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[WAIT]^I would like your help to get it back.
+$1C078|Mr. Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.
 
 @35EE - ask painting
-$1C0E5|The stolen artwork is a piece by Neil Evans.[WAIT]^It's titled "The Girl in the Red Hat".
+$1C0E5|The stolen artwork is a piece by Neil Evans.[^WAIT]It's titled "The Girl in the Red Hat".
 
 @360B - ask gallery
 $1C123|It's called "Clay's Gallery".
 
 @3628 - ask Evans
-$1C13D|After his success with "The Girl in the Red Hat",[WAIT]^Evans is now building a reputation doing portraits.
+$1C13D|After his success with "The Girl in the Red Hat",[^WAIT]Evans is now building a reputation doing portraits.
 
 @3645
 $1C189|That's all I know. The rest is up to you.

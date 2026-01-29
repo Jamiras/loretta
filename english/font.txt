@@ -1471,5 +1471,6 @@
 
 // $FE @"[NL]" newline
 // $FE !" " output space when dumping - importer will inject as necessary
+// $FE0079 @"[NL][WAIT]" unless immediately followed by a wait
 
 // $FF @"" @terminal
