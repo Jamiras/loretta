@@ -1,9 +1,9 @@
 !address $1C000
-!space 4000 -- 329D
+!space 4000 // 329D
 !pointeroffset -14000
 
-===== Intro =====
--- These lines cannot be more than 16 characters and should not be wrapped
+// ===== Intro =====
+// -- These lines cannot be more than 16 characters and should not be wrapped
 @2506  ----------------
 $1C000|While I was
 
@@ -13,18 +13,18 @@ $1C00E|enjoying tea on
 @2530
 $1C021|a rainy day,
 
--- now, we can start wrapping lines using [NL] and [WAIT]
--- each line must still be less than 16 characters, but the
--- importer will insert [NL]s for us, either immediately
--- before a [WAIT] or as a replacement for an existing space.
--- If a [WAIT] follows four lines, the first will scroll off
--- before the [WAIT] kicks in. If the fourth line is short
--- enough, use [^WAIT] instead to not put the wait cursor
--- on a separate line.
+// now, we can start wrapping lines using [NL] and [WAIT]
+// each line must still be less than 16 characters, but the
+// importer will insert [NL]s for us, either immediately
+// before a [WAIT] or as a replacement for an existing space.
+// If a [WAIT] follows four lines, the first will scroll off
+// before the [WAIT] kicks in. If the fourth line is short
+// enough, use [^WAIT] instead to not put the wait cursor
+// on a separate line.
 !wrap 10 $FE
-!wrapbreak [WAIT] \n[WAIT]     -- support [WAIT] without explicit [NL] prefix
-!wrapbreak [NL][WAIT] \n[WAIT] -- dumper creates explicit [NL][WAIT] pairs. don't double up
-!wrapbreak [^WAIT] [WAIT]\n    -- create a [WAIT] with a trailing [NL] so we can display four lines of text
+!wrapbreak [WAIT] \n[WAIT]     // support [WAIT] without explicit [NL] prefix
+!wrapbreak [NL][WAIT] \n[WAIT] // dumper creates explicit [NL][WAIT] pairs. don't double up
+!wrapbreak [^WAIT] [WAIT]\n    // create a [WAIT] with a trailing [NL] so we can display four lines of text
 
 @2539
 $1C034|[WAIT]a horse-drawn carriage stopped on my street.[WAIT]There was a buzzing at the door.[WAIT]It seems I have a visitor...
@@ -32,7 +32,7 @@ $1C034|[WAIT]a horse-drawn carriage stopped on my street.[WAIT]There was a buzzi
 @35C8
 $1C078|Mr.Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.
 
-===== End intro =====
+// ===== End intro =====
 
 @35EE - ask painting
 $1C0E5|The stolen artwork is a piece by Neil Evans.[^WAIT]It's titled "The Girl in the Red Hat".

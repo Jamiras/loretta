@@ -11,6 +11,7 @@
 from utils.rom import ROM
 from utils.tiles import TileTable, Format
 from utils.charmap import CharMap
+from utils.strings import StringTable
 
 import optparse
 import os
@@ -43,6 +44,8 @@ if options.text_path:
         exit()
 
     charmap = CharMap(options.charmap_path)
-    charmap.import_from_text(rom, options.text_path)
+    table = StringTable(options.text_path, charmap)
+    table.share_pointers()
+    table.update_rom(rom)
 
 rom.commit()

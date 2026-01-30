@@ -4,18 +4,21 @@
 #  sudo apt install python3-png
 
 # dump original font:
-#  ./dump.py --rom loretta.sg --font original/font.txt
-#  ./dump.py --rom loretta.sg --font original/font.png --png
+#  ./dump.py --rom loretta.sg --font original/font.txt --count 0x92
+#  ./dump.py --rom loretta.sg --font original/font.png --count 0x92 --png
 
 # dump original text:
-#  ./dump.py --rom loretta.sg --text original/text.txt --charmap original/font.txt
-#  ./dump.py --rom loretta.sg --menu original/menu.txt --charmap original/font.txt
-#  ./dump.py --rom loretta.sg --words original/words.txt --charmap original/font.txt
+#  ./dump.py --rom loretta.sg --text original/title_text.txt --charmap original/font.txt --address 0x2B35 --count 4
+#  ./dump.py --rom loretta.sg --text original/menu.txt --charmap original/font.txt --address 0x200F --count 14
+#  ./dump.py --rom loretta.sg --text original/time.txt --charmap original/font.txt --address 0x2C0E --count 1
+#  ./dump.py --rom loretta.sg --text original/words.txt --charmap original/font.txt --address 0x2119 --count 91
+#  ./dump.py --rom loretta.sg --text original/text.txt --charmap original/font.txt --address 0x1C000 --count 0x17B
 
 
 from utils.rom import ROM
 from utils.tiles import TileTable, Format
 from utils.charmap import CharMap
+from utils.strings import StringTable
 
 import optparse
 import os
@@ -28,6 +31,8 @@ parser.add_option('-t', '--text', action='store', dest='text_path', help='dump s
 parser.add_option('-m', '--menu', action='store', dest='menu_path', help='dump menu strings to file')
 parser.add_option('-w', '--words', action='store', dest='word_path', help='dump word strings to file')
 parser.add_option('-c', '--charmap', action='store', dest='charmap_path', help='character map to use when dumping strings')
+parser.add_option('-a', '--address', action='store', dest='address', help='address to read from')
+parser.add_option('-n', '--count', action='store', default='256', dest='count', help='number of tiles or strings to read')
 
 
 options, args = parser.parse_args()
@@ -38,6 +43,10 @@ if not options.rom_path:
 
 if not os.path.isfile(options.rom_path):
     print(options.rom_path + " not found")
+    exit()
+
+if not options.address:
+    print("--address is required")
     exit()
 
 rom = ROM(options.rom_path)
@@ -53,38 +62,28 @@ if options.text_path:
         printf("--charmap is required for --text")
         exit()
 
+    address = int(options.address, 0)
+    count = int(options.count, 0)
+
     charmap = CharMap(options.charmap_path)
-    [strings, num_bytes] = charmap.get_strings(rom, 0x1C000, 0x17B)
+    [strings, num_bytes] = charmap.get_strings(rom, address, count)
     pointers = {}
+    ptr_offset = 0
 
-    ptr_offset = 0x14000
-    start_scan = 0x35C0
-    end_scan = 0x79FF
-    for address in strings.keys():
-        if (len(pointers) < 4):
-            ptr = rom.find_value(address - ptr_offset, 0x2500, 0x25FF)
-        else:
-            ptr = rom.find_value(address - ptr_offset, start_scan, end_scan)
-            if ptr != 0 and ptr < start_scan + 0x20:
-                start_scan = ptr + 8
+    if address == 0x1C000:
+        # attempt to identify the pointers for the dialog text strings
+        ptr_offset = 0x14000
+        start_scan = 0x35C0
+        end_scan = 0x79FF
+        for address in strings.keys():
+            if (len(pointers) < 4):
+                ptr = rom.find_value(address - ptr_offset, 0x2500, 0x25FF)
+            else:
+                ptr = rom.find_value(address - ptr_offset, start_scan, end_scan)
+                if ptr != 0 and ptr < start_scan + 0x20:
+                    start_scan = ptr + 8
 
-        if ptr != 0:
-            pointers[address] = [ptr]
+            if ptr != 0:
+                pointers[address] = [ptr]
 
-    charmap.dump(rom, 0x1C000, num_bytes, options.text_path, strings, pointers, -ptr_offset)
-
-if options.menu_path:
-    if not options.charmap_path:
-        printf("--charmap is required for --menu")
-        exit()
-
-    charmap = CharMap(options.charmap_path)
-    charmap.dump(rom, 0x2B35, 0x04, options.menu_path)
-
-if options.word_path:
-    if not options.charmap_path:
-        printf("--charmap is required for --word")
-        exit()
-
-    charmap = CharMap(options.charmap_path)
-    charmap.dump(rom, 0x2119, 0x5B, options.word_path, pointers=rom.get_pointers(0x204B, 0x67))
+    StringTable.dump(options.text_path, strings, num_bytes, address, pointers, -ptr_offset)

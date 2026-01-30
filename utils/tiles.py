@@ -1,4 +1,6 @@
 from enum import Enum, unique
+from utils.strings import Parser
+
 import png
 
 @unique
@@ -306,35 +308,33 @@ class TileTable:
         tile_lines = []
         bytes = bytearray()
 
+        bpp = Format.get_bpp(format)
+        art = TileTable.__get_ascii_art(bpp)
+
         address = 0
-        space = Format.get_bpp(format) * 256 * 8
+        space = bpp * 256 * 8
 
-        with open(filename, 'r', encoding='utf-8') as file:
-            line = file.readline()
+        parser = Parser(filename)
+        [line, line_index] = parser.readline()
+        while line:
+            if line.startswith('!address $'):
+                address = TileTable.__read_hex(line, 10)
 
-            i = 0
-            while line:
-                i += 1
-                line = line.strip()
+            elif line.startswith('!space '):
+                space = TileTable.__read_hex(line, 7)
 
-                if line.startswith('!address $'):
-                    address = TileTable.__read_hex(line, 10)
+            elif line[0] in art:
+                if len(line) < 8:
+                    print('Line {0} incomplete: {1}'.format(line_index, line))
+                    line += "........"
 
-                elif line.startswith('!space '):
-                    space = TileTable.__read_hex(line, 7)
+                tile_lines.append(line)
+                if len(tile_lines) == 8:
+                    tile = TileTable.encode(tile_lines, format)
+                    bytes.extend(tile)
+                    tile_lines = []
 
-                elif line != '' and not line.startswith("//"):
-                    if len(line) < 8:
-                        print ("Line " + str(i) + " incomplete: " + line)
-                        line += "........"
-
-                    tile_lines.append(line)
-                    if len(tile_lines) == 8:
-                        tile = TileTable.encode(tile_lines, format)
-                        bytes.extend(tile)
-                        tile_lines = []
-
-                line = file.readline()
+            [line, line_index] = parser.readline()
 
         TileTable.write_tiles(bytes, rom, address, format, space)
 
