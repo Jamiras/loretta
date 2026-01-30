@@ -5,7 +5,7 @@
 ===== Intro =====
 -- These lines cannot be more than 16 characters and should not be wrapped
 @2506  ----------------
-$1C000|While we were
+$1C000|While I was
 
 @251B
 $1C00E|enjoying tea on
@@ -19,18 +19,20 @@ $1C021|a rainy day,
 -- before a [WAIT] or as a replacement for an existing space.
 -- If a [WAIT] follows four lines, the first will scroll off
 -- before the [WAIT] kicks in. If the fourth line is short
--- enough, place a ^ _after_ the [WAIT] to not put the
--- wait cursor on a separate line.
+-- enough, use [^WAIT] instead to not put the wait cursor
+-- on a separate line.
 !wrap 10 $FE
 !wrapbreak [WAIT] \n[WAIT]     -- support [WAIT] without explicit [NL] prefix
 !wrapbreak [NL][WAIT] \n[WAIT] -- dumper creates explicit [NL][WAIT] pairs. don't double up
 !wrapbreak [^WAIT] [WAIT]\n    -- create a [WAIT] with a trailing [NL] so we can display four lines of text
 
 @2539
-$1C034|[WAIT]a horse-drawn carriage stopped at our street.[WAIT]There was a buzzing at the door.[WAIT]It seems we have a visitor...
+$1C034|[WAIT]a horse-drawn carriage stopped on my street.[WAIT]There was a buzzing at the door.[WAIT]It seems I have a visitor...
 
 @35C8
 $1C078|Mr.Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.
+
+===== End intro =====
 
 @35EE - ask painting
 $1C0E5|The stolen artwork is a piece by Neil Evans.[^WAIT]It's titled "The Girl in the Red Hat".
@@ -41,13 +43,13 @@ $1C123|It's called "Clay's Gallery".
 @3628 - ask Evans
 $1C13D|After his success with "The Girl in the Red Hat",[^WAIT]Evans is now building a reputation doing portraits.
 
-@3645
+@3645 - after asking all three questions
 $1C189|That's all I know. The rest is up to you.
 
-@3811 - try to leave without asking all three questions
+@3811 - try to leave home without asking all three questions
 $1C1B2|Holmes! Did you forget to ask something?
 
-@3671
+@3671 - look violin
 $1C1CE|That's a violin. You're very skilled... really.
 
 @36C2
@@ -62,8 +64,11 @@ $1C227|There's a pipe. That's a strange place for it.
 @367D - look gun
 $1C244|Your gun is a Webley.
 
+@371E - take gun
+$00000|I've taken the gun.
+
 @3665 - look cane
-$1C25C|That's a walking stick.
+$1C25C|That's my walking stick.
 
 @45DC
 $1C268|That's a lamp.
@@ -72,7 +77,7 @@ $1C268|That's a lamp.
 $1C274|There's nothing inside.
 
 @3688
-$1C284|A major exhibition of Neil Evans' works will be held at Clay's Gallery.[WAIT]\rIn addition to "The Girl in the Red Hat",[WAIT]portraits of Count Ragland and Madam Katrina will be on display.
+$1C284|A major exhibition of Neil Evans' works will be held at Clay's Gallery.[^WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count Ragland and Madam Katrina will be on display.
 
 @36AC
 $1C2F4|Motomi tutors a 10-year-old girl.[WAIT]She is employed by Richard Revell, who lives in Reigate.
@@ -83,22 +88,22 @@ $1C329|The Red-Headed League has disbanded.
 @36F1
 $1C33F|Oh, there's an interesting article here.
 
-@37C1
+@37C1 - call Mrs. Hudson
 $1C357|Your usual, Darjeeling tea?
 
 @37DC
 $1C375|Yes, the newspaper has arrived.
 
-@37F9
-$1C38E|Hey, where are you going?
+@37F9 - enter unknown
+$1C38E|Where are you trying to go?
 
-@3800
-$1C3A0|Let's leave the cleaning to Hudson.
+@3800 - move tea
+$1C3A0|Let's leave the cleaning to Mrs.Hudson.
 
 $1C3BA|What are you going to do with that?
 
 @372F - take violin
-$1C3D4|I've take the violin.
+$1C3D4|I've taken the violin.
 
 @3740 - take walking stick
 $1C3E7|I've taken my walking stick.
@@ -136,7 +141,7 @@ $1C4B1|!1C4B1|I'm looking forward to the exhibition.
 $1C4CF|Are you Mr.Holmes? We've been expecting you.
 
 @4CC1
-$1C4E6|The painting was stolen when it was being moved from the warehouse.[WAIT]\rThe exhibition will be ruined without that painting.[WAIT]Please recover it as soon as possible.
+$1C4E6|The painting was stolen when it was being moved from the warehouse.[^WAIT]The exhibition will be ruined without that painting.[WAIT]Please recover it as soon as possible.
 
 @4CD1
 $1C54C|Would you like to buy something?
@@ -814,7 +819,7 @@ $1E785|Oscar! Who could have done this to him?
 $1E79B|He died from massive bleeding.[WAIT]If we'd arrived sooner, we might have been able to help.
 
 @4A95
-$1E7CB|It's engraved with the letter "E". The culprit must be Edward![WAIT]\rHe killed Oscar to keep all the wealth to himself!
+$1E7CB|It's engraved with the letter "E". The culprit must be Edward![^WAIT]He killed Oscar to keep all the wealth to himself!
 
 @4AB8
 $1E81A|I'll keep it as proof.
@@ -826,7 +831,7 @@ $1E830|This is a theatre. It's main attractions are singing and comedy.
 $1E850|Julia? Who's that?
 
 @4B0F
-$1E862|She said she was quitting to get married. I wonder if that skinny guy is her fiancé.
+$1E862|She said she was quitting to get married. I wonder if that skinny guy is her fiance.
 
 @4B29
 $1E890|That's a picture of Brenda. She was a singer at this theatre a long time ago.
@@ -901,7 +906,7 @@ $1EB34|If Richard died, the mansion would belong to Julia.[WAIT]But Loretta was 
 $1EBEE|And then they killed Oscar because he found out!
 
 @4FE3
-$1EC1A|Yes. Julia is completely innocent. I orchestrated everything.[WAIT]\rPlease tell my husband that. And also tell him I regret what I did...
+$1EC1A|Yes. Julia is completely innocent. I orchestrated everything.[^WAIT]Please tell my husband that. And also tell him I regret what I did...
 
 $1EC7B|!1EC7B|I don't see anything strange here.
 
@@ -916,8 +921,8 @@ $1ECC9|M222
 @386C
 $1ECD3|Holmes, you better not do that.
 
-@4DEC
-$1ECE9|You shouldn't take out your frustrations on things like that.
+@4DEC - hit unknown
+$1ECE9|You shouldn't take out your frustrations on that.
 
 @6EF5
 $1ED08|I've had enough of violent acts.
@@ -930,14 +935,14 @@ $1ED36|I don't think anyone is here.
 
 $1ED3D|Is anyone there? No one's answering...
 
-@4DE2
-$1ED5F|We're the only ones here, right?
+@4DE2 - ask when no one else present
+$1ED5F|There's no one else here.
 
 @4DE8
 $1ED76|Is something wrong with that?
 
-@4DF8
-$1ED89|I don't have the product yet.
+@4DF8 - show
+$1ED89|I don't have any evidence to show.
 
 $1EDA0|There's no point in showing that.
 
@@ -953,13 +958,13 @@ $1EDE6|That won't accomplish anything.
 @50D2
 $1EDFB|How do you use that?
 
-@4FFB
+@4FFB - use gun
 $1EE0F|That sounds dangerous!
 
-@4EB7
+@4EB7 - use address book - neil evans
 $1EE1F|That's strange. It's not listed.
 
-@4E8F
+@4E8F - use address book
 $1EE2E|Whose address are you trying to find?
 
 @4EC3
@@ -977,21 +982,21 @@ $1EE79|Um... It's in E-6.
 @4EF3
 $1EE8A|Um... It's in C-3.
 
-@4EAB
-$1EE9B|Um... It's in B-1.
+@4EAB - use address book - holmes
+$1EE9B|He lives in B-1.
 
 @4F2F
 $1EEAC|Thank you very much. Do you like what you see?
 
-@4F37
-$1EED8|Holmes, we must use our money wisely.
+@4F37 - use money
+$1EED8|Holmes, you must use your money wisely.
 
 $1EEF4|I'm completely broke.
 
 @4F43
 $1EF01|Pipes can teach us interesting things.
 
-@4F7F
+@4F7F - use walking stick
 $1EF28|It's dangerous to swing that around.
 
 @500C
@@ -1014,10 +1019,10 @@ $1EF93|M258
 @51A6
 $1EF9D|Is it safe to drink that?[WAIT]Oh, it's delicious!
 
-$1EFB5|!1EFB5|Afterwards, Julia entered a convent, and Loretta and Richard are reportedly happy together.[WAIT]\rNeil approved of Loretta's relationship with Richard,[WAIT]and their letter couldn't help but make us happy as well...
+$1EFB5|!1EFB5|Afterwards, Julia entered a convent, and Loretta and Richard are reportedly happy together.[^WAIT]Neil approved of Loretta's relationship with Richard,[WAIT]and their letter couldn't help but make us happy as well...
 
-@5364
-$1F035|There isn't anything that can't be solved by human intelligence.
+@5364 - think
+$1F035|There isn't anything that can't be solved by intelligence.
 
 @5373
 $1F067|There's nothing easier to overlook than an obvious fact.
@@ -1107,3 +1112,4 @@ $1F28F|Nothing
 
 $1F294|Error
 
+TODO: play violin -> exhibition/swan -> message broken

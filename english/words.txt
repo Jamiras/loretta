@@ -238,13 +238,13 @@ $2330|Knife
 @20F5
 $2334|Bottle
 
-@20F7
+@20F7 - Pictures at an Exhibition - Mussorgsky
 $2338|Exhibition
 
-@20F9
+@20F9 - The Swan - Camille Saint Saens
 $2341|Swan
 
-@20FB
+@20FB - Waltz of the Little Dog - Chopin
 $2347|Puppy Waltz
 
 @20FF

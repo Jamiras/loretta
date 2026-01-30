@@ -1,0 +1,11 @@
+!address $2B35
+!space 0022
+
+$2B35|START
+
+$2B3B|CONTINUE
+
+$2B44|ハ゜スワ－ト゛
+
+$2B4C|か゛ ちか゛います。
+

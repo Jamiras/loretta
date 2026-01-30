@@ -6,15 +6,17 @@ $200F|Ask
 $2012|Look
 $2018|Take
 $201B|Show
-$201F|Use
+$201F|Inv
 $2023|Hit
 
 @1D45
 $2027|Call
-$202B|In
+$202B|Enter
 $202F|Move
 $2035|Go
-$203A|Word
+$203A|Talk
 $203F|Time
-$2044|Yes
-$2047|No
+
+-- are these even used?
+$2044|Y
+$2047|N

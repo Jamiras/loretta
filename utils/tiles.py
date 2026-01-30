@@ -293,13 +293,21 @@ class TileTable:
         w.write(file, image)
         file.close()
 
+    @staticmethod
+    def __read_hex(line, index):
+        start = index
+        while index < len(line) and line[index].isalnum():
+            index += 1
+        if start == index:
+            return 0
+        return int(line[start:index], 16)
 
-    def import_from_text(rom, address, format, filename, space=None):
+    def import_from_text(rom, format, filename):
         tile_lines = []
         bytes = bytearray()
 
-        if space == None:
-            space = Format.get_bpp(format) * 256 * 8
+        address = 0
+        space = Format.get_bpp(format) * 256 * 8
 
         with open(filename, 'r', encoding='utf-8') as file:
             line = file.readline()
@@ -308,7 +316,14 @@ class TileTable:
             while line:
                 i += 1
                 line = line.strip()
-                if line != '' and not line.startswith("//"):
+
+                if line.startswith('!address $'):
+                    address = TileTable.__read_hex(line, 10)
+
+                elif line.startswith('!space '):
+                    space = TileTable.__read_hex(line, 7)
+
+                elif line != '' and not line.startswith("//"):
                     if len(line) < 8:
                         print ("Line " + str(i) + " incomplete: " + line)
                         line += "........"

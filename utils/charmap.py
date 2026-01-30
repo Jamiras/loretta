@@ -22,7 +22,7 @@ class CharMap:
         self.charmap = {}
         self.wordmap = {}
         self.terminal = []
-        
+
         line_index = 0
         with open(filename, 'r', encoding='utf-8') as file:
             line = file.readline()
@@ -109,8 +109,8 @@ class CharMap:
             elif b1 in self.map:
                 b = b1
             else:
+                s += '[{0:02X}]'.format(b1)
                 b = None
-                s += '[{0:02X}]'.format(b)
                 
             if b is not None:
                 s += self.map[b]
@@ -150,90 +150,91 @@ class CharMap:
 
         print('Dumped {0} strings'.format(len(strings)))
 
+    def __encode_match(self, text, index):
+        c = None
+        l = 0
+        for key, value in self.wordmap.items():
+            if len(key) > l and text.startswith(key, index):
+                return [value, len(key)]
+
+        c = text[index]
+        if c not in self.charmap:
+            #print("no encoding for \"" + c + "\"")
+            return [0, 0]
+
+        return [self.charmap[c], 1]
+
+    @staticmethod
+    def __encode_append(encoded, c):
+        if c >= 0x2000000:
+            encoded.append((c >> 16) & 0xFF)
+        if c >= 0x1000000:
+            encoded.append((c >> 8) & 0xFF)
+        encoded.append(c & 0xFF)
+
     def encode(self, text):
         encoded = bytearray()
         i = 0
         c = None
         while i < len(text):
-            c = None
-            l = 0
-            for key, value in self.wordmap.items():
-                if len(key) > l and text.startswith(key, i):
-                    c = value
-                    l = len(key)
-
-            if l == 0:
-                c = text[i]
-                if c not in self.charmap:
-                    #print("no encoding for \"" + c + "\"")
-                    break
-                else:
-                    c = self.charmap[c]
-                    l = 1
+            [c, l] = self.__encode_match(text, i)
 
             if l > 0:
-                if c >= 0x10000:
-                    encoded.append((c >> 8) & 0xFF)
-                    encoded.append(c & 0xFF)
-                else:
-                    encoded.append(c)
-
-            i += l
+                CharMap.__encode_append(encoded, c)
+                i += l
 
         if c not in self.terminal:
             c = self.terminal[0]
-            if c >= 0x10000:
-                encoded.append((c >> 8) & 0xFF)
-                encoded.append(c & 0xFF)
-            else:
-                encoded.append(c)
+            CharMap.__encode_append(encoded, c)
 
         return encoded
 
-    @staticmethod
-    def __apply_wrap(text, wrap, wrap_break):
+    def __apply_wrap(self, text, wrap, wrap_break):
+        original_text = text
         wrapped_text = ''
-        next_break = None
-        break_match = None
-        while text != '':
-            if next_break is None:
-                next_break = -1
-                for b in wrap_break.keys():
-                    index = text.find(b)
-                    if index > next_break:
-                        next_break = index
-                        break_match = b
-                
-                if next_break == 0: # don't replace break at start of string
-                    wrapped_text += break_match
-                    text = text[len(break_match):]
-                    next_break = None
+
+        line_start = 0
+        line_len = 0
+        potential_wrap = None
+        i = 0
+        while i < len(text):
+            if line_len > 0:
+                break_key = None
+                for b in wrap_break:
+                    if text.startswith(b, i) and (break_key is None or len(b) > len(break_key)):
+                        break_key = b
+
+                if break_key is not None:
+                    wrapped_text += wrap_break[break_key]
+                    potential_wrap = None
+                    line_start = len(wrapped_text)
+                    line_len = 0
+                    i += len(break_key)
                     continue
-                
-            if next_break > 0 and next_break <= wrap:
-                wrapped_text += text[0:next_break]
-                wrapped_text += wrap_break[break_match]
-                text = text[next_break + len(break_match):]
-                next_break = None
+
+            [c, l] = self.__encode_match(text, i)
+            if l == 0:
+                i += 1
                 continue
 
-            if len(text) <= wrap:
-                wrapped_text += text
-                break
+            line_len += (c >> 24) + 1
+            if line_len > wrap and potential_wrap is not None:
+                wrapped_text = wrapped_text[0:potential_wrap] + '\n' + wrapped_text[potential_wrap+1:]
+                line_start = potential_wrap + 1
+                line_len = len(wrapped_text) - line_start
 
-            index = text.rfind(' ', 0, wrap + 1)
-            if index == -1:
-                index = text.find(' ', wrap)
-                if index == -1:
-                    wrapped_text += text
-                    break
+            new_text = text[i:i+l]               
+            i += l
 
-            wrapped_text += text[0:index]
-            wrapped_text += '\n'
-            text = text[index + 1:]
+            if new_text == ' ':
+                potential_wrap = len(wrapped_text)
 
-            if next_break > 0:
-                next_break -= (index + 1)
+            wrapped_text += new_text
+
+            if new_text == '\n' or new_text == '[NL]':
+                line_start = len(wrapped_text)
+                line_len = 0
+                potential_wrap = None
 
         return wrapped_text
 
@@ -271,7 +272,7 @@ class CharMap:
                     if '|' in text:
                         text = text[:text.index('|')]
 
-                    text = CharMap.__apply_wrap(text, wrap, wrap_break)
+                    text = self.__apply_wrap(text, wrap, wrap_break)
 
                     if text in strings:
                         pointer_text[text] += next_pointers
@@ -290,6 +291,12 @@ class CharMap:
                 elif line.startswith('@') and len(line) >= 5:
                     ptr = CharMap.__read_hex(line, 1)
                     next_pointers.append(ptr)
+
+                elif line.startswith('&'):
+                    parts = line.split('=')
+                    write_addr = CharMap.__read_hex(parts[0], 1)
+                    value = CharMap.__read_hex(parts[1], 0)
+                    rom.set_byte(write_addr, value)
 
                 elif line.startswith('!address $'):
                     address = CharMap.__read_hex(line, 10)
@@ -315,6 +322,9 @@ class CharMap:
                     index = line.find(' ', 11)
                     needle = CharMap.__unescape(line[11:index])
                     replacement = CharMap.__unescape(line[index+1:])
+                    index = replacement.find(' ')
+                    if index != -1:
+                        replacement = replacement[0:index]
                     wrap_break[needle] = replacement
 
                 line = file.readline()
@@ -367,4 +377,3 @@ class CharMap:
                     rom.set_byte(key + 1, value >> 8)
         else:
             print('Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(bytes), address, space))
-

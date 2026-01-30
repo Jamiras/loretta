@@ -1,0 +1,5 @@
+!address $2C0E
+!space 000F
+
+//    X----XX---XX < the Xs will get replaced
+$2C0E|1d    7 : 00

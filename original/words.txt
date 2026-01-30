@@ -238,13 +238,13 @@ $2330|ナイフ
 @20F5
 $2334|びん
 
-@20F7
+@20F7 - Pictures at an Exhibition - Mussorgsky
 $2338|てんらんかいのえ
 
-@20F9
+@20F9 - The Swan - Camille Saint Saens
 $2341|はくちょう
 
-@20FB
+@20FB - Waltz of the Little Dog - Chopin
 $2347|こいぬのワルツ
 
 @20FF

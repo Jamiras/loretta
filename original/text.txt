@@ -13,14 +13,14 @@ $1C00E|われわれが，おちゃの じかんを |
 @2530
 $1C021|たのしんでいる ときだった···
 
--- Now, we can start wrapping lines using [NL] and [WAIT].
--- Each line must still be less than 16 characters, but the
+-- now, we can start wrapping lines using [NL] and [WAIT]
+-- each line must still be less than 16 characters, but the
 -- importer will insert [NL]s for us, either immediately
 -- before a [WAIT] or as a replacement for an existing space.
 -- If a [WAIT] follows four lines, the first will scroll off
 -- before the [WAIT] kicks in. If the fourth line is short
--- enough, place a ^ _after_ the [WAIT] to not put the
--- wait cursor on a separate line.
+-- enough, use [^WAIT] instead to not put the wait cursor
+-- on a separate line.
 !wrap 10 $FE
 !wrapbreak [WAIT] \n[WAIT]     -- support [WAIT] without explicit [NL] prefix
 !wrapbreak [NL][WAIT] \n[WAIT] -- dumper creates explicit [NL][WAIT] pairs. don't double up
@@ -60,6 +60,7 @@ $1C214|ふえを しまって おいたんだっけ。
 $1C227|パイプがある。 おかしなところに しまいこみなあ。
 
 @367D
+@371E - take gun
 $1C244|きみのピストルは ウエブリ－ だったね。
 
 @3665

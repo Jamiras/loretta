@@ -79,11 +79,11 @@ if options.menu_path:
         exit()
 
     charmap = CharMap(options.charmap_path)
-    charmap.dump(rom, 0x200F, 0x0E, options.menu_path)
+    charmap.dump(rom, 0x2B35, 0x04, options.menu_path)
 
 if options.word_path:
     if not options.charmap_path:
-        printf("--charmap is required for --menu")
+        printf("--charmap is required for --word")
         exit()
 
     charmap = CharMap(options.charmap_path)

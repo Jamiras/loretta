@@ -35,7 +35,7 @@ if not os.path.isfile(options.rom_path):
 rom = ROM(options.rom_path)
 
 if options.font_path:
-    TileTable.import_from_text(rom, 0x008000, Format.RLE_8x8_1BPP, options.font_path, space=0x717)
+    TileTable.import_from_text(rom, Format.RLE_8x8_1BPP, options.font_path)
 
 if options.text_path:
     if not options.charmap_path:

@@ -1,0 +1,5 @@
+!address $2C0E
+!space 000F
+
+$2C0E|1にちめ  7じ  0ふん
+

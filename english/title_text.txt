@@ -1,0 +1,23 @@
+!address $2B35
+!space 0022
+
+@247B
+$2B35|START
+
+@2484
+$2B3B|CONTINUE
+
+// the original password string is 5 characters and placed at position 4A
+// shift the position left 3 spaces so the invalid message doesn't overwrite it
+&2499=47
+
+@2496
+$2B44|PASSWORD
+
+// shift the INVALID position right 1 spaces to better balance the
+// UI, but still allow it to be cleared out when changing the password
+&29F9=50
+
+@29F6
+$2B4C|INVALID
+
