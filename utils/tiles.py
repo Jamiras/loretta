@@ -304,9 +304,15 @@ class TileTable:
         with open(filename, 'r', encoding='utf-8') as file:
             line = file.readline()
 
+            i = 0
             while line:
+                i += 1
                 line = line.strip()
                 if line != '' and not line.startswith("//"):
+                    if len(line) < 8:
+                        print ("Line " + str(i) + " incomplete: " + line)
+                        line += "........"
+
                     tile_lines.append(line)
                     if len(tile_lines) == 8:
                         tile = TileTable.encode(tile_lines, format)

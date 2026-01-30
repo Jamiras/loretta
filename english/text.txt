@@ -219,7 +219,7 @@ $1C8A3|I heard Brenda married a rich man.[WAIT]I haven't seen Stobart since then
 $1C8FA|Loretta! Thank goodness! Everything's going to be alright now.
 
 @39C4
-$1C917|I was drugged. When I woke up, I was locking in this house...
+$1C917|I was drugged. When I woke up, I was locked in this house...
 
 @39CC
 $1C94A|All that's left is to catch the culprit! Loretta, come with us.
