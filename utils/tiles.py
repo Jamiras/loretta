@@ -92,12 +92,12 @@ class TileTable:
         return tile_bytes
 
     @staticmethod
-    def __decode_rle(encoded_bytes):
+    def __decode_rle(encoded_bytes, tile_count):
         decoded_bytes = bytearray()
 
         i = 0
         j = 0
-        while (j < 256 * 8):
+        while (j < tile_count * 8):
             count = encoded_bytes[i]
             i += 1
             if (count < 0x80):
@@ -175,12 +175,12 @@ class TileTable:
         return encoded_bytes
 
     @staticmethod
-    def tile_data(rom, address, format):
+    def tile_data(rom, address, format, count = 256):
         size = TileTable.tile_size(format)
-        tiledata = rom.get_bytes(address, size * 256)
+        tiledata = rom.get_bytes(address, size * count)
 
         if format == Format.RLE_8x8_1BPP:
-            tiledata = TileTable.__decode_rle(tiledata)
+            tiledata = TileTable.__decode_rle(tiledata, count)
 
         return tiledata
 
@@ -207,7 +207,7 @@ class TileTable:
         return func(bytes)
 
     @staticmethod
-    def __get_ascii_art(bpp):
+    def get_ascii_art(bpp):
         arts = {
             1: ['.', '#'],
             2: ['.', '-', '+', '#']
@@ -216,7 +216,7 @@ class TileTable:
 
     @staticmethod
     def __dump_ascii_art(file, tile, width, height, bpp):
-        art = TileTable.__get_ascii_art(bpp)
+        art = TileTable.get_ascii_art(bpp)
         
         i = 0
         for y in range(0, height):
@@ -227,7 +227,7 @@ class TileTable:
         
     @staticmethod
     def encode(tile_lines, format):
-        art = TileTable.__get_ascii_art(Format.get_bpp(format))
+        art = TileTable.get_ascii_art(Format.get_bpp(format))
         bytes = bytearray()
 
         i = 0
@@ -250,13 +250,17 @@ class TileTable:
         return func(bytes)
 
     @staticmethod
-    def dump_to_text(rom, address, format, filename):
+    def dump_to_text(rom, address, format, filename, count = 256):
         file = open(filename, 'w')
         size = TileTable.tile_size(format)
-        tiledata = TileTable.tile_data(rom, address, format)
+        tiledata = TileTable.tile_data(rom, address, format, count)
+
+        file.write('!address ${0:04X}\n'.format(address))
+        file.write('!space ${0:04X}\n'.format(len(tiledata)))
+        file.write('\n')
 
         offset = 0
-        for i in range(0, 256):
+        for i in range(0, count):
             bytes = tiledata[offset:offset+size]
             tile = TileTable.decode(bytes, format)
             
@@ -270,10 +274,10 @@ class TileTable:
 
 
     @staticmethod
-    def dump_to_png(rom, address, format, filename):
+    def dump_to_png(rom, address, format, filename, count = 256):
         image = []
         size = TileTable.tile_size(format)
-        tiledata = TileTable.tile_data(rom, address, format)
+        tiledata = TileTable.tile_data(rom, address, format, count)
 
         offset = 0
         for y in range(0, 16):
@@ -309,7 +313,7 @@ class TileTable:
         bytes = bytearray()
 
         bpp = Format.get_bpp(format)
-        art = TileTable.__get_ascii_art(bpp)
+        art = TileTable.get_ascii_art(bpp)
 
         address = 0
         space = bpp * 256 * 8

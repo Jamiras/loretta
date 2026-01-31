@@ -56,7 +56,7 @@ $1C1CE|That's a violin. You're very skilled... really.
 $1C200|Did I put the money away?
 
 @36D4
-$1C214|Did I put the flute away?
+$1C214|Did I put the flute away?|flute = whistle?
 
 @36E6 - look fireplace logs
 $1C227|There's a pipe. That's a strange place for it.
