@@ -1,6 +1,10 @@
 !address $1C000
-!space 329D
 !pointeroffset -14000
+
+// screen data starts at 1F29D! - if you overwrite the screen data, you can't interact
+// with things like the drawers or fireplace. there is a bit of extra space at the end
+!space 329D
+!extraspace $1FF5C 00A4
 
 // ===== Intro =====
 // These lines cannot be more than 16 characters and should not be wrapped

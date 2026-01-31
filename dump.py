@@ -4,8 +4,8 @@
 #  sudo apt install python3-png
 
 # dump original font:
-#  ./dump.py --rom loretta.sg --font original/font.txt --count 0x92
-#  ./dump.py --rom loretta.sg --font original/font.png --count 0x92 --png
+#  ./dump.py --rom loretta.sg --font original/font.txt --address 0x8000 --count 0x92
+#  ./dump.py --rom loretta.sg --font original/font.png --address 0x8000 --count 0x92 --png
 
 # dump original text:
 #  ./dump.py --rom loretta.sg --text original/title_text.txt --charmap original/font.txt --address 0x2B35 --count 4

@@ -114,6 +114,9 @@ class CharMap:
 
                     count = count - 1
 
+        if s != '':
+            strings[start] = s
+
         print('Read {0} bytes starting at ${1:04X}'.format(address - original_address, original_address))
         return [strings, address - original_address]
 

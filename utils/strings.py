@@ -79,6 +79,7 @@ class StringTable:
         next_pointers = []
         self.blocks = []
         self.current_block = None
+        self.extra_block = None
         self.wrap = 0x10000000
         self.wrap_break = {}
         self.pokes = {}
@@ -241,6 +242,13 @@ class StringTable:
 
             self.wrap_break[needle] = replacement
 
+        elif line.startswith('!extraspace $'):
+            address = Parser.parsehex(line, 13)
+            space = Parser.parsehex(line, line.find(' ', 13) + 1)
+            self.extra_block = StringBlock(address)
+            self.extra_block.space = space
+            self.blocks.append(self.extra_block)
+
         else:
             print('Unknown command (line {0}): {1}', line_index, line)
 
@@ -282,11 +290,15 @@ class StringTable:
         for b in self.blocks:
             data = bytearray()
             address = b.address
+
             for i, e in b.encoded.items():
                 if i not in string_addresses:
-                    string_addresses[i] = address
-                    data.extend(e)
-                    address += len(e)
+                    if self.extra_block and self.extra_block != b and len(data) + len(e) > b.space:
+                        self.extra_block.encoded[i] = e
+                    else:
+                        string_addresses[i] = address
+                        data.extend(e)
+                        address += len(e)
 
             if len(data) <= b.space:
                 rom.set_bytes(b.address, data)

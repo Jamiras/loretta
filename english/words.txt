@@ -89,13 +89,13 @@ $21DB|Holmes
 $21E1|Neil Evans
 
 @208D
-$21EB|Clay's Gallery
+$21EB|Gallery|Clay's Gallery is too long to display properly
 
 @208F
 $21F8|LaGrande
 
 @2091
-$2200|Madam Katrina
+$2200|Katrina|Madam Katrina is too long to display properly
 
 @2093
 $220B|Philip
@@ -170,7 +170,7 @@ $22A2|Butler
 $22A7|Watson
 
 @20C3
-$22AC|Evan's House
+$22AC|Evans House|barely fits
 
 @20C5
 $22B5|London
