@@ -1,4 +1,5 @@
 from pathlib import Path
+from utils.terminal import Color
 
 class Parser:
     def __init__(self, filename):
@@ -250,7 +251,7 @@ class StringTable:
             self.blocks.append(self.extra_block)
 
         else:
-            print('Unknown command (line {0}): {1}', line_index, line)
+            print(COLOR.WARNING + 'Unknown command (line {0}): {1}', line_index, line) + Color.RESET
 
     def share_pointers(self):
         self.trailing_strings = {}
@@ -302,10 +303,10 @@ class StringTable:
 
             if len(data) <= b.space:
                 rom.set_bytes(b.address, data)
-                print('Wrote {0}/{1} bytes to @{2:02X}'.format(len(data), b.space, b.address))
+                print(Color.OKGREEN + 'Wrote {0}/{1} bytes to @{2:02X}'.format(len(data), b.space, b.address) + Color.RESET)
                 b.written = True
             else:
-                print('Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(data), b.address, b.space))
+                print(Color.FAIL + 'Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(data), b.address, b.space) + Color.RESET)
 
         pointer_count = 0
         for b in self.blocks:
@@ -325,12 +326,12 @@ class StringTable:
                         pointer_count += 1
 
         if pointer_count > 0:
-            print('Wrote {0} pointers'.format(pointer_count))
+            print(Color.OKGREEN + 'Wrote {0} pointers'.format(pointer_count) + Color.RESET)
 
         if len(self.pokes) > 0:
             for address, value in self.pokes.items():
                 rom.set_byte(address, value)
-            print('Wrote {0} pokes'.format(len(self.pokes)))
+            print(Color.OKGREEN + 'Wrote {0} pokes'.format(len(self.pokes)) + Color.RESET)
 
     @staticmethod
     def dump(filename, strings, space, address, pointers = {}, ptr_offset = 0):

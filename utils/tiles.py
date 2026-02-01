@@ -1,5 +1,6 @@
 from enum import Enum, unique
 from utils.strings import Parser
+from utils.terminal import Color
 
 import png
 
@@ -190,10 +191,10 @@ class TileTable:
             bytes = TileTable.__encode_rle(bytes)
 
         if len(bytes) <= space:
-            print('Writing {0}/{1} bytes to ${2:02X}'.format(len(bytes), space, address))
+            print(Color.OKGREEN + 'Writing {0}/{1} bytes to ${2:02X}'.format(len(bytes), space, address) + Color.RESET)
             rom.set_bytes(address, bytes)
-        else:
-            print('Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(bytes), address, space))
+        else: 
+            print(Color.FAIL + 'Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(bytes), address, space) + Color.RESET)
 
     @staticmethod
     def decode(bytes, format):
@@ -237,7 +238,7 @@ class TileTable:
                 try:
                     b = art.index(line[x])
                 except ValueError:
-                    print("unknown character \"" + line[x] + "\" in glyph: " + line)
+                    print(Color.WARNING + "unknown character \"" + line[x] + "\" in glyph: " + line + Color.RESET)
                     b = 0
 
                 bytes.append(b)
@@ -329,7 +330,7 @@ class TileTable:
 
             elif line[0] in art:
                 if len(line) < 8:
-                    print('Line {0} incomplete: {1}'.format(line_index, line))
+                    print(Color.WARNING + 'Line {0} incomplete: {1}'.format(line_index, line) + Color.RESET)
                     line += "........"
 
                 tile_lines.append(line)

@@ -1,6 +1,7 @@
 from enum import Enum, unique
 from utils.strings import Parser
 from utils.tiles import TileTable
+from utils.terminal import Color
 
 import png
 
@@ -22,7 +23,7 @@ class Screen:
         while line:
             if line[0] in art:
                 if len(line) < 8:
-                    print('Line {0} incomplete: {1}'.format(line_index, line))
+                    print(Color.WARNING + 'Line {0} incomplete: {1}'.format(line_index, line) + Color.RESET)
                     line += "........"
 
                 tile_lines.append(line[0:8])
@@ -49,7 +50,7 @@ class Screen:
                         try:
                             b = art.index(line[x2])
                         except ValueError:
-                            print("unknown character \"" + line[x] + "\" in glyph: " + line)
+                            print(Color.WARNING + "unknown character \"" + line[x] + "\" in glyph: " + line) + Color.RESET
                             b = 0
 
                         row[y2].append(b)
@@ -112,7 +113,7 @@ class Screen:
         TileTable.write_tiles(tiledata, rom, tile_address, format, tile_space)
 
         rom.set_bytes(address, screendata)
-        print('Wrote {0} bytes screen data to @{1:02X}'.format(len(screendata), address))
+        print(Color.OKGREEN + 'Wrote {0} bytes screen data to @{1:02X}'.format(len(screendata), address) + Color.RESET)
 
     @staticmethod
     def __optimize_for_rle(screendata, tiles):
