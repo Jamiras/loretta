@@ -3,11 +3,15 @@
 
 // screen data starts at 1F29D! - if you overwrite the screen data, you can't interact
 // with things like the drawers or the fireplace.
-!space 329D
+// !space 329D
 
 // there is a bit of extra space at the end
-//!extraspace $1FF5C 00A4
-!extraspace $1FE4D 01B4
+// !extraspace $1FF5C 00A4
+// !extraspace $1FE4D 01B4
+
+// when running screen-pack, the screen data is packed and moved to the end of the file
+// ($1F4F2), so the actual available space is contiguous and increased
+!space 34F2
 
 // ===== Intro =====
 // -- These lines cannot be more than 16 characters and should not be wrapped
@@ -86,13 +90,13 @@ $1C268|C268|That's a lamp.
 $1C274|There's nothing inside.
 
 @3688 - look article 1
-$1C284|A major exhibition of Neil Evans' works will be held at Clay's Gallery.[^WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count LaGrande and Madam Katrina will be on display.
+$1C284|A major exhibition of Neil Evans' works[WAIT]will be held at Clay's Gallery.[^WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count LaGrande[WAIT]and Madam Katrina will be on display.
 
 @36AC - look article 2
 $1C2F4|Motomi tutors a 10-year-old girl.[WAIT]She is employed by Richard Revell, who lives in Reigate.
 
 @36B7 - look article 3
-$1C329|C329|The Red-Headed League has disbanded.
+$1C329|The Red-Headed League has disbanded.
 
 @36F1 - look newspaper
 $1C33F|Oh, there's an interesting articles here.
@@ -150,7 +154,7 @@ $1C4B1|C4B1|I'm looking forward to the exhibition.
 // ===== Gallery =====
 
 @4CA3 - arrive at gallery
-$1C4CF|Are you Mr.Holmes?[WAIT]We've been expecting you.
+$1C4CF|Are you Mr.Holmes?[WAIT]I've been expecting you.
 
 @4CC1 - ask painting (clay)
 $1C4E6|It was stolen when it was being moved from the warehouse.[^WAIT]The exhibition will be ruined without it.[WAIT]Please recover it as soon as possible.
@@ -191,7 +195,10 @@ $1C690|A wealthy man bought that painting.[WAIT]His name started with an L.
 $1C6BF|C6BF|What a terrible person. How could he hit me?
 
 @388E - enter white door (B-7)
-$1C6DA|Excuse me.
+@389D - enter green door (D-2)
+@38C1 - enter middle door (E-6)
+@38E5 - enter left door (?)
+$1C6DA|Hello, is anyone home?
 
 @38A3
 $1C6EB|It seems no one is home.
@@ -267,7 +274,7 @@ $1CA1D|I'll be even more famous now.
 
 // ===== Philip =====
 @3A59 - meet Philip
-$1CA48|I'm' Philip.
+$1CA48|I'm Philip.
 
 @3A87 - ask Evans
 $1CA53|My brother told me not to tell anyone.
@@ -276,10 +283,10 @@ $1CA53|My brother told me not to tell anyone.
 $1CA98|Please keep what I said a secret.
 
 @3A68 - ask painting
-$1CAB2|Maybe I should try painting too.[WAIT]It seems like you can make a lot of money doing it.
+$1CAB2|Maybe I should try painting[NL]too.[WAIT]It seems like you can make a lot of money doing it.
 
 @3A74 - ask gallery
-$1CAC9|It's a profitable business.
+$1CAC9|He'll make a lot of money.
 
 @4F1A - use money
 $1CAE3|My brother's house is in Norwood.
@@ -292,7 +299,8 @@ $1CB16|This is Norwood. Isn't it quiet?
 $1CB33|That's his house there.
 
 @3AB6 - ask painting
-$1CB47|CB47|Someone I didn't recognize was here asking questions the other day.
+@3AC1 - ask gallery
+$1CB47|Someone else was asking about that the other day.
 
 $1CB7A|CB7A|Hello,
 
@@ -301,15 +309,17 @@ $1CB81|CB81|Are you going back to London?
 @3B06 - enter house
 $1CB97|There's no one here.
 
-@3BDD
-$1CBA7|I can't afford it.
+@3BDD - look ceiling
+$1CBA7|I can't reach it.
 
 // ===== Evans House =====
 
 @4F5D - use walking stick
-$1CBB9|The space above the ceiling? Let's try tapping on it.
+$1CBB9|Let's try tapping on the ceiling.
 
+@3C6C - (continued from use walking stick)
 @3BE8 - look hidey-hole
+//@4F70 - ??
 $1CBE1|A package is hidden there.
 
 @3D09 - try to take anything
@@ -318,8 +328,8 @@ $1CBF9|You shouldn't take other people's things.
 @3CCE - take package
 $1CC15|It's a picture of a girl with a red hat!
 
-@3E0D
-$1CC31|Let's find a room before Neil gets back.
+@3E0D - call
+$1CC31|I should search the room before Neil gets back.
 
 @3CFA - Neil arrives
 $1CC50|Who are you? Why are you in my house?
@@ -328,6 +338,7 @@ $1CC50|Who are you? Why are you in my house?
 $1CC6F|Clay asked me to retrieve the painting.
 
 @3B2D - ask painting
+@3DA3 - show painting
 $1CC8C|I received a letter threatening to damage it.
 
 @3B3D - ask gallery
@@ -343,7 +354,7 @@ $1CD14|We've been living together for 3 years.[WAIT]But she suffers from amnesia
 $1CD49|I found her by the Mole river. She was injured at the time.
 
 @3BA3 - (continued)
-$1CD8C|Tell me everything.
+$1CD8C|Is that everything?
 
 @3BAB - (continued)
 $1CDCA|What does this letter mean? I'm worried.
@@ -352,7 +363,7 @@ $1CDCA|What does this letter mean? I'm worried.
 $1CDFD|It reads:[NL] wheRE[NL] loVE[NL] faLLs[^WAIT]Beware the true origin of "The Girl in the Red Hat".
 
 @3E73 - leave
-$1CE45|I'll return the painting. Let's meet at the train station.
+$1CE45|I'll return the painting.[WAIT]Let's meet at the train station.
 
 @3E7B - intermission
 $1CE71|The painting will be sold after the exhibition.[^WAIT]Have you solved the mystery of the letter yet?
@@ -407,18 +418,18 @@ $1D0A1|Let's take Letitia with us. Neil, you're coming too, right?
 
 // ===== Train Station =====
 @3EC8 - arrive
-$1D0D0|D0D0|Holmes! Where are you going?
+$1D0D0|Where would you like to go?
 
 $1D0E4|D0E4|How far are you going?
 
-@3ED3
-$1D0F3|D0F3|This is Windsor castle - a source of pride for England.
+@3ED3 - arrive in Windsor
+$1D0F3|This is Windsor. It's castle is a source of pride for England.
 
-@3EE4 - ask
-$1D11F|You must be the famous Mr. Holmes![WAIT]The air of London is purified by your very presence.
+@3EE4 - ask (in London)
+$1D11F|You must be the famous Mr.Holmes![WAIT]Your very presence improves London.
 
-@3EF0
-$1D168|D168|The castle overlooking the Thames is undoubtedly the best of them all.
+@3EF0 - sk (in Windsor)
+$1D168|The castle overlooking the Thames is the best.
 
 @3F5E
 $1D192|This town has old castles and churches.
@@ -431,7 +442,7 @@ $1D1B2|This is Reigate. It has many beautiful old streets.
 $1D1DA|I'm a bit tired. Let's rest at that inn.
 
 @3F34 - (continued) The password will be put in between the open/close quotes, which must be $02 and $03 - I suggest putting brackets [] in those characters
-$1D1FA|With a few more clues, we'll get to the bottom of this...[WAIT]The password is [          ].
+$1D1FA|With a few more clues,[WAIT]we'll get to the bottom of this...[WAIT]The password is [          ].
 
 @3F52 - (continued)
 $1D270|Let's continue the investigation!
@@ -481,7 +492,7 @@ $1D491|Shall we follow the footprints?
 @408C
 $1D4B5|This is the town of Redhill.
 
-@398B
+//@398B
 $1D4CA|It's a small town. A single inn sits by the bank of the Mole river.
 
 @40B4
@@ -535,7 +546,7 @@ $1D76B|I had almost given up hope...
 @416D
 $1D781|Mr.Revell, is this your girlfriend?
 
-@4173
+//@4173
 $1D79E|Oh, Loretta! Is it really you?
 
 @437B
@@ -597,22 +608,22 @@ $1DA93|Holmes or Stobart? You can only choose one.
 @42F5
 $1DAC5|It's all over now!
 
-@434A
+//@434A
 $1DAD9|DAD9|Two of my granddaughters have been victimized!
 
-@434C
+//@434C
 $1DAFB|Revell is Richard's younger brother!
 
-@4350
+//@4350
 $1DB1B|Oscar is already dead.
 
-@434E
+//@434E
 $1DB2E|He was just here.
 
-@4354
+//@4354
 $1DB43|Why would you suspect me?
 
-@4352
+//@4352
 $1DB5E|He's going to run!
 
 @44AA
@@ -657,7 +668,7 @@ $1DDC9|DDC9|I'm a loyal butler. I'd never do anthing like what Branton did.
 @46BD
 $1DDFB|Why show that to me?
 
-@4172
+//@4172
 $1DE21|Kidnapped? I didn't see anyone leave, so they must still be inside the mansion.
 
 @450E
@@ -934,7 +945,7 @@ $1EC7B|EC7B|I don't see anything strange here.
 @3703 - look unknown
 $1EC98|What are you looking at?
 
-@6D2F
+//@6D2F
 $1ECB3|ECB3|Why are you looking around so much?
 
 $1ECC9|M222
@@ -945,7 +956,7 @@ $1ECD3|ECD3|Holmes, you better not do that.
 @4DEC - hit unknown
 $1ECE9|You shouldn't take out your frustrations on that.
 
-@6EF5
+//@6EF5
 $1ED08|ED08|I've had enough of violent acts.
 
 @4DEE - call when not appropriate
@@ -983,7 +994,7 @@ $1EDFB|How do you use that?
 $1EE0F|That sounds dangerous!
 
 @4EB7 - use address book - neil evans
-$1EE1F|That's strange. It's not listed.
+$1EE1F|That's strange. He's not listed.
 
 @4E8F - use address book
 $1EE2E|Which location are you trying to find?
@@ -1031,7 +1042,7 @@ $1EF48|What should I play?
 @5053
 $1EF54|How relaxing.
 
-@3E78
+//@3E78
 $1EF69|EF69|How would I use that?
 
 @515E
@@ -1087,7 +1098,6 @@ $1F1A3|M278
 
 $1F1AD|M279
 
-@6D48
 $1F1B7|M280
 
 $1F1C1|M281

@@ -179,7 +179,7 @@ $22B5|London
 $22BB|Norwood
 
 @20C9
-$22C2|Ryegate
+$22C2|Reigate
 
 @20CB
 $22C9|Windsor
@@ -215,7 +215,7 @@ $230A|Misume
 $2311|Enoko
 
 @20E1
-$2316|Picture
+$2316|Painting
 
 @20E7
 $2318|Redhill

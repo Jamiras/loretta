@@ -114,6 +114,12 @@ class StringTable:
 
             # commands
             elif line.startswith('!'):
+                if current_string is not None:
+                    self.__flush_current_string(current_string, next_pointers)
+                    current_string = None
+                    next_pointers = []
+                    num_strings += 1
+
                 self.__process_command(line, line_index)
 
             # pointer: "@1234" will write the address of the next string at $1234
@@ -303,7 +309,7 @@ class StringTable:
 
             if len(data) <= b.space:
                 rom.set_bytes(b.address, data)
-                print(Color.OKGREEN + 'Wrote {0}/{1} bytes to @{2:02X}'.format(len(data), b.space, b.address) + Color.RESET)
+                print(Color.OKGREEN + 'Wrote {0}/{1} bytes to ${2:02X}'.format(len(data), b.space, b.address) + Color.RESET)
                 b.written = True
             else:
                 print(Color.FAIL + 'Cannot write {0} bytes to ${1:02X} (exceeds {2} available space)'.format(len(data), b.address, b.space) + Color.RESET)
