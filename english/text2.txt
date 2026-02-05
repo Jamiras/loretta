@@ -1,0 +1,39 @@
+!address $5E47
+!space 00BB
+
+@58F8
+$5E47|How are you going to get in?
+
+@5933
+$5E5F|Let's not break it.
+
+@5967
+$5E77|Tap, tap...
+
+@5977
+$5E80|Did you hear something?
+
+@5989
+$5E8D|It's too dark.
+
+@599A
+$5E9B|I can't get it.
+
+@59AB
+$5EA8|I'm alone.
+
+@59BC
+$5EBA|What would I do with that here?
+
+@59DE
+$5ED5|On the move!
+
+@59EF
+$5EE5|Ah!
+
+@5A00
+$5EE9|It's too dark.|It's too dark to see the clock (but sharing with above for space)
+
+@5A0A
+$5EFC|Zounds!|Zurun!
+

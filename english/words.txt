@@ -26,7 +26,7 @@ $214B|Letitia
 $2154|3 Years Ago
 
 @205B
-$215D|Misume
+$215D|Daughter
 
 @205D
 $2164|Patricia
@@ -191,7 +191,7 @@ $22D0|Richmond
 $22D8|Kilburn
 
 @20D1
-$22DF|Revell Mansion
+$22DF|Revell|Revell Mansion is too long to display
 
 @20D3
 $22E8|Town
@@ -209,7 +209,7 @@ $22FC|Outside
 $2303|Inside
 
 @20DD
-$230A|Misume
+$230A|Daughter
 
 @20DF
 $2311|Enoko

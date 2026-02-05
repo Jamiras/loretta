@@ -322,7 +322,8 @@ $1CBB9|Let's try tapping on the ceiling.
 //@4F70 - ??
 $1CBE1|A package is hidden there.
 
-@3D09 - try to take anything
+@3D09 - try to take anything (Evans house)
+@4DE6 - try to take anything (Revells house)
 $1CBF9|You shouldn't take other people's things.
 
 @3CCE - take package
@@ -396,7 +397,8 @@ $1CFB0|She had it when we first met. Leticia starts with "L".
 $1CFF6|CFF6|Shoes! The same kind Richard had!
 
 @3C8D
-$1D013|D013|Let's investigate a little more thoroughly.
+@42D0 - look cabinet (but not actual hotspot)
+$1D013|Let's investigate a little more thoroughly.
 
 @3C61
 $1D02E|Nothing more can be found.
@@ -428,10 +430,10 @@ $1D0F3|This is Windsor. It's castle is a source of pride for England.
 @3EE4 - ask (in London)
 $1D11F|You must be the famous Mr.Holmes![WAIT]Your very presence improves London.
 
-@3EF0 - sk (in Windsor)
+@3EF0 - ask (in Windsor)
 $1D168|The castle overlooking the Thames is the best.
 
-@3F5E
+@3F5E - ask (in Reigate)
 $1D192|This town has old castles and churches.
 
 // ===== Reigate =====
@@ -447,32 +449,35 @@ $1D1FA|With a few more clues,[WAIT]we'll get to the bottom of this...[WAIT]The p
 @3F52 - (continued)
 $1D270|Let's continue the investigation!
 
-@50AE
-$1D284|D284|I just need to show it? Excuse me, please look at this article.
+// this exchange has Holmes asking a passerby to look at an article in
+// the newspaper (presumably article 2). they respond with "That's Mr.
+// Revell's mansion.". I'm not sure how best to convey that to the player here.
+@50AE - use newspaper
+$1D284|Excuse me, please look at this.
 
-@50BB
-$1D2AE|That's Mr.Revell's mansion.
+@50BB - (continued)
+$1D2AE|Mr.Revell lives over there.
 
 @50C9
 $1D2C7|I don't know.
 
-@3F85
+@3F85 - attempt to enter mansion
 $1D2D0|Who are you?
 
-@3F8B
-$1D2DA|I need to get inside without arousing suspcision...[WAIT]Did you call for a doctor?
+@3F8B - (continued)
+$1D2DA|I need to get in without arousing suspicion...[^WAIT]You called for a doctor?
 
-@3F93
-$1D316|We've been waiting for you. Please follow me to my husband's room.
+@3F93 - (continued)
+$1D316|We've been waiting for you. Please follow me.
 
 @3FB8
 $1D335|Did you need something? Oh! Lady Loretta, you're safe!
 
-@3FAC
-$1D35F|Mr.Holmes must be troubled too.
+@3FAC - enter mansion (after attack)
+$1D35F|You must be exhausted.
 
-@3FE1
-$1D373|I'm a gatekeeper of sorts.
+@3FE1 - ask gatekeeper
+$1D373|I'm a gatekeeper.
 
 @4017
 $1D38B|What a beautiful view!
@@ -489,13 +494,14 @@ $1D46C|D46C|Miko is barking. Did he find something?
 @4056
 $1D491|Shall we follow the footprints?
 
-@408C
+// ===== Redhill =====
+@408C - ask
 $1D4B5|This is the town of Redhill.
 
-//@398B
-$1D4CA|It's a small town. A single inn sits by the bank of the Mole river.
+@4098 - ask again
+$1D4CA|It's a small town.[WAIT]A single inn sits by the bank of the Mole river.
 
-@40B4
+@40B4 - enter inn
 $1D4FA|Welcome.
 
 @40C2
@@ -510,35 +516,35 @@ $1D562|Holmes! That has Neil Evans' signature on it!
 @40E7
 $1D590|Could Leticia be Richard's mistress?
 
-@4118
-$1D5AC|A free brandy for a returning customer. Come again soon!
+@4118 - leave inn
+$1D5AC|Wait! Have a free brandy.[WAIT]Come again soon!
 
-@417C
-$1D5DC|That's not the usual "job".|original text is just "that's not the usual person"
+@417C - meet Revell
+$1D5DC|You're not the usual doctor.|original text is just "that's not the usual person"
 
-@4182
+@4182 - (continued)
 $1D5EE|"The Girl in the Red Hat" led me here.
 
-@41EE
-$1D611|The girl in that painting looks just like my daughter who disappeared 3 years ago![WAIT]When I saw it, I bought it without hesitation.
+@41EE - ask painting
+$1D611|The girl in that painting looks just like my daughter![WAIT]She disappeared 3 years ago.[WAIT]I bought it immediately.
 
-@420D
-$1D663|Loretta went for a walk by the river and hasn't returned.[WAIT]This is all we found.
+@420D - ask daughter
+$1D663|Loretta went for a walk by the river.[WAIT]That's where we found it.
 
-@4213
-$1D694|What is that?
+@4213 - (continued)
+$1D694|Found what?
 
-@421B
-$1D6A1|Is that where it's stored?
+@421B - (continued)
+$1D6A1|It's stored over there.
 
 @42A3
-$1D6B2|It's rude to stare.
+$1D6B2|D6B2|It's rude to stare.
 
-@4297
+@4297 - look cabinet
 $1D6D0|A single lock of slightly wavy hair.[WAIT]And one shoe stained with blood.[WAIT]They said Jack the Ripper got her,[WAIT]but I hope to see her again.
 
-@442B
-$1D740|D740|Enough of my problems. Please sit down and relax.
+@442B - go further into mansion after finding shoe
+$1D740|Enough of my problems. Please sit down and relax.
 
 @4206
 $1D76B|I had almost given up hope...
@@ -626,23 +632,31 @@ $1DB43|Why would you suspect me?
 //@4352
 $1DB5E|He's going to run!
 
-@44AA
-$1DB7E|DB7E|This is an old mansion. The owner must be wealthy.
+@44AA - arrive in piano room
+$1DB7E|Mr.Revell must be wealthy.
 
-@45F3
-$1DBA4|DBA4|The room belongs to someone with expensive tastes.
+@45F3 - look piano
+$1DBA4|Someone likes expensive things.
 
 @48C6
 $1DBBF|DBBF|Richard Revell amassed a fortune trading with India.[WAIT]In 1875, he inherited the mansion from Count Stobart.
 
-@461C
-$1DC2E|The letter reads "Stop snoopng around or you'll lose your life!"[WAIT]Who could it be from? We should investigate!
+@461C - look three times in piano room
+$1DC2E|Ah! A note![WAIT]"Stop snooping around or you're dead!"[WAIT]Who could it be from? I should investigate!
 
-@4011
-$1DC81|I'm sorry. We've lost him.
+@4011 - go outside
+$1DC81|I've lost him.
 
 @4580
-$1DC9F|Holmes! Over here!
+@45EC
+@4679
+@46A0
+@46D3
+@473E
+@4E7F
+@52DD
+@5355
+$1DC9F|I must hurry.|Holmes! Come here!
 
 @4499
 $1DCB1|The meal was delicious.[WAIT]Should I really have eaten it given the warning in the letter?
@@ -653,7 +667,7 @@ $1DD1F|There's only bones left.
 @4763
 $1DD39|Mr.Holmes! Something terrible has happened. Please come to Patricia's room.
 
-@40F0
+@40F0 - ask (bartender)
 $1DD6C|Do you need something?
 
 @44DF
@@ -1058,8 +1072,8 @@ $1EFB5|EFB5|Afterwards, Julia entered a convent, and Loretta and Richard are rep
 @5364 - think
 $1F035|There isn't anything that can't be solved by intelligence.
 
-@5373
-$1F067|F067|There's nothing easier to overlook than an obvious fact.
+@5373 - think
+$1F067|There's nothing easier to overlook than an obvious fact.
 
 @5382
 $1F087|F087|A crimson thread of murder is intertwined in the tapestry of life.

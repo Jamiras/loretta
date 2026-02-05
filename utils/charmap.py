@@ -43,9 +43,9 @@ class CharMap:
                     key = int(line[1:3], 16)
 
                 # explicit output text specified, capture it
-                index = line.find('!"')
+                index = line.find(' !"')
                 if index != -1:
-                    [text, l] = Parser.parsequoted(line, index + 1)
+                    [text, l] = Parser.parsequoted(line, index + 2)
                     self.map[key] = text
 
                 # capture all the input texts. if an explicit output text was not
