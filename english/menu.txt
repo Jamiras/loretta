@@ -12,9 +12,9 @@ $2023|Hit
 @1D45
 $2027|Call
 $202B|Enter
-$202F|Move
+$202F|Move|Push/Search?
 $2035|Go
-$203A|Talk
+$203A|Talk|Think?
 $203F|Time
 
 // are these even used?

@@ -197,7 +197,7 @@ $22DF|Revell|Revell Mansion is too long to display
 $22E8|Town
 
 @20D5
-$22EB|Back
+$22EB|Revell|Return to room
 
 @20D7
 $22F3|Baron Inn
@@ -206,13 +206,13 @@ $22F3|Baron Inn
 $22FC|Outside
 
 @20DB
-$2303|Inside
+$2303|Hallway|Inside the mansion
 
 @20DD
 $230A|Daughter
 
 @20DF
-$2311|Enoko
+$2311|Painting
 
 @20E1
 $2316|Painting
@@ -224,7 +224,7 @@ $2318|Redhill
 $231F|Tsutsumi
 
 @20ED
-$2323|Handkerchief
+$2323|Kerchief|Handkerchief too long
 
 @20EF
 $2328|Shoes

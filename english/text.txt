@@ -83,9 +83,6 @@ $00000|Ok.|I've taken the gun.
 @3665 - look cane
 $1C25C|That's my walking stick.
 
-@45DC
-$1C268|C268|That's a lamp.
-
 @370A - take drawer second time
 $1C274|There's nothing inside.
 
@@ -134,8 +131,8 @@ $1C41A|I've taken the whistle.
 @37A0 - take fireplace
 $1C429|I've taken the pipe.
 
-@4658
-$1C43B|I've taken the bone.
+@4658 - take bone
+$1C43B|Ok.|I've taken the bone.
 
 @4669
 $1C44A|I've taken the lamp.
@@ -369,54 +366,60 @@ $1CE45|I'll return the painting.[WAIT]Let's meet at the train station.
 @3E7B - intermission
 $1CE71|The painting will be sold after the exhibition.[^WAIT]Have you solved the mystery of the letter yet?
 
-@3AF9
+@3AF9 - return to evans house after visiting revell
 $1CEA5|Mr.Evans, can you introduce me to Leticia?
 
-@3BB7
+@3BB7 - ask
 $1CEC2|I've told you everything I know.
 
-@3BFA
+@3BFA - look hair
 $1CEDE|It's the same color as Richard's hair.
 
-@3C13
-$1CEFF|CEFF|Please don't look at the scars.
+@3C13 - look neck
+$1CEFF|Please don't stare at my scars.
 
-@3C24
-$1CF2A|CF2A|My father was very eager to meet you.
+@3C24 - (continued)
+$1CF2A|As I thought![WAIT]Your father is looking for you.
 
-@3C2C
-$1CF54|Is there any proof that she's really his mistress?
+@3C2C - (continued)
+$1CF54|Can you prove that she's his daughter?
 
-@3C4D
+@3C4D - look open drawer
 $1CF83|A handkerchief with the letter "L" embroidered on it.
 
-@3C53
+@3C53 - (continued)
+@3DB5 - show handkerchief
 $1CFB0|She had it when we first met. Leticia starts with "L".
 
-@3E3B
-$1CFF6|CFF6|Shoes! The same kind Richard had!
+@3E3B - move easel
+$1CFF6|A shoe![WAIT]Just like the one Richard had!
 
 @3C8D
-@42D0 - look cabinet (but not actual hotspot)
+@42D4 - look cabinet (but not actual hotspot)
 $1D013|Let's investigate a little more thoroughly.
 
-@3C61
+@3C61 - look open drawer after taking handkerchief
+@3C94
+@3D2D
+@3D4E
+@3E47 - look easel after taking shoe
 $1D02E|Nothing more can be found.
 
-@3DCA
-$1D03E|Those are the shoes she was wearing when I found her by the riverbank.
+@3DCA - show shoes
+$1D03E|She was wearing them when I found her by the riverbank.
 
-@3D26
+@3D26 - take handkerchief
+@3D47 - take shoe
 $1D066|Let's take it with us.
 
-@3EA3
+@3EA3 - attempt to leave
 $1D07A|Letitia, do you want to go see your father?
 
-@3EA9
+@3EA9 - (continued)
 $1D091|I'm scared.
 
-@3D73
-$1D0A1|Let's take Letitia with us. Neil, you're coming too, right?
+@3D73 - take Letitia
+$1D0A1|Let's take Letitia with us.[WAIT]Neil, you should come too.
 
 // ===== Train Station =====
 @3EC8 - arrive
@@ -465,13 +468,13 @@ $1D2C7|I don't know.
 $1D2D0|Who are you?
 
 @3F8B - (continued)
-$1D2DA|I need to get in without arousing suspicion...[^WAIT]You called for a doctor?
+$1D2DA|(I need to get in without arousing suspicion.)[^WAIT]You called for a doctor?
 
 @3F93 - (continued)
 $1D316|We've been waiting for you. Please follow me.
 
-@3FB8
-$1D335|Did you need something? Oh! Lady Loretta, you're safe!
+@3FB8 - return to mansion with Letitia
+$1D335|Did you need something?[WAIT]Oh! Lady Loretta, you're safe!
 
 @3FAC - enter mansion (after attack)
 $1D35F|You must be exhausted.
@@ -479,7 +482,7 @@ $1D35F|You must be exhausted.
 @3FE1 - ask gatekeeper
 $1D373|I'm a gatekeeper.
 
-@4017
+@4017 - leave mansion
 $1D38B|What a beautiful view!
 
 @402F
@@ -499,22 +502,23 @@ $1D491|Shall we follow the footprints?
 $1D4B5|This is the town of Redhill.
 
 @4098 - ask again
-$1D4CA|It's a small town.[WAIT]A single inn sits by the bank of the Mole river.
+$1D4CA|A single inn sits by the bank of the Mole river.
 
+// ===== Baron Inn =====
 @40B4 - enter inn
 $1D4FA|Welcome.
 
-@40C2
-$1D504|I received this from a guest who stayed here before.[WAIT]It's a thank-you for treating his companion's injury.
+@40C2 - ask painting
+$1D504|I received that from a guest.[WAIT]It was a thank you gift[WAIT]for treating his companion's injury.
 
-@40D3
-$1D540|I remember her. It was a serious neck injury.
+@40D3 - ask daughter
+$1D540|She had a scar on her neck.
 
-@40FF
-$1D562|Holmes! That has Neil Evans' signature on it!
+@40E7 - (continued)
+$1D590|Could Leticia be Richard's daughter?
 
-@40E7
-$1D590|Could Leticia be Richard's mistress?
+@40FF - look painting
+$1D562|It has Neil Evans' signature on it!
 
 @4118 - leave inn
 $1D5AC|Wait! Have a free brandy.[WAIT]Come again soon!
@@ -526,10 +530,10 @@ $1D5DC|You're not the usual doctor.|original text is just "that's not the usual 
 $1D5EE|"The Girl in the Red Hat" led me here.
 
 @41EE - ask painting
-$1D611|The girl in that painting looks just like my daughter![WAIT]She disappeared 3 years ago.[WAIT]I bought it immediately.
+$1D611|The girl in that painting looks just like my daughter![^WAIT]She disappeared 3 years ago.[WAIT]I bought it immediately.
 
 @420D - ask daughter
-$1D663|Loretta went for a walk by the river.[WAIT]That's where we found it.
+$1D663|Loretta went for a walk by the river.[WAIT]That's where we found... it.
 
 @4213 - (continued)
 $1D694|Found what?
@@ -546,28 +550,28 @@ $1D6D0|A single lock of slightly wavy hair.[WAIT]And one shoe stained with blood
 @442B - go further into mansion after finding shoe
 $1D740|Enough of my problems. Please sit down and relax.
 
-@4206
+@4206 - ask daughter
 $1D76B|I had almost given up hope...
 
-@416D
-$1D781|Mr.Revell, is this your girlfriend?
+@416D - arrive with Loretta
+$1D781|Mr.Revell, is this your daughter?
 
-//@4173
+@4173 - (continued)
 $1D79E|Oh, Loretta! Is it really you?
 
-@437B
-$1D7B9|The "L"... belonged to Loretta.
+@437B - show handkerchief
+$1D7B9|L... Is short for Loretta.
 
-@4393
+@4393 - show shoes
 $1D7D7|Those are Loretta's shoes.
 
-@43AA
+@43AA - after showing both
 $1D7E2|Loretta! I'm so glad you're back! I've never been so happy!
 
-@43B2
-$1D80D|But she's lost her memory.
+@43B2 - (continued)
+$1D80D|She's lost her memory.
 
-@43BA
+@43BA - (continued)
 $1D82D|I'm sure she'll recover soon.[WAIT]Once she marries Oscar, I can relax.
 
 $1D873|D873|Is there any proof that this is Loretta?
@@ -584,8 +588,8 @@ $1D8E1|He received this letter...
 @427A
 $1D8F4|"We have Loretta. Sign, or her life is forfeit!"
 
-@41AD
-$1D92D|D92D|I'm as sad as when Loretta's mother died...
+@41AD - ask Revell about Patricia
+$1D92D|I'm as sad as when Loretta's mother died...
 
 @41B8
 $1D959|I gave Patricia whatever she wanted...
@@ -638,8 +642,8 @@ $1DB7E|Mr.Revell must be wealthy.
 @45F3 - look piano
 $1DBA4|Someone likes expensive things.
 
-@48C6
-$1DBBF|DBBF|Richard Revell amassed a fortune trading with India.[WAIT]In 1875, he inherited the mansion from Count Stobart.
+@48C6 - examine white square in edward's room
+$1DBBF|Richard Revell amassed a fortune trading with India.
 
 @461C - look three times in piano room
 $1DC2E|Ah! A note![WAIT]"Stop snooping around or you're dead!"[WAIT]Who could it be from? I should investigate!
@@ -658,16 +662,21 @@ $1DC81|I've lost him.
 @5355
 $1DC9F|I must hurry.|Holmes! Come here!
 
-@4499
-$1DCB1|The meal was delicious.[WAIT]Should I really have eaten it given the warning in the letter?
+@4499 - go inside after reuniting Letitia with Revell
+$1DCB1|The meal was delicious.[WAIT]There's still the issue of the note...
 
-@45D1
-$1DD1F|There's only bones left.
+@45D1 - look bone
+$1DD1F|There's only a bone left.
 
-@4763
-$1DD39|Mr.Holmes! Something terrible has happened. Please come to Patricia's room.
+@45DC - look lamp
+$1C268|It's a lamp.
+
+@4763 - try to take lamp
+$1DD39|Mr.Holmes! Something terrible has happened.[WAIT]Please come to Patricia's room.
 
 @40F0 - ask (bartender)
+@46FE - call maid
+@4725 - call butler
 $1DD6C|Do you need something?
 
 @44DF
@@ -676,8 +685,8 @@ $1DD7A|Patricia is Loretta's half-sister.
 @44F1
 $1DD9A|DD9A|Patricia said she doesn't drink cocoa because it would make her fat...
 
-@44F8
-$1DDC9|DDC9|I'm a loyal butler. I'd never do anthing like what Branton did.
+@44F8 - ask butler
+$1DDC9|I'm a loyal butler.
 
 @46BD
 $1DDFB|Why show that to me?
@@ -694,8 +703,8 @@ $1DE74|Patricia often has hot cocoa with her husband before bed.[WAIT]I'm pretty
 @4553
 $1DEC2|Julia takes it to him every night.
 
-@455A
-$1DEE6|DEE6|I specialize in grilled toad meat.
+@455A - ask maid
+$1DEE6|Today's special is grilled toad.
 
 @4565
 $1DF01|DF01|A kidnapping? How frightening...
@@ -747,11 +756,11 @@ $1E0F4|I remember! I was stabbed on a walk...[WAIT]My father said he acquired th
 @508E
 $1E164|Ah![WAIT]That's Julia's scream! Where did it come from?
 
-@4789
-$1E18B|That's Oscar.
+@4789 - enter oscar's room.
+$1E18B|I'm Oscar.
 
-@47A0
-$1E19A|I think someone was trying to kill Richard.[WAIT]If he dies before Loretta regains her memory, the fortune will go to those two.
+@47A0 - ask oscar about patricia
+$1E19A|I think someone is trying to kill Richard.[WAIT]If he dies before Loretta regains her memory...
 
 @47B9
 $1E206|E206|If Loretta doesn't return, the mansion will belong to Julia...[WAIT]And the estate will be divided between her and Edward.
@@ -768,6 +777,7 @@ $1E318|It's Oscar's diary!
 @4830
 $1E325|If I confront Loretta and tell her that I saw her putting poison in the cocoa...[WAIT]I'm sure I can find her...
 
+// ===== Edward's room =====
 @4858
 $1E3A7|I'm Edward, Richard's younger brother.
 
@@ -777,8 +787,8 @@ $1E3C5|Loretta was so kind to me, even after I lost my wife...
 @487A
 $1E3F4|I love playing the piano. I often play "The Puppy Waltz".
 
-@488B
-$1E420|E420|How about we play some poker instead?
+@488B - ask edward about patricia
+$1E420|How about we play some poker instead?
 
 @4897
 $1E435|E435|He's an excellent young man, and Richard relies on him.
@@ -792,10 +802,10 @@ $1E47D|You stabbed Oscar with this!
 @48B3
 $1E497|That isn't mine!
 
-@48E3
+@48E3 - find neil in the mansion
 $1E4C0|Have you found out anything about Loretta?
 
-@48FA
+@48FA - ask neil about patricia
 $1E4DF|I just got here...
 
 @4906
@@ -825,17 +835,17 @@ $1E5F5|Do you like playing with dolls?
 @4992
 $1E618|If you do that, mommy will get angry!
 
-@4975
-$1E639|Whoa! What happened here?
+@4975 - find patricia on floor
+$1E639|What happened here?
 
-@49A1
-$1E64B|It's useless. He's not breathing. Who could have done such a thing?
+@49A1 - look patricia
+$1E64B|She's not breathing.[WAIT]Who could have done such a thing?
 
-@49BE
-$1E679|An overturned coffee cup. I can faintly smell cocoa.
+@49BE - move patricia
+$1E679|There's a cup. I smell cocoa.
 
-@49DC
-$1E6A4|Let's leave it alone.
+@49DC - try to move patricia before looking at her
+$1E6A4|Let's investigate a little more thoroughly.
 
 @4A01
 $1E6B0|This is Julia, Richard's wife.
