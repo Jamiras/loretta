@@ -87,6 +87,7 @@ class StringTable:
         self.wrap_break = {}
         self.pokes = {}
         self.trailing_strings = {}
+        self.imported = None
         self.can_import = can_import
         current_string = None
         num_strings = 0
@@ -271,12 +272,19 @@ class StringTable:
 
         elif line.startswith('!import '):
             if self.can_import:
-                imported = CharMap(line[8:])
-                for text, key in imported.wordmap.items():
-                    self.charmap.wordmap[text] = key
-                    addr = 0x1C000 + (key - 0xA0) * 2
-                    self.pokes[addr] = self.charmap.charmap[text[0]]
-                    self.pokes[addr + 1] = self.charmap.charmap[text[1]]
+                self.imported = CharMap(line[8:])
+                for word in self.imported.wordmap.keys():
+                    encoded = self.charmap.encode(word)
+                    encoded[-1] = 0x3f # change full terminal to word terminal
+                    encoded.append(0xff) # align to 4-bytes
+
+                    index = len(self.strings)
+                    self.strings.append('__' + word)
+                    self.current_block.encoded[index] = encoded
+
+        elif line.startswith('!enableimport'):
+            if self.imported:
+                self.charmap.wordmap |= self.imported.wordmap
 
         else:
             print(Color.WARNING + 'Unknown command (line {0}): {1}'.format(line_index, line) + Color.RESET)

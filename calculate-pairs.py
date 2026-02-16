@@ -32,26 +32,39 @@ if not options.output_path:
 
 charmap = CharMap(options.charmap_path)
 table = StringTable(options.text_path, charmap)
+table.share_pointers()
 
-pairs = {}
+match_length = 2
+sequences = {}
 for text in table.strings:
-    for word in text.split('[WAIT]'):
-        for i in range(0, len(word) - 1):
-            pair = word[i:i+2]
-            if '\n' not in pair:
-                if pair not in pairs:
-                    pairs[pair] = 1
-                else:
-                    pairs[pair] += 1
+    if not text:
+        continue
+    
+    for clause in text.split('[WAIT]'):
+        clause = clause.replace('[NL]', '\n')
+        for i in range(0, len(clause) - match_length):
+            sequence = clause[i:i+match_length]
 
-sorted_pairs = dict(sorted(pairs.items(), key=lambda item: item[1], reverse=True))
+            if sequence not in sequences:
+                sequences[sequence] = 1
+            else:
+                sequences[sequence] += 1
+
+long_sequences = {}
+for sequence, count in sequences.items():
+    if count > 2:
+        long_sequences[sequence] = count
+
+weighted_sequences = dict(sorted(long_sequences.items(), key=lambda item: item[1], reverse=True))
 
 i = 0xA0
 with open(options.output_path, "w") as file:
-    for pair in sorted_pairs.keys():
-        file.write('${0:2X} @"{1}"\n'.format(i, pair))
+    for sequence, c in weighted_sequences.items():
+        sequence = sequence.replace('\n', '[NL]')
+        file.write('${0:02X} @"{1}"\n'.format(i, sequence))
+
         i += 1
         if i == 0xFE:
             break
 
-print("Wrote pairs to " + options.output_path)
+print("Wrote words to " + options.output_path)

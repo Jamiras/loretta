@@ -1,5 +1,5 @@
 // starting address adjusted to allocate space for shortened pairs
-!address $1C0BC
+!address $1C000
 !pointeroffset -14000
 
 // screen data starts at 1F29D! - if you overwrite the screen data, you can't interact
@@ -12,7 +12,9 @@
 
 // when running screen-pack, the screen data is packed and moved to the end of the file
 // ($1F4F2), so the actual available space is contiguous and increased
-!space 3436 // 34F2 without pair data
+!space 34F2
+
+!import english/pairs.txt
 
 // ===== Intro =====
 // -- These lines cannot be more than 16 characters and should not be wrapped
@@ -41,7 +43,8 @@ $1C021|a rainy day,
 @2539
 $1C034|[WAIT]a horse-drawn carriage stopped on my street.[WAIT]There was a buzzing at the door.[WAIT]It seems I have a visitor...
 
-!import english/pairs.txt
+// the above text must be in the same block, but cannot use the common words as the rendering function doesn't handle them
+!enableimport
 
 @35C8
 $1C078|Mr.Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.
@@ -370,7 +373,7 @@ $1CE45|I'll return the painting.[WAIT]Let's meet at the train station.
 $1CE71|The painting will be sold after the exhibition.[^WAIT]Have you solved the mystery of the letter yet?
 
 @3AF9 - return to evans house after visiting revell
-$1CEA5|Mr.Evans, can you introduce me to Leticia?
+$1CEA5|Mr.Evans, can you introduce me to Letitia?
 
 @3BB7 - ask
 $1CEC2|I've told you everything I know.
@@ -392,7 +395,7 @@ $1CF83|A handkerchief with the letter "L" embroidered on it.
 
 @3C53 - (continued)
 @3DB5 - show handkerchief
-$1CFB0|She had it when we first met. Leticia starts with "L".
+$1CFB0|She had it when we first met. Letitia starts with "L".
 
 @3E3B - move easel
 $1CFF6|A shoe![WAIT]Just like the one Richard had!
@@ -518,7 +521,7 @@ $1D504|I received that from a guest.[WAIT]It was a thank you gift[WAIT]for treat
 $1D540|She had a scar on her neck.
 
 @40E7 - (continued)
-$1D590|Could Leticia be Richard's daughter?
+$1D590|Could Letitia be Richard's daughter?
 
 @40FF - look painting
 $1D562|It has Neil Evans' signature on it!

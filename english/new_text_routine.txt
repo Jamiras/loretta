@@ -1,23 +1,28 @@
 // This replaces the 3E/3F dakuten handling with character pairs
-// from A0-FD, which are stored at $1C000-$1C0BC
+// from A0-FD. Pairs are stored as four byte chunks at $1C000-$1C177.
+// Each chunk is two valid characters, and a terminal. By treating them
+// as substrings, we can leverage the 6 frame wait between characters
+// without having to add a second wait loop. Substrings are aligned at
+// four bytes because Z80 doesn't multiply by 3 very easily.
 
-// 35f0 df             rst 18h           // show message
 //                     hl = read address
-//                     a = 2
+//                     a = 2             // TODO: what does this do? Change bubble hook location?
+//                     rst 18h           // show message
                     
+//                                       // show_dialog:
+// 305a 47             ld b, a           //   // temporarily store a in b
+// 305b 3e 07          ld a, 07h         //   // so we can set the set mapper2 slot to 7.
+// 305d 32 ff ff       ld (FFFFh), a     //   set_mapper2_slot(a) // 7
+// 3060 78             ld a, b           //   // put a back into a
 
-// 305a 47             ld b, a           // b = a
-// 305b 3e 07          ld a, 07h         // a = 7
-// 305d 32 ff ff       ld (FFFFh), a     // set_mapper2_slot(a) // 7
-// 3060 78             ld a, b           // a = b
-// 3061 f5             push af           // ?? 0242
-// 3062 e5             push hl           // ?? 8110
-// 3063 f5             push af           // ?? 0242
-// 3064 cd f2 31       call 31f2h        // blank out area for dialog
+// 3061 f5             push af           //   ?? 0242
+// 3062 e5             push hl           //   ?? 8110
+// 3063 f5             push af           //   ?? 0242
+// 3064 cd f2 31       call 31f2h        //   blank out area for dialog
 // 3067 f1             pop af
-// 3068 cd 23 31       call 3123h        // draw dialog outline
+// 3068 cd 23 31       call 3123h        //   draw dialog outline
 // 306b e1             pop hl
-// 306c 11 e3 78       ld de, 78e3h      // out = 0x78e3
+// 306c 11 e3 78       ld de, 78e3h      //   initialize output pointe: out = 0x78e3
 // 306f d5             push de
 
 //                                       // read_char:
@@ -116,66 +121,69 @@
 // ==================
 // ==== NEW CODE ====
 // ==================
+
+// =====
+//  read_char is modified to handle anything above 0xa0 as a substring, and 0x3f as the substring terminal
+// =====
+
+//                                       // read_char:
 // 3070 7e             ld a,(hl)         //   a = *in;
 // 3071 fe ff          cp FFh            //   if (a == 0xff)
 // 3073 ca 0a 31       jp z,310Ah        //     goto end_of_string;
 // 3076 fe fe          cp FEh            //   if (a == 0xfe)
 // 3078 28 12          jr z,+12h (308Ch) //     goto newline;
 
-// 307a fe 79          cp 79h            //   if (a == 0x79)
-// 307c 28 4A          jr z,+4Ah (30C8h) //     goto wait;
+// 307a fe a0          cp A0h            //   if (a >= 0xa0)
+// 307c 30 3b          jr nc,+3Bh (30B9h)//     goto start_word;
+// 307e fe 3f          cp 3Fh            //   if (a == 0x3f)
+// 3080 28 41          jr z,+41h (30C3h) //     goto end_word;
 &307A=FE
-&307B=79
-&307C=28
-&307D=4A
-
-// 307e fe A0          cp $A0            //   if (a >= 0xA0)
-// 3080 30 37          jr nc,+37h (30B9h)//     goto dakuten;
+&307B=A0
+&307C=30
+&307D=3B
 &307E=FE
-&307F=A0
-&3080=30
-&3081=37
+&307F=3F
+&3080=28
+&3081=41
 
-// 3082 00             nop
-// 3083 00             nop
-// 3084 00             nop
-// 3085 00             nop
-&3082=00
-&3083=00
-&3084=00
-&3085=00
-
+// 3082 fe 79          cp 79h            //   if (a == 0x79)
+// 3084 28 42          jr z,+42h (30C8h) //     goto wait;
 //                                       // output_single:
 // 3086 13             inc de            // 
 // 3087 cd 10 00       call 0010h        //   output_character(a)
 // 308A 18 68          jr +68h (30F4h)   //   goto next_char;
 
 
+// =====
+//  the dakuten handling code is changes to push the current input pointer
+//  and point the input at the substring. when the substring terminator is
+//  seen, the input pointer is popped.
+// =====
 
-//                                       // dakuten:
-// 30B9 d6 a0          sub a,a0h         //   a -= 0xa0;
-// 30BB 87             add a,a           //   a *= 2;
-// 30BC 06 80          ld b, $80         //   b = 0x80;
-// 30BE 4f             ld c, a           //   c = a;
-// 30BF 0a             ld a, (bc)        //   a = *bc;
-// 30C0 13             inc de            // 
-// 30C1 cd 10 00       call 0010h        //   output_character(a)
-// 30C4 03             inc bc            //   bc++
-//                                            TODO: ideally, this would wait (see 30FC-3016), but that needs 11 extra bytes we don't have
-// 30C5 0a             ld a, (bc)        //   a = *bc;
-// 30C6 18 be          jr -42h (3086h)   //   goto output_single;
-&30B9=D6
-&30BA=A0
-&30BB=87
-&30BC=06
-&30BD=80
-&30BE=4F
-&30BF=0A
-&30C0=13
-&30C1=CD
-&30C2=10
-&30C3=00
-&30C4=03
-&30C5=0A
-&30C6=18
-&30C7=BE
+//                                       // start_word:
+// 30B9 e5             push hl           //   push in
+// 30BA d6 a0          sub a,a0h         //   a -= 0xa0;
+// 30BC 6f             ld l, a           //   l = a;
+// 30BD 26 20          ld h,20h          //   hl = 0x2000 // *4=8000
+// 30BF 29             add hl,hl         //   hl *= 2;
+// 30C0 29             add hl,hl         //   hl *= 2; // total *4
+// 30C1 18 AD          jr -53h (3070h)   //   goto read_char
+//                                       // end_word:
+// 30C3 e1             pop hl            //   pop in
+// 30C4 23             inc hl            //   in++;
+// 30C5 18 A9          jr -57h (3070h)   //   goto read_char
+&30B9=E5
+&30BA=D6
+&30BB=A0
+&30BC=6F
+&30BD=26
+&30BE=20
+&30BF=29
+&30C0=29
+&30C1=18
+&30C2=AD
+&30C3=E1
+&30C4=23
+&30C5=18
+&30C6=A9
+&30C7=00
