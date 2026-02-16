@@ -44,7 +44,7 @@ if options.text_path:
         exit()
 
     charmap = CharMap(options.charmap_path)
-    table = StringTable(options.text_path, charmap)
+    table = StringTable(options.text_path, charmap, can_import=True)
     table.share_pointers()
     table.update_rom(rom)
 

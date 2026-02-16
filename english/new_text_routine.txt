@@ -1,0 +1,181 @@
+// This replaces the 3E/3F dakuten handling with character pairs
+// from A0-FD, which are stored at $1C000-$1C0BC
+
+// 35f0 df             rst 18h           // show message
+//                     hl = read address
+//                     a = 2
+                    
+
+// 305a 47             ld b, a           // b = a
+// 305b 3e 07          ld a, 07h         // a = 7
+// 305d 32 ff ff       ld (FFFFh), a     // set_mapper2_slot(a) // 7
+// 3060 78             ld a, b           // a = b
+// 3061 f5             push af           // ?? 0242
+// 3062 e5             push hl           // ?? 8110
+// 3063 f5             push af           // ?? 0242
+// 3064 cd f2 31       call 31f2h        // blank out area for dialog
+// 3067 f1             pop af
+// 3068 cd 23 31       call 3123h        // draw dialog outline
+// 306b e1             pop hl
+// 306c 11 e3 78       ld de, 78e3h      // out = 0x78e3
+// 306f d5             push de
+
+//                                       // read_char:
+// 3070 7e             ld a,(hl)         //   a = *in;
+// 3071 fe ff          cp FFh            //   if (a == 0xff)
+// 3073 ca 0a 31       jp z,310Ah        //     goto end_of_string;
+// 3076 fe fe          cp FEh            //   if (a == 0xfe)
+// 3078 28 12          jr z,+12h (308Ch) //     goto newline;
+// 307a fe 3e          cp 3Eh            //   if (a == 0x3e)
+// 307c 28 3b          jr z,+3Bh (30B9h) //     goto dakuten;
+// 307e fe 3f          cp 3Fh            //   if (a == 0x3f)
+// 3080 28 37          jr z,+37h (30B9h) //     goto dakuten;
+// 3082 fe 79          cp 79h            //   if (a == 0x79)
+// 3084 28 42          jr z,+42h (30C8h) //     goto wait;
+// 3086 13             inc de            // 
+// 3087 cd 10 00       call 0010h        //   output_character(a)
+// 308A 18 68          jr +68h (30F4h)   //   goto next_char;
+
+//                                       // newline:
+// 308C CD CF 2D       call 2DCFh
+// 308F E5             push hl
+// 3090 C5             push bc
+// 3091 11 e4 78       ld de,78E4h
+// 3094 2E 00          ld l,00h
+// 3096 01 10 00       ld bc,0010h
+// 3099 CF             rst 08h
+// 309A EF             rst 28h
+// 309B 3A 02 C0       ld a,C002h
+// 309E CB 6F          bit 5, a
+// 30A0 20 05          jr nz, +05h (30A7h)
+// 30a2 3e 08          ld a,08h
+// 30a4 32 ec c0       ld (C0ECh), a
+// 30a7 3a ec c0       ld a, (C0ECh)
+// 30aa b7             or a
+// 30ab 20 fa          jr nz,-06h (30A7H)
+// 30ad c1             pop bc
+// 30ae e1             pop hl
+// 30af cd cf 2d       call 2dcfh
+// 30b2 d1             pop de
+// 30b3 11 e3 78       ld de,78E3h
+// 30b6 d5             push de
+// 30b7 18 3b          jr +3Bh (30F4h)
+
+//                                       // dakuten:
+// 30b9 d5             push de
+// 30ba eb             ex de, hl
+// 30bb 01 20 00       ld bc, 0020h
+// 30be b7             or a
+// 30bf ed 42          sbc hl, bc
+// 30c1 eb             ex de, hl
+// 30c2 cd 10 00       call 0010h
+// 30c5 d1             pop de
+// 30c6 18 2c          jr +2ch (30f4h)
+
+//                                       // wait:
+// 30c8 13             inc de
+// 30c9 f5             push af
+// 30ca d7             rst 10h
+// 30cb 3e 20          ld a, 20h
+// 30cd 32 ec c0       ld (c0ech), a
+// 30d0 3a 02 c0       ld a, (c002h)
+// 30d3 e6 20          and 20h
+// 30d5 b7             or a
+// 30d6 20 15          jr nz,+15h (30EDh)
+// 30d8 3a ec c0       ld a, (c0ech)
+// 30db b7             or a
+// 30dc 20 f2          jr nz,-0Eh (30D0h)
+// 30de f1             pop af
+// 30df fe 79          cp 79h
+// 30e1 20 05          jr nz,+05h (30E8h)
+// 30e3 3e 00          ld a,00h
+// 30e5 f5             push af
+// 30e6 18 e2          jr -1Eh (30Cah)
+// 30e8 3e 79          ld a,79h
+// 30ea f5             push af
+// 30eb 18 dd          jr -23h (30cah)
+// 30ed 3e 00          ld a,00h
+// 30ef d7             rst 10h
+// 30f0 f1             pop af
+// 30f1 11 e3 78       ld de, 78e3h
+
+//                                        // next_char:
+// 30f4 23             inc hl             //   in++;
+// 30f5 3a 02 c0       ld a,(c002h)       //   a = *(c002h);
+// 30f8 cb 67          bit 4,a            //   if (a & 0x10)
+// 30fa 20 05          jr nz,+05h (3101h) //     goto 3101h;
+// 30fc 3e 06          ld a, 06h          //   a = 6;
+// 30fe 32 ec c0       ld (c0ech), a      //   *(C0EC) = a; // 6
+//                                        // wait:
+// 3101 3a ec c0       ld a,(c0ech)       //   a = *(C0EC); // 6
+// 3104 b7             or a               //   if (a != 0)
+// 3105 20 fa          jr nz,-06h (3101h) //     goto wait;
+// 3107 c3 70 30       jp 3070h           //   goto read_char;
+
+
+// ==================
+// ==== NEW CODE ====
+// ==================
+// 3070 7e             ld a,(hl)         //   a = *in;
+// 3071 fe ff          cp FFh            //   if (a == 0xff)
+// 3073 ca 0a 31       jp z,310Ah        //     goto end_of_string;
+// 3076 fe fe          cp FEh            //   if (a == 0xfe)
+// 3078 28 12          jr z,+12h (308Ch) //     goto newline;
+
+// 307a fe 79          cp 79h            //   if (a == 0x79)
+// 307c 28 4A          jr z,+4Ah (30C8h) //     goto wait;
+&307A=FE
+&307B=79
+&307C=28
+&307D=4A
+
+// 307e fe A0          cp $A0            //   if (a >= 0xA0)
+// 3080 30 37          jr nc,+37h (30B9h)//     goto dakuten;
+&307E=FE
+&307F=A0
+&3080=30
+&3081=37
+
+// 3082 00             nop
+// 3083 00             nop
+// 3084 00             nop
+// 3085 00             nop
+&3082=00
+&3083=00
+&3084=00
+&3085=00
+
+//                                       // output_single:
+// 3086 13             inc de            // 
+// 3087 cd 10 00       call 0010h        //   output_character(a)
+// 308A 18 68          jr +68h (30F4h)   //   goto next_char;
+
+
+
+//                                       // dakuten:
+// 30B9 d6 a0          sub a,a0h         //   a -= 0xa0;
+// 30BB 87             add a,a           //   a *= 2;
+// 30BC 06 80          ld b, $80         //   b = 0x80;
+// 30BE 4f             ld c, a           //   c = a;
+// 30BF 0a             ld a, (bc)        //   a = *bc;
+// 30C0 13             inc de            // 
+// 30C1 cd 10 00       call 0010h        //   output_character(a)
+// 30C4 03             inc bc            //   bc++
+//                                            TODO: ideally, this would wait (see 30FC-3016), but that needs 11 extra bytes we don't have
+// 30C5 0a             ld a, (bc)        //   a = *bc;
+// 30C6 18 be          jr -42h (3086h)   //   goto output_single;
+&30B9=D6
+&30BA=A0
+&30BB=87
+&30BC=06
+&30BD=80
+&30BE=4F
+&30BF=0A
+&30C0=13
+&30C1=CD
+&30C2=10
+&30C3=00
+&30C4=03
+&30C5=0A
+&30C6=18
+&30C7=BE

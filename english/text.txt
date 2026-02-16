@@ -1,4 +1,5 @@
-!address $1C000
+// starting address adjusted to allocate space for shortened pairs
+!address $1C0BC
 !pointeroffset -14000
 
 // screen data starts at 1F29D! - if you overwrite the screen data, you can't interact
@@ -11,7 +12,7 @@
 
 // when running screen-pack, the screen data is packed and moved to the end of the file
 // ($1F4F2), so the actual available space is contiguous and increased
-!space 34F2
+!space 3436 // 34F2 without pair data
 
 // ===== Intro =====
 // -- These lines cannot be more than 16 characters and should not be wrapped
@@ -39,6 +40,8 @@ $1C021|a rainy day,
 
 @2539
 $1C034|[WAIT]a horse-drawn carriage stopped on my street.[WAIT]There was a buzzing at the door.[WAIT]It seems I have a visitor...
+
+!import english/pairs.txt
 
 @35C8
 $1C078|Mr.Holmes, please help me.[WAIT]A painting was stolen from my brother's gallery.[^WAIT]I would like your help to get it back.

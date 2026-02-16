@@ -73,8 +73,10 @@ class StringBlock:
         self.written = False
 
 
+from utils.charmap import CharMap
+
 class StringTable:
-    def __init__(self, filename, charmap):
+    def __init__(self, filename, charmap, can_import = False):
         self.charmap = charmap
         self.strings = []
         next_pointers = []
@@ -85,6 +87,7 @@ class StringTable:
         self.wrap_break = {}
         self.pokes = {}
         self.trailing_strings = {}
+        self.can_import = can_import
         current_string = None
         num_strings = 0
 
@@ -177,36 +180,46 @@ class StringTable:
         potential_wrap = None
         i = 0
         while i < len(text):
-            if line_len > 0:
-                break_key = None
-                for b in self.wrap_break:
-                    if text.startswith(b, i) and (break_key is None or len(b) > len(break_key)):
-                        break_key = b
+            break_key = None
+            for b in self.wrap_break:
+                if text.startswith(b, i) and (break_key is None or len(b) > len(break_key)):
+                    break_key = b
 
-                if break_key is not None:
+            if break_key is not None:
+                if line_len == 0:
+                    wrapped_text += break_key
+                else:
                     wrapped_text += self.wrap_break[break_key]
-                    potential_wrap = None
-                    line_start = len(wrapped_text)
-                    line_len = 0
-                    i += len(break_key)
-                    continue
+                potential_wrap = None
+                line_start = len(wrapped_text)
+                line_len = 0
+                i += len(break_key)
+                continue
 
             [c, l] = self.charmap.encode_match(text, i)
             if l == 0:
                 i += 1
                 continue
 
-            line_len += (c >> 24) + 1
+            line_len += l
+
+            if text[i] == ' ':
+                potential_wrap = len(wrapped_text)
+
             if line_len > self.wrap and potential_wrap is not None:
                 wrapped_text = wrapped_text[0:potential_wrap] + '\n' + wrapped_text[potential_wrap+1:]
                 line_start = potential_wrap + 1
-                line_len = len(wrapped_text) - line_start
+                line_len = len(wrapped_text) - line_start + l
 
-            new_text = text[i:i+l]               
+                if text[i] == ' ':
+                    i += 1
+                    continue
+
+            new_text = text[i:i+l]
             i += l
 
-            if new_text == ' ':
-                potential_wrap = len(wrapped_text)
+            if l > 1 and ' ' in new_text:
+                potential_wrap = len(wrapped_text) + new_text.find(' ')
 
             wrapped_text += new_text
 
@@ -256,8 +269,17 @@ class StringTable:
             self.extra_block.space = space
             self.blocks.append(self.extra_block)
 
+        elif line.startswith('!import '):
+            if self.can_import:
+                imported = CharMap(line[8:])
+                for text, key in imported.wordmap.items():
+                    self.charmap.wordmap[text] = key
+                    addr = 0x1C000 + (key - 0xA0) * 2
+                    self.pokes[addr] = self.charmap.charmap[text[0]]
+                    self.pokes[addr + 1] = self.charmap.charmap[text[1]]
+
         else:
-            print(COLOR.WARNING + 'Unknown command (line {0}): {1}', line_index, line) + Color.RESET
+            print(Color.WARNING + 'Unknown command (line {0}): {1}'.format(line_index, line) + Color.RESET)
 
     def share_pointers(self):
         self.trailing_strings = {}
