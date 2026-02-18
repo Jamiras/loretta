@@ -96,7 +96,7 @@ $1C274|There's nothing inside.
 $1C284|A major exhibition of Neil Evans' works[WAIT]will be held at Clay's Gallery.[^WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count LaGrande[WAIT]and Madam Katrina will be on display.
 
 @36AC - look article 2
-$1C2F4|I'm looking for a missing 10-year-old girl.[WAIT]Please contact Richard Revell in Reigate.
+$1C2F4|I'm a 10-year-old girl looking for a tutor.[WAIT]Please contact Richard Revell in Reigate.
 
 @36B7 - look article 3
 $1C329|The Red-Headed League has disbanded.
@@ -496,8 +496,8 @@ $1D373|I'm a gatekeeper.
 @4036
 $1D38B|What a beautiful view!
 
-@402F
-$1D3A8|We discussed it on a walk.[WAIT]"The lesson you must learn," Holmes said[WAIT]"is that you must never lose sight of change."
+@402F - start chapter 3
+$1D3A8|As we walked, we talked about the incident.[WAIT]"The lesson you must learn," Holmes said[WAIT]"is that you must never lose sight of change."
 
 @50F0
 $1D454|Let's do this!
@@ -587,27 +587,27 @@ $1D82D|I'm sure she'll recover soon.[WAIT]Once she marries Oscar, I can relax.
 
 $1D873|Do you have any proof that this girl is Loretta?
 
-@415A
-@41DF
+@415A - visit richard after talking to maid
+@41DF - ask while richard is fainted
 $1D892|Richard seems to have fainted. What should I do?
 
-@518C
-$1D8BF|Tell me what you saw.
+@518C - use brandy to wake richard
+$1D8BF|Thank goodness! What happened?
 
-@5192
-$1D8E1|He received this letter...
+@5192 - (continued)
+$1D8E1|I received this letter...
 
-@427A
-$1D8F4|"We have Loretta. Sign, or her life is forfeit!"
+@427A - look letter
+$1D8F4|"I have Loretta.[WAIT]Sign the documents, or her life is forfeit!"
 
 @41AD - ask Revell about Patricia
 $1D92D|I'm as sad as when Loretta's mother died...
 
-@41B8
+@41B8 - ask Revell about cocoa
 $1D959|I gave Patricia whatever she wanted...
 
-@41C3
-$1D977|D977|The deed for the mansion will be given to Count S.
+@41C3 - ask Revell about documents
+$1D977|The mansion would be transferred to Count S.
 
 @41D8
 $1D99A|I intended to leave everything to Loretta and Oscar, but...
@@ -655,7 +655,7 @@ $1DB7E|Mr.Revell must be wealthy.
 $1DBA4|Someone likes expensive things.
 
 @48C6 - examine white square in edward's room
-$1DBBF|Richard Revell amassed a fortune trading with India.
+$1DBBF|Richard Revell amassed a fortune trading with India.[WAIT]In 1875, Stobart inherited the company.
 
 @461C - look three times in piano room
 $1DC2E|Ah! A note![WAIT]"Stop snooping around or you're dead!"[WAIT]Who could it be from? I should investigate!
@@ -695,7 +695,7 @@ $1DD6C|Do you need something?
 $1DD7A|Patricia is Loretta's half-sister.
 
 @44F1 - ask butler about cocoa
-$1DD9A|Patricia was told not to drink cocoa because it would give her cavities.
+$1DD9A|Patricia was told not to drink cocoa[WAIT]because it would give her cavities.
 
 @44F8 - ask butler
 $1DDC9|I'm a loyal butler.
@@ -710,7 +710,7 @@ $1DE21|Kidnapped? I didn't see anyone leave, so they must still be inside the ma
 $1DE50|DE50|Murder? I don't think he had any enemies...
 
 @4527 - ask maid about patricia
-$1DE74|Patricia often gave her husband cocoa before bed.[WAIT]I think she came out of his room last night too.
+$1DE74|Patricia often gave her husband cocoa before bed.[^WAIT]I think she came out of his room last night too.
 
 @4553 - ask maid about cocoa
 $1DEC2|Julia takes it to him every night.
@@ -770,19 +770,19 @@ $1E0F4|I remember! I was stabbed on a walk...[WAIT]My father said he acquired th
 $1E164|Ah![WAIT]That's Julia's scream! Where did it come from?
 
 @4789 - enter oscar's room.
-$1E18B|I'm Oscar.
+$1E18B|Hello. I'm Oscar.
 
 @47A0 - ask oscar about patricia
 $1E19A|I think someone is trying to kill Richard.[WAIT]If he dies before Loretta regains her memory...
 
-@47B9
-$1E206|E206|If Loretta doesn't return, the mansion will belong to Julia...[WAIT]And the estate will be divided between her and Edward.
+@47B9 - ask oscar about loretta
+$1E206|If Loretta doesn't return, Julia will inherit the mansion...[WAIT]And the estate will be divided between her and Edward.
 
-@47FF
+@47FF - enter oscar's room
 $1E25A|I'm Oscar. I work for Richard.
 
 @47E0 - another password placeholder
-$1E283|Patricia died after drinking Richard's cocoa 3 years ago.[WAIT]And now Loretta's been kidnapped.[WAIT]How are these related? Where are the clues?[WAIT]The password is [          ].
+$1E283|Loretta was attacked 3 years ago.[WAIT]Patricia died after drinking Richard's cocoa.[WAIT]And now Loretta's been kidnapped.[WAIT]How are these related? What are the clues?[WAIT]The password is [          ].
 
 @4820
 $1E318|It's Oscar's diary!
@@ -791,14 +791,14 @@ $1E318|It's Oscar's diary!
 $1E325|If I confront Loretta and tell her that I saw her putting poison in the cocoa...[WAIT]I'm sure I can find her...
 
 // ===== Edward's room =====
-@4858
+@4858 - meet edward
 $1E3A7|I'm Edward, Richard's younger brother.
 
-@486E
+@486E - ask edward about loretta
 $1E3C5|Loretta was so kind to me, even after I lost my wife...
 
-@487A
-$1E3F4|I love playing the piano. I often play "The Puppy Waltz".
+@487A - ask edward about loretta again
+$1E3F4|She loves playing the piano.[WAIT]She often played "The Puppy Waltz".
 
 @488B - ask edward about patricia
 $1E420|How about we play some poker instead?
@@ -1031,11 +1031,11 @@ $1EDC1|EDC1|I understand you less and less...
 @4DF2 - move unknown
 $1EDE6|That won't accomplish anything.
 
-@50D2
-$1EDFB|How do you use that?
+@50D2 - use letter
+$1EDFB|How would I use that?
 
 @4FFB - use gun
-$1EE0F|That sounds dangerous!
+$1EE0F|That would be bad.
 
 @4EB7 - use address book - neil evans
 @4EFF
@@ -1086,12 +1086,12 @@ $1EF48|What should I play?
 @5053
 $1EF54|How relaxing.
 
-@510F
+@510F - use bone
 @51DF
-$1EF69|EF69|How would I use that?
+$1EF69|How would I use that?
 
 @515E
-$1EF7E|EF7E|It's not dark enough to need a lamp.
+$1EF7E|It's not dark enough to need a lamp.
 
 $1EF93|M258
 
@@ -1109,8 +1109,8 @@ $1F067|There's nothing easier to overlook than an obvious fact.
 @5382
 $1F087|A crimson thread of murder is interwoven into the tapestry of life.
 
-@5391
-$1F0B9|F0B9|Even if demons don't exist,[WAIT]plenty of people act like the devil's henchmen.
+@5391 - think
+$1F0B9|Even if demons don't exist,[WAIT]plenty of people act like the devil's henchmen.
 
 @5399
 $1F0E7|F0E7|May tonight's decision prove to be the right one for Loretta and Neil's future.

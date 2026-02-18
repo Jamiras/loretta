@@ -14,9 +14,9 @@ $2027|Call
 $202B|Enter
 $202F|Move|Push/Search?
 $2035|Go
-$203A|Talk|Think?
+$203A|Think
 $203F|Time
 
 // are these even used?
 $2044|Y
-$2047|N
+$2047||N
