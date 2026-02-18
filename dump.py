@@ -8,7 +8,7 @@
 #  ./dump.py --rom loretta.sg --font original/font.png --address 0x8000 --count 0x92 --png
 
 # dump original text:
-#  ./dump.py --rom loretta.sg --text original/title_text.txt --charmap original/font.txt --address 0x2B35 --count 4
+#  ./dump.py --rom loretta.sg --text original/title_text.txt --charmap original/password_font.txt --address 0x2B35 --count 4
 #  ./dump.py --rom loretta.sg --text original/menu.txt --charmap original/font.txt --address 0x200F --count 14
 #  ./dump.py --rom loretta.sg --text original/time.txt --charmap original/font.txt --address 0x2C0E --count 1
 #  ./dump.py --rom loretta.sg --text original/words.txt --charmap original/font.txt --address 0x2119 --count 91
@@ -83,17 +83,26 @@ elif options.text_path:
     if address == 0x1C000:
         # attempt to identify the pointers for the dialog text strings
         ptr_offset = 0x14000
-        start_scan = 0x35C0
-        end_scan = 0x79FF
-        for address in strings.keys():
-            if (len(pointers) < 4):
-                ptr = rom.find_value(address - ptr_offset, 0x2500, 0x25FF)
-            else:
-                ptr = rom.find_value(address - ptr_offset, start_scan, end_scan)
-                if ptr != 0 and ptr < start_scan + 0x20:
-                    start_scan = ptr + 8
 
-            if ptr != 0:
-                pointers[address] = [ptr]
+        def check_pointer(address):
+            ptr = rom.get_byte(address) | (rom.get_byte(address + 1) << 8)
+            if ptr >= 0x8000 and ptr < 0xC000:
+                ptr += ptr_offset
+                if ptr not in pointers:
+                    pointers[ptr] = [address]
+                else:
+                    pointers[ptr].append(address)
+
+        for address in range(0x2500, 0x79FF):
+            c = rom.get_byte(address)
+            if c == 0x21:
+                check_pointer(address + 1)
+
+        for address in range(0x434A, 0x4357, 2):
+            check_pointer(address)
+
+        for address in range(0x4DE2, 0x4DFF, 2):
+            check_pointer(address)
+
 
     StringTable.dump(options.text_path, strings, num_bytes, address, pointers, -ptr_offset)

@@ -506,7 +506,7 @@ $2F @"み" mi
 .##.##..
 ........
 
-$30 @"み" mu
+$30 @"む" mu
 ........
 ..##.#..
 #####.#.
@@ -1522,5 +1522,6 @@ $92 @"D" D
 
 // output space when dumping - importer will inject as necessary
 $FE @"[NL]" @"\n" !" " newline
+$FE0079 @"[NL][WAIT]" // don't change to space if preceding a wait
 
 $FF @"" @terminal

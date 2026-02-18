@@ -96,7 +96,7 @@ $1C274|There's nothing inside.
 $1C284|A major exhibition of Neil Evans' works[WAIT]will be held at Clay's Gallery.[^WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count LaGrande[WAIT]and Madam Katrina will be on display.
 
 @36AC - look article 2
-$1C2F4|Motomi tutors a 10-year-old girl.[WAIT]She is employed by Richard Revell, who lives in Reigate.
+$1C2F4|I'm looking for a missing 10-year-old girl.[WAIT]Please contact Richard Revell in Reigate.
 
 @36B7 - look article 3
 $1C329|The Red-Headed League has disbanded.
@@ -163,6 +163,7 @@ $1C4CF|Are you Mr.Holmes?[WAIT]I've been expecting you.
 $1C4E6|It was stolen when it was being moved from the warehouse.[^WAIT]The exhibition will be ruined without it.[WAIT]Please recover it as soon as possible.
 
 @4CD1 - ask gallery (clay)
+@4D48
 $1C54C|Would you like to buy something?
 
 @4CDD - ask Evans (clay)
@@ -210,6 +211,7 @@ $1C6EB|It seems no one is home.
 $1C6F7|Is anyone there...?[WAIT]Holmes! I can faintly hear a woman's voice...
 
 @3865
+@3901
 $1C72E|The door is locked!
 
 @51CD
@@ -320,9 +322,9 @@ $1CBA7|I can't reach it.
 @4F5D - use walking stick
 $1CBB9|Let's try tapping on the ceiling.
 
-@3C6C - (continued from use walking stick)
 @3BE8 - look hidey-hole
-//@4F70 - ??
+@3C6C - (continued from use walking stick)
+@4F70 - ??
 $1CBE1|A package is hidden there.
 
 @3D09 - try to take anything (Evans house)
@@ -394,7 +396,7 @@ $1CF54|Can you prove that she's his daughter?
 $1CF83|A handkerchief with the letter "L" embroidered on it.
 
 @3C53 - (continued)
-@3DB5 - show handkerchief
+@3DB6 - show handkerchief
 $1CFB0|She had it when we first met. Letitia starts with "L".
 
 @3E3B - move easel
@@ -474,6 +476,7 @@ $1D2C7|I don't know.
 $1D2D0|Who are you?
 
 @3F8B - (continued)
+@3FCC
 $1D2DA|(I need to get in without arousing suspicion.)[^WAIT]You called for a doctor?
 
 @3F93 - (continued)
@@ -489,6 +492,8 @@ $1D35F|You must be exhausted.
 $1D373|I'm a gatekeeper.
 
 @4017 - leave mansion
+@4020
+@4036
 $1D38B|What a beautiful view!
 
 @402F
@@ -498,7 +503,7 @@ $1D3A8|We discussed it on a walk.[WAIT]"The lesson you must learn," Holmes said[
 $1D454|Let's do this!
 
 @5105
-$1D46C|D46C|Miko is barking. Did he find something?
+$1D46C|There's a lot of barking over there. Did he find something?
 
 @4056
 $1D491|Shall we follow the footprints?
@@ -580,9 +585,10 @@ $1D80D|She's lost her memory.
 @43BA - (continued)
 $1D82D|I'm sure she'll recover soon.[WAIT]Once she marries Oscar, I can relax.
 
-$1D873|D873|Is there any proof that this is Loretta?
+$1D873|Do you have any proof that this girl is Loretta?
 
 @415A
+@41DF
 $1D892|Richard seems to have fainted. What should I do?
 
 @518C
@@ -625,7 +631,7 @@ $1DA93|Holmes or Stobart? You can only choose one.
 $1DAC5|It's all over now!
 
 //@434A
-$1DAD9|DAD9|Two of my granddaughters have been victimized!
+$1DAD9|Both of my daughters are victims!
 
 //@434C
 $1DAFB|Revell is Richard's younger brother!
@@ -685,11 +691,11 @@ $1DD39|Mr.Holmes! Something terrible has happened.[WAIT]Please come to Patricia'
 @4725 - call butler
 $1DD6C|Do you need something?
 
-@44DF
+@44DF - ask butler about particia
 $1DD7A|Patricia is Loretta's half-sister.
 
-@44F1
-$1DD9A|DD9A|Patricia said she doesn't drink cocoa because it would make her fat...
+@44F1 - ask butler about cocoa
+$1DD9A|Patricia was told not to drink cocoa because it would give her cavities.
 
 @44F8 - ask butler
 $1DDC9|I'm a loyal butler.
@@ -697,20 +703,20 @@ $1DDC9|I'm a loyal butler.
 @46BD
 $1DDFB|Why show that to me?
 
-//@4172
+@4503
 $1DE21|Kidnapped? I didn't see anyone leave, so they must still be inside the mansion.
 
 @450E
 $1DE50|DE50|Murder? I don't think he had any enemies...
 
-@4527
-$1DE74|Patricia often has hot cocoa with her husband before bed.[WAIT]I'm pretty sure she came out of his room last night.
+@4527 - ask maid about patricia
+$1DE74|Patricia often gave her husband cocoa before bed.[WAIT]I think she came out of his room last night too.
 
-@4553
+@4553 - ask maid about cocoa
 $1DEC2|Julia takes it to him every night.
 
 @455A - ask maid
-$1DEE6|Today's special is grilled toad.
+$1DEE6|Today's special is steamed toad.
 
 @4565
 $1DF01|DF01|A kidnapping? How frightening...
@@ -746,6 +752,7 @@ $1E023|Because of my art, someone knows she's alive.[WAIT]And now she's in dange
 $1E063|We must find the culprit before they get away!
 
 @44C1
+@4693
 $1E090|I don't remember.
 
 @46ED
@@ -848,22 +855,22 @@ $1E639|What happened here?
 $1E64B|She's not breathing.[WAIT]Who could have done such a thing?
 
 @49BE - move patricia
-$1E679|There's a cup. I smell cocoa.
+$1E679|There's a coffee cup. It faintly smells of cocoa.
 
 @49DC - try to move patricia before looking at her
 $1E6A4|Let's investigate a little more thoroughly.
 
-@4A01
-$1E6B0|This is Julia, Richard's wife.
+@4A01 - meet julia
+$1E6B0|I'm Julia, Richard's wife.
 
-@4A18
-$1E6C6|Patricia drank that, didn't she?
+@4A18 - ask julia about patricia
+$1E6C6|She drank something, didn't she?
 
-@4A28
-$1E6E0|E6E0|If I knew things would turn out like this, I'd have made cocoa for her too.
+@4A28 - ask julia about cocoa
+$1E6E0|If I had known this would happen,[WAIT]I'd have made cocoa for her too.
 
 @4A33
-$1E70B|I only have eyes for Patricia.
+$1E70B|Patricia is my only daughter.
 
 @4A45
 $1E722|I married Richard 11 years ago.
@@ -920,7 +927,7 @@ $1E94F|It's completely dark. I can't see anything.
 $1E968|I can see now.
 
 @4BB6
-$1E975|Was the cocoa poisoned? A little every day and you'll gradually die.
+$1E975|Was the cocoa poisoned?[WAIT]A little every day and you'll gradually die.
 
 @4BCF
 $1E9C4|It's a picture of Julia when she was younger.[WAIT]She was quite a beauty, wasn't she?
@@ -929,9 +936,11 @@ $1E9C4|It's a picture of Julia when she was younger.[WAIT]She was quite a beauty
 $1E9EE|4BDB|It appears to have been taken from the front of Regent Theatre.
 
 @4AC4
+@4C0C
 $1EA0F|4AC4|Holmes! What is this?
 
 @4C18
+@4C2B
 $1EA1F|4C18|I got it.
 
 @4C5E
@@ -944,6 +953,11 @@ $1EA3A|The entrance has been blocked!
 $1EA55|Oh, there's someone there. Wait! Stobart!
 
 @4BA0
+@4BEF
+@4C3A
+@4C49
+@4C57
+@5166
 $1EA79|He's carrying a pistol.
 
 @4FA8
@@ -975,7 +989,6 @@ $1EC7B|EC7B|I don't see anything strange here.
 @3703 - look unknown
 $1EC98|What are you looking at?
 
-//@6D2F
 $1ECB3|ECB3|Why are you looking around so much?
 
 $1ECC9|M222
@@ -986,7 +999,6 @@ $1ECD3|ECD3|Holmes, you better not do that.
 @4DEC - hit unknown
 $1ECE9|You shouldn't take out your frustrations on that.
 
-//@6EF5
 $1ED08|ED08|I've had enough of violent acts.
 
 @4DEE - call when not appropriate
@@ -997,11 +1009,13 @@ $1ED36|ED36|I don't think anyone is here.
 
 $1ED3D|ED3D|Is anyone there? No one's answering...
 
+@4E06
 @4DE2 - ask when no one else present
 $1ED5F|There's no one else here.
 
-@4DE8
-$1ED76|ED76|Is something wrong with that?
+@4E16
+@4DE8 - show
+$1ED76|What about it?
 
 @4DF8 - show
 $1ED89|I don't have any evidence to show.
@@ -1024,6 +1038,7 @@ $1EDFB|How do you use that?
 $1EE0F|That sounds dangerous!
 
 @4EB7 - use address book - neil evans
+@4EFF
 $1EE1F|That's strange. He's not listed.
 
 @4E8F - use address book
@@ -1067,12 +1082,12 @@ $1EF3C|It's loud.
 @5019 - use violin
 $1EF48|What should I play?
 
-//@4C84 - choose a song
 @503F
 @5053
 $1EF54|How relaxing.
 
-//@3E78
+@510F
+@51DF
 $1EF69|EF69|How would I use that?
 
 @515E
@@ -1083,7 +1098,7 @@ $1EF93|M258
 @51A6
 $1EF9D|EF9D|Is it safe to drink that?[WAIT]Oh, it's delicious!
 
-$1EFB5|EFB5|Afterwards, Julia entered a convent, and Loretta and Richard are reportedly happy together.[^WAIT]Neil approved of Loretta's relationship with Richard,[WAIT]and their letter couldn't help but make us happy as well...
+$1EFB5|Afterwards, Julia went to the hospital.[WAIT]Loretta and Richard are reportedly happy together.[^WAIT]Neil approved of Loretta's relationship with Richard,[WAIT]and their letter made us all very happy...
 
 @5364 - think
 $1F035|There isn't anything that can't be solved by intelligence.
@@ -1092,7 +1107,7 @@ $1F035|There isn't anything that can't be solved by intelligence.
 $1F067|There's nothing easier to overlook than an obvious fact.
 
 @5382
-$1F087|F087|A crimson thread of murder is intertwined in the tapestry of life.
+$1F087|A crimson thread of murder is interwoven into the tapestry of life.
 
 @5391
 $1F0B9|F0B9|Even if demons don't exist,[WAIT]plenty of people act like the devil's henchmen.
