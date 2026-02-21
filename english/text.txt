@@ -499,14 +499,14 @@ $1D38B|What a beautiful view!
 @402F - start chapter 3
 $1D3A8|As we walked, we talked about the incident.[WAIT]"The lesson you must learn," Holmes said[WAIT]"is that you must never lose sight of change."
 
-@50F0
-$1D454|Let's do this!
+@50F0 - use bone
+$1D454|Here boy. Have this.
 
-@5105
-$1D46C|There's a lot of barking over there. Did he find something?
+@5105 - (continued)
+$1D46C|He's barking at something. I wonder what.
 
-@4056
-$1D491|Shall we follow the footprints?
+@4056 - look dog
+$1D491|Paw prints! Shall we follow them?
 
 // ===== Redhill =====
 @408C - ask
@@ -881,7 +881,8 @@ $1E73D|It seems they didn't think highly of me, but enough to murder...
 @4A57
 $1E76C|We look similar, but that isn't me.
 
-@4A6D
+// ==== Shed =====
+@4A6D - arrive
 $1E785|Oscar! Who could have done this to him?
 
 @4A84
@@ -1163,20 +1164,20 @@ $1F207|M288
 
 $1F211|M289
 
-@6046
-$1F21B|F21B|You're not allowed in the flower garden!
+@6046 - get a ways into the flower garden
+$1F21B|You're not allowed in the flower garden!
 
 @616C
 $1F22E|Oh?
 
-@608A
-$1F236|F236|That house looks suspicious! Let's go inside.
+@608A - get all the way through the flower garden
+$1F236|That building looks suspicious! Let's go inside.
 
-@618C
-$1F257|618C|Oh dear, oh dear.
+@618C - get most of the way through the flower garden
+$1F257|Oh my!
 
-@6079
-$1F25E|F25E|I'm back to where I was!
+@6079 - restart garden maze
+$1F25E|Back to the start!
 
 $1F26A|M295
 

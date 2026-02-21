@@ -39,3 +39,7 @@ $5EE9|It's too dark.|It's too dark to see the clock (but sharing with above for 
 @5A0A
 $5EFC|Zounds!|Zurun!
 
+!address $6716
+!space 002B
+!wrap 10 $FE
+$6716|To return to the start, press the left button.

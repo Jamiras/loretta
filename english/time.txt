@@ -1,5 +1,38 @@
 !address $2C0E
 !space 000F
 
-//    X----XX---XX < the Xs will get replaced
+//    XZZZ-XXZZ-XZZZ < the Xs will get replaced
 $2C0E|1d    7 : 00
+
+// In addition to the raw string (at $2C0E), the game rewrites the
+// Z values each time the time is updated using data at $2C7C. each
+// three byte triple is the byte to write and the address to write to.
+// $C1AB is the start of the copied string from $2C0E
+
+//       AB AC AD AE AF B0 B1 B2 B3 B4 B5 B6 B7 B8 B9
+//        1  d              7     :        0
+// $2C0E 7C 25 20 31 00 00 82 1B 3E 00 00 7B 2B 3D FF
+// $2C7C    25 AC C1 
+// $2C7F       20 AD C1
+// $2C82          31 AE C1
+// $2C85                      1B B2 C1
+// $2C88                         3E B3 C1
+// $2C8B                                  7B B6 C1
+// $2C8E                                     2B B7 C1
+// $2C91                                        3D B8 C1
+// $2C94                                           FF
+&2C7C=2D // d
+&2C7F=00 //
+&2C82=00 //
+&2C85=00 //
+&2C88=08 // :
+&2C8B=7B // 0
+&2C8E=00 // 0
+&2C91=00 //
+
+// the code also updates the minutes counter from -fun to -pun.
+// since we've repurposed 3F, attempting to put a handakuten into
+// the string will break things. instead, just write extra spaces.
+&53EE=00
+&53F1=00
+&540E=00
