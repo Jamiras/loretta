@@ -8,10 +8,10 @@ $2119|Painting
 $211E|Gallery
 
 @204F
-$2126|Evans
+$2126|Mr.Evans
 
 @2051
-$212F|Brent
+$212F|Brenda
 
 @2053
 $2139|Stobart
@@ -86,7 +86,7 @@ $21D6|Screen
 $21DB|Holmes
 
 @208B
-$21E1|Neil Evans
+$21E1|Neil|Neil Evans is too long to display properly
 
 @208D
 $21EB|Gallery|Clay's Gallery is too long to display properly
@@ -101,7 +101,7 @@ $2200|Katrina|Madam Katrina is too long to display properly
 $220B|Philip
 
 @2095
-$2212|Regent Theatre
+$2212|Regent|Regent Theatre is too long to display properly
 
 @2097
 $2221|Stobart
@@ -158,7 +158,7 @@ $2284|Richard
 $228B|Edward
 
 @20BB
-$2293|Neil Evans
+$2293|Neil|Neil Evans is too long to display properly
 
 @20BD
 $229D|Oscar
@@ -221,7 +221,7 @@ $2316|Painting
 $2318|Redhill
 
 @20EB
-$231F|Tsutsumi
+$231F|Wrapping
 
 @20ED
 $2323|Kerchief|Handkerchief too long
@@ -242,7 +242,7 @@ $2334|Bottle
 $2338|Exhibition
 
 @20F9 - The Swan - Camille Saint Saens
-$2341|Swan
+$2341|The Swan
 
 @20FB - Waltz of the Little Dog - Chopin
 $2347|Puppy Waltz

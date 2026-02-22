@@ -42,4 +42,4 @@ $5EFC|Zounds!|Zurun!
 !address $6716
 !space 002B
 !wrap 10 $FE
-$6716|To return to the start, press the left button.
+$6716|To return to the start, press button 1.

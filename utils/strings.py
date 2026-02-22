@@ -210,7 +210,7 @@ class StringTable:
             if line_len > self.wrap and potential_wrap is not None:
                 if l > 1 and text[i + 1] == ' ' and len(wrapped_text) - line_start < 16:
                     wrapped_text += text[i] + '\n'
-                    line_start = len(wrapped_text) + 2
+                    line_start = len(wrapped_text)
                     line_len = 0
                     i += 2
                     continue

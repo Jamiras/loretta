@@ -17,6 +17,6 @@ $2035|Go
 $203A|Think
 $203F|Time
 
-// are these even used?
-$2044|Y
+// unused
+$2044||Y
 $2047||N
