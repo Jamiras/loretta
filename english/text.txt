@@ -123,10 +123,10 @@ $1C3BA|C3BA|What are you going to do with that?
 $1C3D4|I've taken the violin.
 
 @3740 - take walking stick
-$1C3E7|Ok.|I've taken my walking stick.
+$1C3E7|I've taken my walking stick.
 
 @3751 - take newspaper
-$1C3F8|Ok.|I've taken the newspaper.
+$1C3F8|I've taken the newspaper.
 
 @376C - take left drawer
 $1C40A|I've taken some money.

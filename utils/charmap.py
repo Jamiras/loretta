@@ -142,7 +142,7 @@ class CharMap:
             encoded.append((c >> 8) & 0xFF)
         encoded.append(c & 0xFF)
 
-    def encode(self, text):
+    def encode(self, text, append_terminal=True):
         encoded = bytearray()
         i = 0
         c = None
@@ -153,7 +153,7 @@ class CharMap:
                 CharMap.__encode_append(encoded, c)
                 i += l
 
-        if c not in self.terminal:
+        if append_terminal and c not in self.terminal:
             c = self.terminal[0]
             CharMap.__encode_append(encoded, c)
 

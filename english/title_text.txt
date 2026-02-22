@@ -1,22 +1,65 @@
-!address $2B35
-!space 0022
+// In the original game, this text is rendered using a tile table at $1A790, 
+// which only has 19 characters and extends to $1A81F. That's not enough space
+// to add the extra characters for the translation line, so use the password
+// font instead.
+&0536=3B // password font at $1AC3B
+&0537=AC
 
-@247B
-$2B35|START
+// There's a second reference to the tile table at $054F (referencing $1A79C).
+// That's used to "fade in" the text. We can't do that with the password font
+// because the "pattern" graphic isn't in position 1. Disable by changing the
+// "call 0562" into no-ops
+&0559=00
+&055A=00
+&055B=00
 
-@2484
-$2B3B|CONTINUE
+// Move cyan coloring from "A" to "#"
+//
+// old code:
+// ----------------+
+//   04BB 11 08 70 | ld de, 7008h // "A" is $01 (7000 + 8*0x01 = 7008)
+//   04BE 01 08 00 | ld bc, 0008h // one tile = 8 lines
+//   04C1 2E 50    | ld l, 50h    // blue
+//   04C3 CF       | rst 08h      // ??
+//   04C4 EF       | rst 28h      // fill color table
+//   04C5 11 10 70 | ld de, 7010h // "B" is $02 (7000 + 8*0x02 = 7010)
+//   04C8 01 F0 07 | ld bc, 07F0h // 254 tiles = 0x7F0h lines
+//   04CB 2E 70    | ld l, 70h    // cyan
+//   04CD CF       | rst 08h      // ??
+//   04CE EF       | rst 28h      // fill color table
+//
+// new code:
+// ----------------+
+//   04BB 11 08 70 | ld de, 7008h // "A" is $01 (7000 + 8*0x01 = 7008)
+//   04BE 01 F8 07 | ld bc, 07F8h // 255 tiles = 0x7F8h lines
+//   04C1 2E 70    | ld l, 70h    // cyan
+//   04C3 CF       | rst 08h      // ??
+//   04C4 EF       | rst 28h      // fill color table
+//   04C5 11 38 71 | ld de, 7138h // "#" is $27 (7000 + 8*0x27 = 7138)
+//   04C8 01 08 00 | ld bc, 0008h // 1 tile = 0x0008h lines
+//   04CB 2E 50    | ld l, 50h    // blue
+//   04CD CF       | rst 08h      // ??
+//   04CE EF       | rst 28h      // fill color table
+&04BF=F8
+&04C0=07
+&04C2=70
+&04C6=38
+&04C7=71
+&04C9=08
+&04CA=00
+&04CC=50
 
-// the original password string is 5 characters and placed at position 4A
-// shift the position left 3 spaces so the invalid message doesn't overwrite it
-&2499=47
+// The bottom line of the graphic is rendered using this font, so we have to
+// inject the "pattern" character into the font. We also need to inject the
+// period. Luckily, there's space for both.
 
-@2496
-$2B44|PASSWORD
-
-// shift the INVALID position right 1 spaces to better balance the
-// UI, but still allow it to be cleared out when changing the password
-&29F9=50
-
-@29F6
-$2B4C|INVALID
+!address $1A81E
+!space 00E0
+!noterminals
+$1A81E|  ############################  |bottom line of graphics
+$1A83E|                                |
+$1A85E|      PUSH START BUTTON         |for some reason, these lines are
+$1A87E|                                |offset by one character to the
+$1A89E|         @ SEGA 1987            |left, so to center them, we put
+$1A8BE|     EN 1.0 JAMIRAS 2026        |them one character left of where
+$1A8DE|                                |we want them.

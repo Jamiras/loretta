@@ -3,6 +3,7 @@ echo --- Importing font ---
 ./import.py --rom loretta_en.sg --font english/font.txt
 ./import.py --rom loretta_en.sg --font english/password_font.txt
 echo --- Importing menu text ---
+./import.py --rom loretta_en.sg --text english/password_text.txt --charmap english/password_font.txt
 ./import.py --rom loretta_en.sg --text english/title_text.txt --charmap english/password_font.txt
 ./import.py --rom loretta_en.sg --text english/menu.txt --charmap english/font.txt
 ./import.py --rom loretta_en.sg --text english/words.txt --charmap english/font.txt

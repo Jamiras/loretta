@@ -89,6 +89,7 @@ class StringTable:
         self.trailing_strings = {}
         self.imported = None
         self.can_import = can_import
+        self.append_terminals = True
         current_string = None
         num_strings = 0
 
@@ -169,7 +170,7 @@ class StringTable:
             else:
                 self.current_block.pointers[index] = next_pointers
 
-        encoded = self.charmap.encode(s)
+        encoded = self.charmap.encode(s, append_terminal = self.append_terminals)
         self.current_block.encoded[index] = encoded
 
     def __apply_wrap(self, text):
@@ -293,6 +294,9 @@ class StringTable:
         elif line.startswith('!enableimport'):
             if self.imported:
                 self.charmap.wordmap |= self.imported.wordmap
+
+        elif line.startswith('!noterminals'):
+            self.append_terminals = False
 
         else:
             print(Color.WARNING + 'Unknown command (line {0}): {1}'.format(line_index, line) + Color.RESET)
