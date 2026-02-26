@@ -4,7 +4,7 @@
 
 // screen data starts at 1F29D! - if you overwrite the screen data, you can't interact
 // with things like the drawers or the fireplace.
-// !space 329D
+!space 329D
 
 // there is a bit of extra space at the end
 // !extraspace $1FF5C 00A4
@@ -12,7 +12,7 @@
 
 // when running screen-pack, the screen data is packed and moved to the end of the file
 // ($1F4F2), so the actual available space is contiguous and increased
-!space 34F2
+//!space 34F2
 
 !import english/pairs.txt
 
@@ -69,25 +69,25 @@ $1C189|That's all I know. The rest is up to you.
 $1C1B2|Did I forget to ask something?
 
 @3671 - look violin
-$1C1CE|That's your violin. You're very skilled... really.
+$1C1CE|That's my violin. I'm very skilled... really.
 
 @36C2 - look left drawer
-$1C200|You keep money there.
+$1C200|I keep money there.
 
 @36D4 -look right drawer
-$1C214|You keep a whistle there.
+$1C214|I keep a whistle there.
 
 @36E6 - look fireplace logs
-$1C227|There's your pipe. How did it get there?
+$1C227|There's my pipe. How did it get there?
 
 @367D - look gun
-$1C244|Your gun is a Webley.
+$1C244|My gun is a Webley.
 
 @371E - take gun
 $00000|I've taken the gun.
 
 @3665 - look cane
-$1C25C|That's your walking stick.
+$1C25C|That's my walking stick.
 
 @370A - take drawer second time
 $1C274|There's nothing inside.

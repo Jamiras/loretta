@@ -9,7 +9,7 @@ echo --- Importing menu text ---
 ./import.py --rom loretta_en.sg --text english/words.txt --charmap english/font.txt
 ./import.py --rom loretta_en.sg --text english/time.txt --charmap english/font.txt
 echo --- Importing dialog text ---
-./screen-pack.py --rom loretta_en.sg
+#./screen-pack.py --rom loretta_en.sg
 ./calculate-pairs.py --text english/text.txt --charmap english/font.txt --out english/pairs.txt
 ./import.py --rom loretta_en.sg --text english/new_text_routine.txt --charmap english/font.txt | grep -v " 0 strings"
 ./import.py --rom loretta_en.sg --text english/text.txt --charmap english/font.txt
