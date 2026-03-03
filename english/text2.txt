@@ -2,11 +2,13 @@
 !space 00BB
 !wrap 10 $FE
 
+// ===== Hallway =====
+
 @58F8
 $5E47|How are you going to get in?
 
 @5933
-$5E5F|Let's not break it.|5e75
+$5E5F|Let's not break it.
 
 @5967
 $5E77|Tap, tap...
@@ -18,7 +20,7 @@ $5E80|Did you hear something?
 $5E8D|It's too dark.
 
 @599A
-$5E9B|I can't get it.|5ea8
+$5E9B|I can't get it.
 
 @59AB
 @59CD
@@ -38,6 +40,8 @@ $5EE9|It's too dark.|It's too dark to see the clock (but sharing with above for 
 
 @5A0A
 $5EFC|Zounds!|Zurun!
+
+// ===== Garden =====
 
 !address $6716
 !space 002B

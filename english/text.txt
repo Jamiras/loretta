@@ -60,13 +60,13 @@ $1C0E5|The stolen artwork is a piece by Neil Evans.[^WAIT]It's titled "The Girl 
 $1C123|It's called "Clay's Gallery".
 
 @3628 - ask Evans
-$1C13D|After his success with "The Girl in the Red Hat",[^WAIT]Evans is now building a reputation doing portraits.
+$1C13D|After his success with "The Girl in the Red Hat",[^WAIT]Mr.Evans is now building a reputation doing portraits.
 
 @3645 - after asking all three questions
 $1C189|That's all I know. The rest is up to you.
 
-@3811 - try to leave home without asking all three questions
-$1C1B2|Did I forget to ask something?
+@3811 - try to leave without asking all three questions
+$1C1B2|Holmes, did you forget to ask something?
 
 @3671 - look violin
 $1C1CE|That's my violin. I'm very skilled... really.
@@ -74,7 +74,7 @@ $1C1CE|That's my violin. I'm very skilled... really.
 @36C2 - look left drawer
 $1C200|I keep money there.
 
-@36D4 -look right drawer
+@36D4 - look right drawer
 $1C214|I keep a whistle there.
 
 @36E6 - look fireplace logs
@@ -93,10 +93,10 @@ $1C25C|That's my walking stick.
 $1C274|There's nothing inside.
 
 @3688 - look article 1
-$1C284|A major exhibition of Neil Evans' works[WAIT]will be held at Clay's Gallery.[^WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count LaGrande[WAIT]and Madam Katrina will be on display.
+$1C284|A major exhibition of Neil Evans'[WAIT]works will be held at Clay's Gallery.[WAIT]In addition to "The Girl in the Red Hat",[WAIT]portraits of Count LaGrande[WAIT]and Madame Katrina will be on display.
 
 @36AC - look article 2
-$1C2F4|I'm a 10-year-old girl looking for a tutor.[WAIT]Please contact Richard Revell in Reigate.
+$1C2F4|I'm a 10 year old girl looking for a tutor.[WAIT]Please contact Richard Revell in Reigate.
 
 @36B7 - look article 3
 $1C329|The Red-Headed League has disbanded.
@@ -117,7 +117,7 @@ $1C38E|Where are you trying to go?
 $1C3A0|Let's leave the cleaning to Mrs.Hudson.
 
 // unused?
-$1C3BA|C3BA|What are you going to do with that?
+$1C3BA|What are you going to do with that?
 
 @372F - take violin
 $1C3D4|I've taken the violin.
@@ -140,23 +140,23 @@ $1C429|I've taken the pipe.
 @4658 - take bone
 $1C43B|I've taken the bone.
 
-@4669
+@4669 - take lamp
 $1C44A|I've taken the lamp.
 
-@37A7
+@37A7 - take other
 $1C45B|That cannot be taken.
 
 // unused?
-$1C469|C469|This is used to attract attention, right?
+$1C469|This is used to attract attention, right?
 
 // unused?
-$1C482|C482|Just kidding. Wasn't that funny?
+$1C482|Just kidding. Wasn't that funny?
 
 // unused?
-$1C49B|C49B|The person over there is Mr.Clay.
+$1C49B|The person over there is Mr.Clay.
 
 // unused?
-$1C4B1|C4B1|I'm looking forward to the exhibition.
+$1C4B1|I'm looking forward to the exhibition.
 
 // ===== Gallery =====
 
@@ -195,13 +195,15 @@ $1C630|With everyone's support, the exhibition was a great success.
 $1C64E|He certainly caused a lot of trouble.
 
 // unused?
-$1C66B|C66B|[WAIT]Huh? A threat? To damage a painting...
+$1C66B|[WAIT]Huh? A threat? To damage a painting...
 
 @4D3D - ask painting (clerk) (later)
 $1C690|A wealthy man bought that painting.[WAIT]His name started with an R.
 
 @4D54 - ask Evans (clerk) (later)
 $1C6BF|What a terrible person. How could he hit me?
+
+// ===== Street =====
 
 @388E - enter white door (B-7)
 @389D - enter green door (D-2)
@@ -213,19 +215,19 @@ $1C6DA|Hello, is anyone home?
 $1C6EB|It seems no one is home.
 
 @3859 - hit Stobart's door
-$1C6F7|Is anyone there...?[WAIT]I can faintly hear a woman's voice...
+$1C6F7|Hello. Is anyone there...?[WAIT]Holmes! I can faintly hear a woman's voice...
 
 @3865
-@3901 - open door
+@3901 - open Stobart's door
 $1C72E|The door is locked!
 
 @51CD - use hairpin
 $1C741|I unlock the door.
 
-@3827 - ask on street
+@3827 - ask
 $1C74E|Would you like to join me for tea, miss?
 
-@382D - response to previous
+@382D - (continued)
 $1C766|How rude!
 
 // ===== LaGrande mansion =====
@@ -252,6 +254,7 @@ $1C834|He's a noble descendant of the Stobart family.[^WAIT]After his father's b
 $1C8A3|Brenda married a rich man.[WAIT]I haven't seen Stobart in years.[WAIT]I wonder if he still lives in North London?
 
 // ===== Count Stobart's house =====
+
 @39BE - arrive
 $1C8FA|Loretta! Thank goodness![WAIT]Everything is going to be alright.
 
@@ -270,7 +273,8 @@ $1C98B|I want to go home.
 @4DE4 - look london street
 $1C99D|You find nothing special.
 
-// ===== Katrina =====
+// ===== Katrina's house =====
+
 @3A0E - meet Katrina.
 $1C9B6|Hello. I'm Katrina.
 
@@ -284,6 +288,7 @@ $1C9FC|I was an excellent model.
 $1CA1D|I'll be even more famous now.
 
 // ===== Philip =====
+
 @3A59 - meet Philip
 $1CA48|I'm Philip.
 
@@ -303,6 +308,7 @@ $1CAC9|It will make a lot of money.
 $1CAE3|My brother's house is in Norwood.
 
 // ===== Norwood =====
+
 @3AA8 - arrive
 $1CB16|This is Norwood. Isn't it quiet?
 
@@ -314,18 +320,18 @@ $1CB33|That's his house there.
 $1CB47|Someone else was asking about that the other day.
 
 // unused?
-$1CB7A|CB7A|Hello,
+$1CB7A|Hello,
 
 // unused?
-$1CB81|CB81|Are you going back to London?
+$1CB81|Are you going back to London?
+
+// ===== Evans House =====
 
 @3B06 - enter house
 $1CB97|There's no one here.
 
 @3BDD - look ceiling
 $1CBA7|I can't reach it.
-
-// ===== Evans House =====
 
 @4F5D - use walking stick
 $1CBB9|Let's try tapping on the ceiling.
@@ -367,11 +373,11 @@ $1CD14|We've been living together for 3 years.[WAIT]But she suffers from amnesia
 @3B8A - ask 3 years go
 $1CD49|I found her by the Mole river. She was injured at the time.
 
-@3BA3 - (continued)
+@3BA3 - (continued) - the original text here is much longer. Watson makes a comment about Holmes's work ethic.
 $1CD8C|Is that everything?
 
 @3BAB - (continued)
-$1CDCA|What does this letter mean? I'm worried.
+$1CDCA|Mr.Holmes, what does this letter mean? I'm so worried.
 
 @3B60 - ask letter again
 $1CDFD|It reads:[NL] wheRE[NL] loVE[NL] faLLs[^WAIT]Beware the true origin of "The Girl in the Red Hat".
@@ -398,14 +404,14 @@ $1CEFF|Please don't stare at my scars.
 $1CF2A|As I thought![WAIT]Your father is looking for you.
 
 @3C2C - (continued)
-$1CF54|Can you prove that she's his daughter?
+$1CF54|Is there any proof that she's his daughter?
 
 @3C4D - look open drawer
 $1CF83|A handkerchief with the letter "L" embroidered on it.
 
 @3C53 - (continued)
 @3DB6 - show handkerchief
-$1CFB0|She had it when we first met. Letitia starts with "L".
+$1CFB0|She had it when we first met.[WAIT]So I called her Letitia, which starts with "L".
 
 @3E3B - move easel
 $1CFF6|A shoe![WAIT]Just like the one Richard had!
@@ -438,11 +444,12 @@ $1D091|I'm scared.
 $1D0A1|Let's take Letitia with us.[WAIT]Neil, you should come too.
 
 // ===== Train Station =====
+
 @3EC8 - arrive
-$1D0D0|Where would you like to go?
+$1D0D0|Holmes! Where are we going?
 
 // unused?
-$1D0E4|D0E4|How far are you going?
+$1D0E4|How far are you going?
 
 @3ED3 - arrive in Windsor
 $1D0F3|This is Windsor. It's castle is a source of pride for England.
@@ -457,6 +464,7 @@ $1D168|The castle overlooking the Thames is the best.
 $1D192|This town has old castles and churches.
 
 // ===== Reigate =====
+
 @3F18 - arrive
 $1D1B2|This is Reigate. It has many beautiful old streets.
 
@@ -479,7 +487,7 @@ $1D284|Excuse me, please look at this.
 $1D2AE|Mr.Revell lives over there.
 
 @50C9 - ????
-$1D2C7|D2C7|I don't know.
+$1D2C7|I don't know.
 
 @3F85 - attempt to enter mansion
 $1D2D0|Who are you?
@@ -490,10 +498,8 @@ $1D2DA|(I need to get in without arousing suspicion.)[^WAIT]You called for a doc
 @3F93 - (continued)
 $1D316|We've been waiting for you. Please follow me.
 
-@3FCC - come back later (original text also used D2DA)
-$1D2DA|I've returned.
-
 @3FB8 - return to mansion with Letitia
+@3FCC - come back later
 $1D335|Did you need something?[WAIT]Oh! Lady Loretta, you're safe!
 
 @3FAC - enter mansion (after attack)
@@ -508,7 +514,7 @@ $1D373|I'm just a gatekeeper.
 $1D38B|What a beautiful view!
 
 @402F - start chapter 3
-$1D3A8|As we walked, we talked about the incident.[WAIT]"The lesson you must learn," Holmes said[WAIT]"is that you must never lose sight of change."
+$1D3A8|As we walked, we talked about the incident.[WAIT]"The lesson you must learn," Holmes said[WAIT]"is that you must never lose sight of change."[^WAIT]Now, let's keep going!
 
 @50F0 - use bone
 $1D454|Here boy. Have this.
@@ -520,6 +526,7 @@ $1D46C|He's barking at something. I wonder what.
 $1D491|Paw prints! Shall we follow them?
 
 // ===== Redhill =====
+
 @408C - ask
 $1D4B5|This is the town of Redhill.
 
@@ -527,6 +534,7 @@ $1D4B5|This is the town of Redhill.
 $1D4CA|A single inn sits by the bank of the Mole river.
 
 // ===== Baron Inn =====
+
 @40B4 - enter inn
 $1D4FA|Welcome.
 
@@ -564,7 +572,7 @@ $1D694|Found what?
 $1D6A1|It's stored over there.
 
 @42A3 - ????
-$1D6B2|D6B2|It's rude to stare.
+$1D6B2|It's rude to stare.
 
 @4297 - look cabinet
 $1D6D0|A single lock of slightly wavy hair.[WAIT]And one shoe stained with blood.[WAIT]They said Jack the Ripper got her,[WAIT]but I hope to see her again.
@@ -582,7 +590,7 @@ $1D781|Mr.Revell, is this your daughter?
 $1D79E|Oh, Loretta! Is it really you?
 
 @437B - show handkerchief
-$1D7B9|L... could be short for Loretta.
+$1D7B9|L... That was short for Loretta.
 
 @4393 - show shoes
 $1D7D7|Those are Loretta's shoes.
@@ -631,10 +639,10 @@ $1D9D0|What happened?
 $1D9E0|Someone tried to stab me. Julia protected me...
 
 @4197 - ????
-$1DA18|DA18|He cut my arm, but it's just a scratch.[WAIT]More importantly, he got away!
+$1DA18|He cut my arm, but it's just a scratch.[WAIT]More importantly, he got away!
 
 @4301 - show bottle [Julia says this]
-$1DA3D|I added the poison, but it was Stobart's idea.[WAIT]I accidentally killed my daughter...[WAIT]I don't want anyone else to die! Please stop him!
+$1DA3D|I added the poison, but it was Stobart's idea.[^WAIT]I accidentally killed my daughter...[WAIT]I don't want anyone else to die! Please stop him!
 
 @430F - (continued)
 $1DA93|Who is Stobart, Holmes? You can only choose one.
@@ -643,6 +651,7 @@ $1DA93|Who is Stobart, Holmes? You can only choose one.
 $1DAC5|It's all over now!
 
 // ===== Accusations =====
+
 @434A - Richard
 $1DAD9|Both of my daughters are victims!
 
@@ -656,12 +665,13 @@ $1DB1B|Oscar is dead.
 $1DB2E|He's right here with us.
 
 @4354 - Watson
-$1DB43|Why would you suspect me?
+$1DB43|Holmes! Why would you suspect me?
 
 @4352 - Butler
 $1DB5E|Of course! Don't let him get away!
 
 // ===== Dining room =====
+
 @44AA - arrive in piano room
 $1DB7E|Mr.Revell must be wealthy.
 
@@ -675,7 +685,7 @@ $1DBBF|Richard Revell amassed a fortune trading with India.[WAIT]In 1875, he acq
 $1DC2E|Ah! A note![WAIT]"Stop snooping around or you're dead!"[WAIT]Who could it be from? I should investigate!
 
 @4011 - go outside
-$1DC81|I've lost him.
+$1DC81|I'm sorry, Holmes. I've lost track of him.
 
 @4580
 @45EC
@@ -686,10 +696,10 @@ $1DC81|I've lost him.
 @4E7F
 @52DD
 @5355
-$1DC9F|We must hurry.|Holmes! Come here!
+$1DC9F|Holmes! Let's go!
 
 @4499 - go inside after reuniting Letitia with Revell
-$1DCB1|The meal was delicious.[WAIT]There's still the issue of the note.[WAIT]Maybe I shouldn't have eaten that...
+$1DCB1|The meal was delicious.[WAIT]There's still the issue of the warning note.[WAIT]Maybe I shouldn't have eaten that...
 
 @45D1 - look bone
 $1DD1F|There's only a bone left.
@@ -770,10 +780,10 @@ $1E063|We must find the culprit before they get away!
 $1E090|I don't remember.
 
 @46ED - ????
-$1E0A1|E0A1|Is he not here?
+$1E0A1|Is he not here?
 
 // unused??
-$1E0AC|E0AC|What would you play at a time like this?
+$1E0AC|What would you play at a time like this?
 
 @5080 - play puppy waltz
 $1E0CF|I know that song! May I play it on the piano?
@@ -782,9 +792,10 @@ $1E0CF|I know that song! May I play it on the piano?
 $1E0F4|I remember! I was stabbed on a walk...[WAIT]My father said he acquired the mansion[WAIT]from someone struggling with debt...
 
 @508E - (continued)
-$1E164|Aiieee![WAIT]That's Julia's scream! Where did it come from?
+$1E164|Ah![WAIT]That's Julia's scream! Where did it come from?
 
 // ===== Oscar's room =====
+
 @4789 - enter oscar's room.
 $1E18B|Hello. I'm Oscar.
 
@@ -792,7 +803,7 @@ $1E18B|Hello. I'm Oscar.
 $1E19A|I think someone is trying to kill Richard.[WAIT]If he dies before Loretta regains her memory...
 
 @47B9 - ask oscar about loretta
-$1E206|If Loretta doesn't return, Julia will inherit the mansion...[WAIT]And the estate will be divided between her and Edward.
+$1E206|If Loretta doesn't recover,[WAIT]Julia will inherit the mansion...[WAIT]And the estate will be divided between her and Edward.
 
 @47FF - enter oscar's room
 $1E25A|I'm Oscar. I work for Richard.
@@ -807,6 +818,7 @@ $1E318|It's Oscar's diary!
 $1E325|"I will confront her about putting poison in the cocoa...[^WAIT]If I can just find her..."
 
 // ===== Edward's room =====
+
 @4858 - meet edward
 $1E3A7|I'm Edward, Richard's younger brother.
 
@@ -822,8 +834,8 @@ $1E420|How about we play some poker instead?
 @4897 - ask edward about oscar
 $1E435|He's a fine young man, and Richard relies on him.
 
-@489E - ???
-$1E469|My older brother is quite capable.
+@489E - ask (before patricia)
+$1E469|My older brother is quite skilled.
 
 @48AD - show knife to edward
 $1E47D|You stabbed Oscar with this!
@@ -832,8 +844,9 @@ $1E47D|You stabbed Oscar with this!
 $1E497|That isn't mine!
 
 // ===== Neil's room =====
+
 @48E3 - find neil in the mansion
-$1E4C0|Have you found out anything about Loretta?
+$1E4C0|Mr.Holmes! Have you found out anything about Loretta?
 
 @48FA - ask neil about patricia
 $1E4DF|I just got here...
@@ -845,25 +858,26 @@ $1E4F8|I'm so worried.
 $1E50E|Richard wanted Loretta to marry Oscar as soon as possible.
 
 @491E - ????
-$1E543|E543|Now what happens to us?
+$1E543|Now what happens to us?
 
 @493F - ????
-$1E55C|E55C|What would be the point?|... of showing that to him?
+$1E55C|What would be the point?|... of showing that to him?
 
 @4946 - show knife to neil
 $1E56F|E is also your initial.[WAIT]You killed Oscar for what happened to Loretta!
 
 @494C - (continued)
-$1E5A4|That is mine. But I lent it to Oscar.[WAIT]He wanted something to protect himself with.
+$1E5A4|The knife is mine. But I lent it to Oscar.[WAIT]He wanted something to protect himself with.
 
 // ===== Patricia's room =====
-@496E
+
+@496E - arrive
 $1E5E2|My name is Patricia. I'm 10 years old.
 
-@4984
+@4984 - ask
 $1E5F5|Do you like playing with dolls?
 
-@4992
+@4992 - look doll or look patricia
 $1E618|If you do that, mommy will get angry!
 
 @4975 - find patricia on floor
@@ -890,8 +904,8 @@ $1E6E0|If I had known this would happen,[WAIT]I'd have made cocoa for her too.
 @4A33 - ask julia about loretta
 $1E70B|My only daughter is Patricia.
 
-@4A45 - ????
-$1E722|E722|I married Richard 11 years ago.
+@4A45 - ask (before patricia)
+$1E722|I married Richard 11 years ago.
 
 @4A3E - ask julia about oscar
 $1E73D|I didn't think much of him, but I didn't kill him...
@@ -900,6 +914,7 @@ $1E73D|I didn't think much of him, but I didn't kill him...
 $1E76C|We look similar, but that isn't me.
 
 // ===== Shed =====
+
 @4A6D - arrive
 $1E785|Oscar! Who could have done this to him?
 
@@ -913,8 +928,9 @@ $1E7CB|It's engraved with the letter "E". The culprit must be Edward![^WAIT]He k
 $1E81A|I'll keep it as evidence.
 
 // ===== Regent Theatre ====
-@4AF9 - ????
-$1E830|E830|This is a theatre. It's main attractions are singing and comedy.
+
+@4AF9 - ask (before)
+$1E830|This is a theatre.[WAIT]It's main attractions are singing and comedy.
 
 @4B04 - ask about Julia
 $1E850|Julia? Who's that?
@@ -935,12 +951,13 @@ $1E8EA|How was my singing?
 $1E8FB|It was a truly wonderful.
 
 @4B5E - (continued)
-$1E910|Okay, I'll tell you. You should ask LaGrande about Brenda.
+$1E910|Okay, I'll tell you something.[WAIT]You should ask LaGrande about Brenda.
 
-@4B6C - ????
-$1E940|E940|That's all for today.
+@4B6C - attempt to enter theatre (before)
+$1E940|Today's shows are over.
 
 // ===== Basement ====
+
 @4B91 - enter basement
 $1E94F|It's completely dark. I can't see anything.
 
@@ -954,11 +971,11 @@ $1E975|Was this the poison in the cocoa?[WAIT]It says: Just a little each day to
 $1E9C4|It's a picture of Julia when she was younger.[WAIT]She was quite a beauty, wasn't she?
 
 @4BDB - look photo again
-$1E9EE|It appears to have been taken from the front of Regent Theatre.
+$1E9EE|It appears to have been taken in front of Regent Theatre.
 
 @4AC4
 @4C0C
-$1EA0F|What is that?
+$1EA0F|Holmes! What is that?
 
 @4C18 - take photo
 @4C2B - take bottle
@@ -1008,32 +1025,34 @@ $1EC1A|Yes. Julia is completely innocent.[WAIT]I orchestrated everything.[WAIT]P
 // unused?
 $1EC7B|EC7B|I don't see anything strange here.
 
+// ===== Anywhere =====
+
 @3703 - look unknown
 $1EC98|What are you looking at?
 
 // unused?
-$1ECB3|ECB3|Why are you looking around so much?
+$1ECB3|Why are you looking around so much?
 
 // unused
 $1ECC9|M222
 
 @386C - ????
-$1ECD3|ECD3|Holmes, you better not do that.
+$1ECD3|Holmes, you better not do that.
 
 @4DEC - hit unknown
 $1ECE9|You shouldn't take out your frustrations on that.
 
 // unused?
-$1ED08|ED08|I've had enough of violent acts.
+$1ED08|I've had enough of violent acts.
 
 @4DEE - call when not appropriate
 $1ED1F|There's no one to call here.
 
 @37F2 - ????
-$1ED36|ED36|I don't think anyone is here.
+$1ED36|I don't think anyone is here.
 
 // unused?
-$1ED3D|ED3D|Is anyone there? No one's answering...
+$1ED3D|Is anyone there? No one's answering...
 
 @4E06
 @4DE2 - ask when no one else present
@@ -1047,7 +1066,7 @@ $1ED76|What about it?
 $1ED89|I don't have any evidence to show.
 
 // unused?
-$1EDA0|EDA0|There's no point in showing that.
+$1EDA0|There's no point in showing that.
 
 @4DF0 - enter unknown
 $1EDB3|You can't enter that.
@@ -1062,7 +1081,7 @@ $1EDE6|That won't accomplish anything.
 $1EDFB|How would I use that?
 
 @4FFB - use gun
-$1EE0F|That would be bad.
+$1EE0F|You shouldn't do that.
 
 @4EB7 - use address book - neil evans
 @4EFF
@@ -1083,17 +1102,17 @@ $1EE68|She lives in D-2.
 @4EE7 - use address book - Philip
 $1EE79|He lives in E-6.
 
-@4EF3 - (for regent theatre - not sure how to trigger this)
+@4EF3 - use address book - Regent
 $1EE8A|It's in C-3.
 
-@4EAB - use address book - holmes
+@4EAB - use address book - Holmes
 $1EE9B|He lives in B-1.
 
 @4F2F - give money to clerk
 $1EEAC|Thank you very much. Do you like what you see?
 
 @4F37 - use money
-$1EED8|You must use your money wisely.
+$1EED8|Holmes, you must use your money wisely.
 
 // unused?
 $1EEF4|I'm completely broke.
@@ -1124,8 +1143,8 @@ $1EF7E|It's not dark enough to need a lamp.
 // unused
 $1EF93|M258
 
-@51A6 - ????
-$1EF9D|EF9D|Is it safe to drink that?[WAIT]Oh, it's delicious!
+@51A6 - use brandy
+$1EF9D|Should I drink that?[WAIT]Oh, it's delicious!
 
 @08BC - epilogue
 $1EFB5|Afterwards, Julia went to the hospital.[WAIT]Loretta and Richard are reportedly happy together.[^WAIT]Richard approved of Loretta's relationship with Neil,[^WAIT]and they lived happily ever after...
@@ -1143,7 +1162,7 @@ $1F087|A crimson thread of murder[WAIT]is interwoven into the tapestry of life.
 $1F0B9|Even if demons don't exist,[WAIT]plenty of people act like the devil's henchmen.
 
 @5399 - ????
-$1F0E7|F0E7|May tonight's decision prove to be the right one for Loretta and Neil's future.
+$1F0E7|May tonight's decision prove to be the right one for Loretta and Neil's future.
 
 // unused
 $1F12B|M266
@@ -1217,11 +1236,13 @@ $1F207|M288
 // unused
 $1F211|M289
 
+// ===== Flower maze =====
+
 @6046 - get a ways into the flower garden
 $1F21B|You're not allowed in the flower garden!
 
 @616C - ????
-$1F22E|F22E|Oh?
+$1F22E|Oh?
 
 @608A - get all the way through the flower garden
 $1F236|That building looks suspicious! Let's go inside.
@@ -1239,13 +1260,13 @@ $1F26A|M295
 $1F274|M296
 
 // unused
-$1F27E|F27E|Box
+$1F27E|Box
 
 // unused
-$1F284|F284|TODO
+$1F284|TODO
 
 // unused
-$1F28F|F28F|Nothing
+$1F28F|Nothing
 
 // unused
-$1F294|F294|Error
+$1F294|Error

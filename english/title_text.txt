@@ -61,5 +61,5 @@ $1A83E|                                |
 $1A85E|      PUSH START BUTTON         |for some reason, these lines are
 $1A87E|                                |offset by one character to the
 $1A89E|         @ SEGA 1987            |left, so to center them, we put
-$1A8BE|     EN 1.0 JAMIRAS 2026        |them one character left of where
+$1A8BE|     EN 0.9 JAMIRAS 2026        |them one character left of where
 $1A8DE|                                |we want them.
